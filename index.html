@@ -1,890 +1,705 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Plan de tesis de física contemporánea sobre radiactividad: historia, tipos de radiación, casos, fronteras de investigación, simulaciones y videos.">
 <meta name="theme-color" content="#0b1418">
+<meta name="description" content="Plan de tesis de física contemporánea sobre radiactividad: historia, tipos de radiación, casos, fronteras de investigación, simulaciones, guía práctica con monedas y videos.">
 <title>Radioactividad - Abel Díaz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,
-wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0b1215;
-    --bg-panel:#101c22;
-    --bg-panel-2:#0e181d;
-    --line:#1e2f36;
-    --text:#e7f1f2;
-    --text-muted:#8fa6ac;
-    --cherenkov:#4fd8ff;
-    --cherenkov-glow:rgba(79,216,255,.35);
-    --amber:#ffb000;
-    --alpha:#ff6b57;
-    --beta:#4fd8ff;
-    --gamma:#b98cff;
-    --serif:'Source Serif 4', Georgia, serif;
-    --sans:'IBM Plex Sans', Arial, sans-serif;
-    --mono:'IBM Plex Mono', Consolas, monospace;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  img,svg{max-width:100%;}
-  a{color:var(--cherenkov);}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
-  .measure{max-width:66ch;}
+:root{
+  --bg:#0b1418; --panel:#111f26; --panel2:#0e191f; --line:#1f343e;
+  --text:#e6eef1; --muted:#92a8b2; --cyan:#4fd8ff; --amber:#ffb000; --green:#7ee2a8;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:18px;line-height:1.65}
+a{color:var(--cyan)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700}
+h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;margin-top:0}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem;margin-bottom:.4em}
+p{margin:0 0 1em;max-width:72ch}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.lead{color:var(--muted);font-size:1.1rem}
 
-  /* ---------- NAV ---------- */
-  header.site-nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(11,18,21,.88);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{
-    max-width:920px;margin:0 auto;padding:14px 24px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-  }
-  .nav-inner .brand{
-    font-family:var(--serif);font-size:1.05rem;font-weight:600;
-    letter-spacing:.2px;color:var(--text);text-decoration:none;
-  }
-  .nav-inner .brand em{color:var(--cherenkov);font-style:normal;}
-  nav.links{display:flex;gap:18px;flex-wrap:wrap;}
-  nav.links a{
-    color:var(--text-muted);text-decoration:none;font-size:.88rem;
-    border-bottom:1px solid transparent;padding-bottom:2px;
-  }
-  nav.links a:hover{color:var(--text);border-color:var(--cherenkov);}
+/* nav */
+nav.top{position:sticky;top:0;z-index:20;background:rgba(11,20,24,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;overflow-x:auto;white-space:nowrap;padding-top:12px;padding-bottom:12px}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.2rem;color:var(--text);text-decoration:none}
+.brand em{color:var(--cyan);font-style:italic}
+nav.top a.l{color:var(--muted);text-decoration:none;font-size:.92rem}
+nav.top a.l:hover{color:var(--text)}
+nav.top a.new{color:var(--amber)}
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:96px 24px 72px;
-    overflow:hidden;
-    border-bottom:1px solid var(--line);
-  }
-  .hero canvas{
-    position:absolute;inset:0;width:100%;height:100%;
-    opacity:.55;
-  }
-  .hero-inner{position:relative;max-width:820px;margin:0 auto;}
-  .kicker{
-    font-family:var(--mono);font-size:.8rem;color:var(--amber);
-    margin:0 0 18px;
-  }
-  h1.hero-title{
-    font-family:var(--serif);font-weight:600;
-    font-size:clamp(2.4rem,5vw,3.6rem);
-    line-height:1.08;margin:0 0 22px;color:var(--text);
-  }
-  h1.hero-title .glow{color:var(--cherenkov);text-shadow:0 0 24px var(--cherenkov-glow);}
-  .hero p.lead{
-    font-size:1.12rem;color:var(--text-muted);max-width:60ch;margin:0 0 8px;
-  }
-  .thesis-meta{
-    margin-top:36px;display:flex;gap:32px;flex-wrap:wrap;
-    font-family:var(--mono);font-size:.82rem;color:var(--text-muted);
-  }
-  .thesis-meta strong{display:block;color:var(--text);font-family:var(--sans);font-size:.95rem;font-weight:500;}
+/* hero */
+header.hero{padding:88px 0 64px}
+.kicker{color:var(--cyan);font-size:.9rem;margin-bottom:14px}
+.meta{display:flex;flex-wrap:wrap;gap:28px;margin-top:32px}
+.meta div{font-size:.88rem;color:var(--muted)}
+.meta strong{display:block;color:var(--text);font-size:1.05rem}
 
-  /* ---------- SECTIONS ---------- */
-  section{padding:72px 0;border-bottom:1px solid var(--line);}
-  section.tight{padding:56px 0;}
-  h2.section-title{
-    font-family:var(--serif);font-weight:600;
-    font-size:clamp(1.6rem,3vw,2.1rem);
-    margin:0 0 8px;color:var(--text);
-  }
-  .section-sub{color:var(--text-muted);margin:0 0 36px;max-width:60ch;}
-  p{color:#c9d7da;max-width:66ch;}
-  p.narrow{max-width:60ch;}
+/* timeline */
+.timeline{list-style:none;margin:28px 0 0;padding:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 28px 26px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:.55em;width:12px;height:12px;border-radius:50%;background:var(--cyan)}
+.timeline .yr{font-family:var(--serif);color:var(--amber);font-weight:700}
+.timeline h3{margin:.1em 0 .3em}
+.timeline p{margin:0;color:var(--muted)}
 
-  /* ---------- TIMELINE (historia) ---------- */
-  .timeline{list-style:none;margin:0;padding:0;border-left:1px solid var(--line);}
-  .timeline li{position:relative;padding:0 0 32px 28px;}
-  .timeline li:last-child{padding-bottom:0;}
-  .timeline li::before{
-    content:'';position:absolute;left:-5px;top:6px;
-    width:9px;height:9px;border-radius:50%;
-    background:var(--cherenkov);box-shadow:0 0 10px var(--cherenkov-glow);
-  }
-  .timeline .year{font-family:var(--mono);color:var(--amber);font-size:.85rem;display:block;margin-bottom:4px;}
-  .timeline h3{margin:0 0 6px;font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--text);}
+/* cards */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+.card p{color:var(--muted);margin:0}
+.card .tag{display:block;font-size:.85rem;color:var(--amber);margin-top:12px}
+.sym{font-family:var(--serif);font-size:2.4rem;color:var(--cyan);line-height:1}
+.caso{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:10px;padding:22px;margin-top:22px}
+.caso .when{color:var(--amber);font-size:.9rem}
+.caso h3{margin:.2em 0 .4em}
+.caso p{color:var(--muted)}
+.frontier{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:16px}
+.frontier li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
+.frontier .when{color:var(--cyan);font-size:.88rem}
+.frontier .src{font-size:.88rem;color:var(--muted)}
 
-  /* ---------- RADIATION TYPES ---------- */
-  .rad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px;}
-  .rad-card{background:var(--bg-panel);padding:26px 22px;}
-  .rad-card .sym{font-family:var(--serif);font-size:2.1rem;font-weight:700;margin:0 0 6px;}
-  .rad-card.alpha .sym{color:var(--alpha);}
-  .rad-card.beta .sym{color:var(--beta);}
-  .rad-card.gamma .sym{color:var(--gamma);}
-  .rad-card h3{margin:0 0 10px;font-size:1.02rem;font-weight:600;color:var(--text);}
-  .rad-card p{font-size:.92rem;color:var(--text-muted);max-width:none;}
-  .rad-card .stops{
-    margin-top:14px;font-family:var(--mono);font-size:.76rem;
-    color:var(--text);border-top:1px solid var(--line);padding-top:12px;
-  }
-  .shield-diagram{margin-top:36px;}
-  .shield-diagram svg{display:block;width:100%;height:auto;}
+/* shield */
+.shield{display:flex;align-items:stretch;margin-top:26px;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.9rem}
+.shield div{flex:1;padding:12px 10px;text-align:center;background:var(--panel2);border-right:1px solid var(--line)}
+.shield div:last-child{border-right:0}
+.shield b{color:var(--cyan);font-family:var(--serif)}
 
-  /* ---------- VIDEO REFS ---------- */
-  .vid-refs{margin-top:28px;}
-  .vid-refs .vid-label{
-    font-family:var(--mono);font-size:.78rem;color:var(--text-muted);
-    margin-bottom:10px;
-  }
-  .tiktok-embed{margin:0 auto;}
+/* media */
+.media{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:26px;align-items:start}
+.media figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:hidden}
+.media figcaption{font-size:.88rem;color:var(--muted);margin-bottom:10px}
+.media figcaption b{display:block;color:var(--text);font-size:1rem}
+.media .tiktok-embed{margin:0 auto !important}
+.ratio{position:relative;padding-top:56.25%;background:#000;border-radius:6px;overflow:hidden}
+.ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.alt{font-size:.88rem;margin:10px 0 0}
+.placeholder{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;text-align:center;padding:24px;position:absolute;inset:0;background:var(--panel2);color:var(--muted)}
+.placeholder a.btn{margin-top:4px}
+.phet{width:100%;height:520px;border:1px solid var(--line);border-radius:10px;background:#000;margin-top:18px}
 
-  .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:12px;}
-  .video-card{background:var(--bg-panel);border:1px solid var(--line);padding:18px;}
-  .video-card h4{margin:0 0 4px;font-size:.98rem;font-weight:600;color:var(--text);}
-  .video-card .tag{font-family:var(--mono);font-size:.72rem;color:var(--amber);text-transform:uppercase;letter-spacing:.04em;}
+/* widgets */
+.widget{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:26px}
+.controls{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:18px}
+label{display:block;font-size:.92rem;color:var(--muted);margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--cyan)}
+input[type=number],select{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:9px 10px;font:inherit}
+.val{color:var(--text);font-weight:600}
+canvas{width:100%;height:320px;display:block;background:var(--panel2);border:1px solid var(--line);border-radius:8px}
+.stats{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:18px}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.stat span{display:block;font-size:.82rem;color:var(--muted)}
+.stat b{font-family:var(--serif);font-size:1.5rem;color:var(--cyan)}
+.stat b.a{color:var(--amber)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 18px}
+button,.btn{font:inherit;font-weight:600;background:var(--cyan);color:#06222c;border:0;border-radius:6px;padding:10px 18px;cursor:pointer;text-decoration:none;display:inline-block}
+button.sec{background:transparent;color:var(--text);border:1px solid var(--line)}
+button:hover,.btn:hover{filter:brightness(1.1)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.check{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.92rem;margin:0}
+.check input{accent-color:var(--cyan)}
+.legend{display:flex;gap:20px;font-size:.85rem;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.tablebox{max-height:220px;overflow:auto;margin-top:18px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{padding:7px 12px;text-align:right;border-bottom:1px solid var(--line)}
+th{position:sticky;top:0;background:var(--panel2);color:var(--muted);font-weight:600}
+.two{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:22px}
+ol.steps{padding-left:1.3em;margin:0}
+ol.steps li{margin-bottom:.6em;color:var(--muted)}
+ol.steps li b{color:var(--text)}
+ul.plain{padding-left:1.2em;margin:0;color:var(--muted)}
+ul.plain li{margin-bottom:.5em}
+.note{border-left:3px solid var(--cyan);padding:10px 16px;background:var(--panel2);border-radius:0 8px 8px 0;color:var(--muted);margin-top:20px;max-width:72ch}
+.pill{display:inline-block;background:var(--amber);color:#2b1d00;border-radius:999px;font-size:.78rem;font-weight:700;padding:2px 10px;margin-left:8px;vertical-align:middle;font-family:var(--sans)}
 
-  /* ---------- CASE STUDIES ---------- */
-  .case{
-    display:grid;grid-template-columns:140px 1fr;gap:24px;
-    padding:28px 0;border-top:1px solid var(--line);
-  }
-  .case:first-of-type{border-top:none;}
-  .case .place{font-family:var(--mono);font-size:.8rem;color:var(--amber);}
-  .case .place .yr{display:block;color:var(--text-muted);margin-top:4px;font-size:.78rem;}
-  .case h3{margin:0 0 8px;font-family:var(--serif);font-weight:600;font-size:1.2rem;color:var(--text);}
+/* code */
+pre{background:#071014;border:1px solid var(--line);border-radius:10px;padding:18px;overflow:auto;font-size:.88rem;line-height:1.5;margin:18px 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#cfe9f2}
 
-  /* ---------- SIMULATOR ---------- */
-  .sim-box{
-    background:var(--bg-panel);border:1px solid var(--line);
-    padding:32px;margin-top:28px;
-  }
-  .sim-controls{display:flex;flex-wrap:wrap;gap:28px;margin-bottom:24px;align-items:flex-end;}
-  .sim-field{display:flex;flex-direction:column;gap:8px;min-width:200px;flex:1;}
-  .sim-field label{font-family:var(--mono);font-size:.76rem;color:var(--text-muted);}
-  .sim-field output{font-family:var(--mono);color:var(--cherenkov);font-size:.9rem;}
-  input[type=range]{
-    -webkit-appearance:none;width:100%;height:3px;background:var(--line);outline:none;
-  }
-  input[type=range]::-webkit-slider-thumb{
-    -webkit-appearance:none;width:14px;height:14px;border-radius:50%;
-    background:var(--cherenkov);cursor:pointer;box-shadow:0 0 8px var(--cherenkov-glow);
-  }
-  .sim-canvas-wrap{border-top:1px solid var(--line);padding-top:24px;}
-  #decayChart{width:100%;height:280px;display:block;}
-  .sim-readout{
-    display:flex;gap:32px;margin-top:18px;font-family:var(--mono);font-size:.82rem;color:var(--text-muted);flex-wrap:wrap;
-  }
-  .sim-readout strong{color:var(--text);display:block;font-size:1.05rem;font-family:var(--sans);}
+/* refs */
+.refs{columns:2 340px;column-gap:32px;padding-left:1.1em;color:var(--muted);font-size:.95rem}
+.refs li{margin-bottom:6px;break-inside:avoid}
+footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--muted)}
+footer strong{color:var(--text)}
 
-  /* ---------- CODE / APPENDIX ---------- */
-  .code-block{
-    background:var(--bg-panel-2);border:1px solid var(--line);
-    padding:20px 22px;overflow-x:auto;margin-top:20px;
-  }
-  .code-block pre{margin:0;font-family:var(--mono);font-size:.82rem;line-height:1.6;color:#d3e4e8;}
-  .code-block .kw{color:var(--gamma);}
-  .code-block .str{color:var(--amber);}
-  .code-block .com{color:var(--text-muted);}
-  .code-block .fn{color:var(--cherenkov);}
-
-  /* ---------- REFERENCES ---------- */
-  .refs-list{list-style:none;margin:0;padding:0;columns:2;column-gap:40px;}
-  .refs-list li{margin-bottom:14px;font-size:.9rem;color:var(--text-muted);break-inside:avoid;}
-  .refs-list li a{color:var(--text);}
-
-  /* ---------- FRONTERAS / NUEVAS TEORÍAS ---------- */
-  .frontier-list{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);}
-  .frontier{background:var(--bg-panel);padding:24px 26px;display:grid;grid-template-columns:120px 1fr;gap:22px;}
-  .frontier .fyear{font-family:var(--mono);font-size:.78rem;color:var(--text-muted);}
-  .frontier .fyear .badge{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.02em;color:var(--bg);background:var(--cherenkov);padding:2px 7px;}
-  .frontier h3{margin:0 0 8px;font-family:var(--serif);font-weight:600;font-size:1.12rem;color:var(--text);}
-  .frontier .src{display:block;margin-top:10px;font-family:var(--mono);font-size:.74rem;}
-  .frontier .src a{color:var(--text-muted);}
-
-  /* ---------- PHET ---------- */
-  .phet-embed-card{
-    background:var(--bg-panel);border:1px solid var(--line);
-    margin-top:28px;overflow:hidden;
-  }
-  .phet-embed-card .phet-head{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:14px 18px;border-bottom:1px solid var(--line);
-    font-family:var(--mono);font-size:.8rem;color:var(--text-muted);
-  }
-  .phet-embed-card .phet-head a{color:var(--cherenkov);}
-  .phet-embed-card iframe{
-    width:100%;height:480px;border:0;display:block;background:#fff;
-  }
-  .phet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px;}
-  .phet-card{background:var(--bg-panel);padding:20px;display:flex;flex-direction:column;gap:10px;}
-  .phet-card h4{margin:0;font-size:.98rem;font-weight:600;color:var(--text);}
-  .phet-card p{margin:0;font-size:.84rem;color:var(--text-muted);}
-  .phet-card a.open{
-    font-family:var(--mono);font-size:.78rem;color:var(--cherenkov);text-decoration:none;margin-top:auto;
-  }
-  .phet-card a.open:hover{text-decoration:underline;}
-
-
-  /* ---------- MEJORAS: YouTube + avisos ---------- */
-  .yt-frame{position:relative;width:100%;padding-top:56.25%;margin-top:12px;background:#000;}
-  .yt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-  .video-card .vlink,.tiktok-embed section a{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:.78rem;color:var(--cherenkov);text-decoration:none;}
-  .video-card .vlink:hover,.tiktok-embed section a:hover{text-decoration:underline;}
-  .video-card{min-width:0;}
-  .embed-note{margin:0;padding:10px 18px;font-size:.78rem;color:var(--text-muted);border-top:1px solid var(--line);}
-  @media print{iframe,.tiktok-embed{display:none;}}
-
-  footer{padding:48px 0 64px;}
-  footer .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font-size:.85rem;color:var(--text-muted);}
-  footer strong{color:var(--text);font-weight:500;}
-
-  @media (max-width:720px){
-    .rad-grid{grid-template-columns:1fr;}
-    .case{grid-template-columns:1fr;gap:8px;}
-    .refs-list{columns:1;}
-    .thesis-meta{gap:20px;}
-    .frontier{grid-template-columns:1fr;gap:8px;}
-    .phet-embed-card iframe{height:360px;}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .hero canvas{display:none;}
-  }
+@media (max-width:600px){body{font-size:17px}section{padding:48px 0}.phet{height:420px}canvas{height:260px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
-<body>
+<body id="top">
 
-<header class="site-nav">
-  <div class="nav-inner">
-    <a href="#top" class="brand">Radi<em>oactiv</em>idad</a>
-    <nav class="links">
-      <a href="#historia">Historia</a>
-      <a href="#tipos">Tipos de radiación</a>
-      <a href="#cotidiana">Vida cotidiana</a>
-      <a href="#casos">Casos y accidentes</a>
-      <a href="#fronteras">Investigación actual</a>
-      <a href="#phet">PhET</a>
-      <a href="#simulador">Simulador</a>
-      <a href="#codigo">Código</a>
-      <a href="#referencias">Referencias</a>
-    </nav>
+<nav class="top" aria-label="Secciones">
+  <div class="wrap">
+    <a class="brand" href="#top">Radi<em>oactiv</em>idad</a>
+    <a class="l" href="#historia">Historia</a>
+    <a class="l" href="#tipos">Tipos de radiación</a>
+    <a class="l" href="#cotidiana">Vida cotidiana</a>
+    <a class="l" href="#casos">Casos y accidentes</a>
+    <a class="l" href="#fronteras">Investigación actual</a>
+    <a class="l" href="#phet">PhET</a>
+    <a class="l" href="#simulador">Simulador</a>
+    <a class="l new" href="#guia">Guía práctica</a>
+    <a class="l" href="#codigo">Código</a>
+    <a class="l" href="#referencias">Referencias</a>
   </div>
-</header>
+</nav>
 
-<section class="hero" id="top">
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-inner">
-    <p class="kicker">TESIS DE FÍSICA CONTEMPORÁNEA</p>
-    <h1 class="hero-title">La radioactividad: del núcleo <span class="glow">inestable</span> al mundo que habitamos</h1>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Tesis de física contemporánea</div>
+    <h1>La radioactividad: del núcleo inestable al mundo que habitamos</h1>
     <p class="lead">Un recorrido por el descubrimiento, la física y las consecuencias históricas de la desintegración nuclear espontánea — desde el laboratorio de Becquerel hasta Chernóbil y Fukushima.</p>
-    <div class="thesis-meta">
+    <div class="meta">
       <div><strong>Abel Díaz</strong>Autor</div>
       <div><strong>Dr. Errico</strong>Asesor de tesis</div>
       <div><strong>Física contemporánea</strong>Área de investigación</div>
     </div>
   </div>
-</section>
+</header>
 
-<section id="intro" class="tight">
+<!-- INTRO -->
+<section id="intro">
   <div class="wrap">
-    <h2 class="section-title">¿Qué es la radioactividad?</h2>
-    <p class="measure">La radioactividad es la propiedad que tienen los núcleos atómicos inestables de transformarse
-       espontáneamente en otros núcleos más estables, liberando energía en forma de partículas o radiación
-        electromagnética. El proceso es aleatorio a nivel individual —no se puede predecir cuándo decaerá un átomo 
-        en particular— pero perfectamente predecible a nivel estadístico: cada isótopo radiactivo tiene un
-         <strong style="color:var(--text)">período de semidesintegración</strong> (T½) característico, el tiempo
-          que tarda en decaer la mitad de una muestra.</p>
-    <p class="measure">Este comportamiento estadístico es la base de todo lo que sigue: la datación por carbono-14, 
-      la medicina nuclear, la generación de energía y también los accidentes que marcaron el siglo XX y XXI.</p>
-    <div class="vid-refs">
-      <div class="video-grid">
-        <div class="video-card"><span class="tag">Introducción</span><h4>Panorama general de la radioactividad</h4>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@rubensuelo3/video/7532495794474093830" data-video-id="7532495794474093830" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@rubensuelo3/video/7532495794474093830">Ver en TikTok ↗</a></section></blockquote></div>
-        <div class="video-card yt"><span class="tag">YouTube · Introducción</span><h4>Radiactividad natural: panorama</h4><div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/ZDn19e7DjbA" title="Radiactividad natural: panorama" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="vlink" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ZDn19e7DjbA">Ver en YouTube ↗</a></div>
-        <div class="video-card"><span class="tag">Introducción</span><h4>Complemento introductorio</h4>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@comosehace_/video/7640544075745152288" data-video-id="7640544075745152288" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@comosehace_/video/7640544075745152288">Ver en TikTok ↗</a></section></blockquote></div>
-      </div>
+    <h2>¿Qué es la radioactividad?</h2>
+    <p>La radioactividad es la propiedad que tienen los núcleos atómicos inestables de transformarse espontáneamente en otros núcleos más estables, liberando energía en forma de partículas o radiación electromagnética. El proceso es aleatorio a nivel individual —no se puede predecir cuándo decaerá un átomo en particular— pero perfectamente predecible a nivel estadístico: cada isótopo radiactivo tiene un <strong>período de semidesintegración</strong> (T½) característico, el tiempo que tarda en decaer la mitad de una muestra.</p>
+    <p>Este comportamiento estadístico es la base de todo lo que sigue: la datación por carbono-14, la medicina nuclear, la generación de energía y también los accidentes que marcaron el siglo XX y XXI.</p>
+    <div class="media">
+      <div class="tt" data-id="7532495794474093830" data-user="rubensuelo3" data-title="Panorama general de la radioactividad" data-tag="Introducción"></div>
+      <div class="yt" data-id="ZDn19e7DjbA" data-title="Radiactividad natural: panorama" data-tag="YouTube · Introducción"></div>
+      <div class="tt" data-id="7640544075745152288" data-user="comosehace_" data-title="Complemento introductorio" data-tag="Introducción"></div>
     </div>
   </div>
 </section>
 
+<!-- HISTORIA -->
 <section id="historia">
   <div class="wrap">
-    <h2 class="section-title">Historia del descubrimiento</h2>
-    <p class="section-sub">De una placa fotográfica velada por accidente a dos Premios Nobel.</p>
+    <h2>Historia del descubrimiento</h2>
+    <p class="lead">De una placa fotográfica velada por accidente a dos Premios Nobel.</p>
     <ul class="timeline">
-      <li>
-        <span class="year">1895</span>
-        <h3>Röntgen y los rayos X</h3>
-        <p class="narrow">Wilhelm Röntgen descubre una radiación capaz de atravesar materia opaca, abriendo la puerta a que otros físicos investigaran emisiones similares en distintos materiales.</p>
-      </li>
-      <li>
-        <span class="year">1896</span>
-        <h3>Henri Becquerel y el uranio</h3>
-        <p class="narrow">Buscando fosforescencia inducida por la luz solar, Becquerel guarda sales de uranio junto a placas fotográficas en un cajón cerrado. Las placas se velan igual, sin exposición a la luz: el uranio emite radiación por sí mismo. Es el primer registro de radiactividad natural.</p>
-      </li>
-      <li>
-        <span class="year">1898</span>
-        <h3>Marie y Pierre Curie</h3>
-        <p class="narrow">El matrimonio Curie acuña el término "radiactividad" y, procesando toneladas de pechblenda, aíslan dos nuevos elementos: el polonio (en honor a Polonia, país natal de Marie) y el radio, mucho más radiactivo que el uranio.</p>
-      </li>
-      <li>
-        <span class="year">1903</span>
-        <h3>Nobel de Física compartido</h3>
-        <p class="narrow">Becquerel y los esposos Curie reciben el Premio Nobel de Física por sus trabajos sobre la radiación espontánea. En 1911 Marie Curie recibe además el Nobel de Química, siendo la primera persona en obtener dos Nobel en disciplinas distintas.</p>
-      </li>
-      <li>
-        <span class="year">1911–1913</span>
-        <h3>El modelo atómico de Rutherford</h3>
-        <p class="narrow">A partir de experimentos de dispersión con partículas alfa, Ernest Rutherford propone un átomo con un núcleo diminuto y denso, sentando las bases para entender de dónde proviene la radiactividad: del núcleo mismo, no de la envoltura electrónica.</p>
-      </li>
+      <li><span class="yr">1895</span><h3>Röntgen y los rayos X</h3><p>Wilhelm Röntgen descubre una radiación capaz de atravesar materia opaca, abriendo la puerta a que otros físicos investigaran emisiones similares en distintos materiales.</p></li>
+      <li><span class="yr">1896</span><h3>Henri Becquerel y el uranio</h3><p>Buscando fosforescencia inducida por la luz solar, Becquerel guarda sales de uranio junto a placas fotográficas en un cajón cerrado. Las placas se velan igual, sin exposición a la luz: el uranio emite radiación por sí mismo. Es el primer registro de radiactividad natural.</p></li>
+      <li><span class="yr">1898</span><h3>Marie y Pierre Curie</h3><p>El matrimonio Curie acuña el término "radiactividad" y, procesando toneladas de pechblenda, aíslan dos nuevos elementos: el polonio (en honor a Polonia, país natal de Marie) y el radio, mucho más radiactivo que el uranio.</p></li>
+      <li><span class="yr">1903</span><h3>Nobel de Física compartido</h3><p>Becquerel y los esposos Curie reciben el Premio Nobel de Física por sus trabajos sobre la radiación espontánea. En 1911 Marie Curie recibe además el Nobel de Química, siendo la primera persona en obtener dos Nobel en disciplinas distintas.</p></li>
+      <li><span class="yr">1911–1913</span><h3>El modelo atómico de Rutherford</h3><p>A partir de experimentos de dispersión con partículas alfa, Ernest Rutherford propone un átomo con un núcleo diminuto y denso, sentando las bases para entender de dónde proviene la radiactividad: del núcleo mismo, no de la envoltura electrónica.</p></li>
     </ul>
-    <div class="vid-refs">
-      <div class="video-grid">
-        <div class="video-card"><span class="tag">Historia</span><h4>Descubrimiento de la radiactividad</h4>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@l.dtaka0/video/7554385939972312351" data-video-id="7554385939972312351" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@l.dtaka0/video/7554385939972312351">Ver en TikTok ↗</a></section></blockquote></div>
-        <div class="video-card yt"><span class="tag">YouTube · Historia</span><h4>Historia de la radiactividad y Marie Curie</h4><div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/lmpGypBfYx8" title="Historia de la radiactividad y Marie Curie" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="vlink" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=lmpGypBfYx8">Ver en YouTube ↗</a></div>
-        <div class="video-card"><span class="tag">Historia</span><h4>Marie Curie</h4>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@misteriosdh1/video/7525633080376249656" data-video-id="7525633080376249656" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@misteriosdh1/video/7525633080376249656">Ver en TikTok ↗</a></section></blockquote></div>
-      </div>
+    <div class="media">
+      <div class="tt" data-id="7554385939972312351" data-user="l.dtaka0" data-title="Descubrimiento de la radiactividad" data-tag="Historia"></div>
+      <div class="yt" data-id="lmpGypBfYx8" data-title="Historia de la radiactividad y Marie Curie" data-tag="YouTube · Historia"></div>
+      <div class="tt" data-id="7525633080376249656" data-user="misteriosdh1" data-title="Marie Curie" data-tag="Historia"></div>
     </div>
   </div>
 </section>
 
+<!-- TIPOS -->
 <section id="tipos">
   <div class="wrap">
-    <h2 class="section-title">Tipos de radiación: alfa, beta y gamma</h2>
-    <p class="section-sub">Cada tipo de decaimiento libera una partícula distinta, con distinta capacidad de penetrar la materia.</p>
-
-    <div class="rad-grid">
-      <div class="rad-card alpha">
-        <p class="sym">α</p>
-        <h3>Radiación alfa</h3>
-        <p>Un núcleo de helio (2 protones + 2 neutrones) expulsado por núcleos pesados como el uranio o el radio. Es la más masiva y la de menor alcance.</p>
-        <div class="stops">Detenida por: una hoja de papel o unos centímetros de aire</div>
-      </div>
-      <div class="rad-card beta">
-        <p class="sym">β</p>
-        <h3>Radiación beta</h3>
-        <p>Un electrón (β⁻) o positrón (β⁺) emitido cuando un neutrón se convierte en protón (o viceversa) dentro del núcleo. Penetra más que la alfa.</p>
-        <div class="stops">Detenida por: una lámina de aluminio de pocos milímetros</div>
-      </div>  
-      <div class="rad-card gamma">
-        <p class="sym">γ</p>
-        <h3>Radiación gamma</h3>
-        <p>Radiación electromagnética de altísima energía, sin masa ni carga, emitida cuando el núcleo se reordena tras un decaimiento alfa o beta.</p>
-        <div class="stops">Atenuada por: varios centímetros de plomo u hormigón</div>
-      </div>
+    <h2>Tipos de radiación: alfa, beta y gamma</h2>
+    <p class="lead">Cada tipo de decaimiento libera una partícula distinta, con distinta capacidad de penetrar la materia.</p>
+    <div class="grid">
+      <div class="card"><div class="sym">α</div><h3>Radiación alfa</h3><p>Un núcleo de helio (2 protones + 2 neutrones) expulsado por núcleos pesados como el uranio o el radio. Es la más masiva y la de menor alcance.</p><span class="tag">Detenida por: una hoja de papel o unos centímetros de aire</span></div>
+      <div class="card"><div class="sym">β</div><h3>Radiación beta</h3><p>Un electrón (β⁻) o positrón (β⁺) emitido cuando un neutrón se convierte en protón (o viceversa) dentro del núcleo. Penetra más que la alfa.</p><span class="tag">Detenida por: una lámina de aluminio de pocos milímetros</span></div>
+      <div class="card"><div class="sym">γ</div><h3>Radiación gamma</h3><p>Radiación electromagnética de altísima energía, sin masa ni carga, emitida cuando el núcleo se reordena tras un decaimiento alfa o beta.</p><span class="tag">Atenuada por: varios centímetros de plomo u hormigón</span></div>
     </div>
-
-    <div class="shield-diagram">
-      <svg viewBox="0 0 760 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparación del poder de penetración de las radiaciones alfa, beta y gamma">
-        <line x1="0" y1="40" x2="760" y2="40" stroke="#1e2f36"/>
-        <line x1="0" y1="100" x2="760" y2="100" stroke="#1e2f36"/>
-        <line x1="0" y1="160" x2="760" y2="160" stroke="#1e2f36"/>
-
-        <line x1="60" y1="30" x2="180" y2="30" stroke="#ff6b57" stroke-width="4"/>
-        <rect x="180" y="16" width="10" height="28" fill="#3a4a52"/>
-        <text x="0" y="35" fill="#ff6b57" font-family="IBM Plex Mono" font-size="14">α</text>
-        <text x="200" y="35" fill="#8fa6ac" font-family="IBM Plex Sans" font-size="13">Papel</text>
-
-        <line x1="60" y1="95" x2="360" y2="95" stroke="#4fd8ff" stroke-width="4"/>
-        <rect x="360" y="80" width="14" height="30" fill="#5a6d76"/>
-        <text x="0" y="100" fill="#4fd8ff" font-family="IBM Plex Mono" font-size="14">β</text>
-        <text x="384" y="100" fill="#8fa6ac" font-family="IBM Plex Sans" font-size="13">Aluminio (mm)</text>
-
-        <line x1="60" y1="155" x2="680" y2="155" stroke="#b98cff" stroke-width="4"/>
-        <rect x="680" y="130" width="26" height="50" fill="#7d8990"/>
-        <text x="0" y="160" fill="#b98cff" font-family="IBM Plex Mono" font-size="14">γ</text>
-        <text x="714" y="160" fill="#8fa6ac" font-family="IBM Plex Sans" font-size="13">Plomo (cm)</text>
-      </svg>
+    <div class="shield" aria-label="Poder de penetración">
+      <div><b>α</b><br>Papel</div><div><b>β</b><br>Aluminio (mm)</div><div><b>γ</b><br>Plomo (cm)</div>
     </div>
-
-    <div class="vid-refs">
-      <div class="video-grid">
-        <div class="video-card"><span class="tag">Física</span><h4>Rayos alfa, beta y gamma</h4>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@curiosidadesad_/video/7641326783761075476" data-video-id="7641326783761075476" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@curiosidadesad_/video/7641326783761075476">Ver en TikTok ↗</a></section></blockquote></div>
-        <div class="video-card yt"><span class="tag">YouTube · Física</span><h4>Tipos de radiaciones: alfa, beta y gamma</h4><div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/FP7eACHVoDA" title="Tipos de radiaciones: alfa, beta y gamma" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="vlink" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FP7eACHVoDA">Ver en YouTube ↗</a></div>
-      </div>
+    <div class="media">
+      <div class="tt" data-id="7641326783761075476" data-user="curiosidadesad_" data-title="Rayos alfa, beta y gamma" data-tag="Física"></div>
+      <div class="yt" data-id="FP7eACHVoDA" data-title="Tipos de radiaciones: alfa, beta y gamma" data-tag="YouTube · Física"></div>
     </div>
   </div>
 </section>
 
+<!-- COTIDIANA -->
 <section id="cotidiana">
   <div class="wrap">
-    <h2 class="section-title">La radiactividad en la vida cotidiana</h2>
-    <p class="section-sub">No toda la radiación es artificial ni peligrosa: convivimos con ella todos los días.</p>
-    <p class="measure">El radón, un gas noble radiactivo que se filtra desde el subsuelo hacia sótanos y viviendas mal ventiladas, es la principal fuente de radiación natural que recibe una persona promedio. Los detectores de humo iónicos contienen una pequeña cantidad de americio-241; los plátanos y otros alimentos ricos en potasio contienen potasio-40; y los vuelos en avión aumentan levemente la exposición a rayos cósmicos.</p>
-    <p class="measure">Una aplicación menos conocida es la <strong style="color:var(--text)">fitorremediación</strong>: tras los accidentes de Chernóbil y Fukushima se plantaron campos de girasoles porque esta planta absorbe eficientemente cesio-137 y estroncio-90 del suelo y del agua a través de sus raíces, concentrándolos en el tallo y las hojas, que luego pueden retirarse y tratarse como residuo radiactivo.</p>
-    <div class="vid-refs">
-      <div class="video-grid">
-        <div class="video-card"><span class="tag">Vida cotidiana</span><h4>Radiactividad en la casa</h4>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@saber..espoder/video/7634590722439630102" data-video-id="7634590722439630102" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@saber..espoder/video/7634590722439630102">Ver en TikTok ↗</a></section></blockquote></div>
-        <div class="video-card"><span class="tag">Fitorremediación</span><h4>Girasoles y descontaminación</h4>
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@juancovlogs/video/7608744987836026134" data-video-id="7608744987836026134" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@juancovlogs/video/7608744987836026134">Ver en TikTok ↗</a></section></blockquote></div>
-      </div>
+    <h2>La radiactividad en la vida cotidiana</h2>
+    <p class="lead">No toda la radiación es artificial ni peligrosa: convivimos con ella todos los días.</p>
+    <p>El radón, un gas noble radiactivo que se filtra desde el subsuelo hacia sótanos y viviendas mal ventiladas, es la principal fuente de radiación natural que recibe una persona promedio. Los detectores de humo iónicos contienen una pequeña cantidad de americio-241; los plátanos y otros alimentos ricos en potasio contienen potasio-40; y los vuelos en avión aumentan levemente la exposición a rayos cósmicos.</p>
+    <p>Una aplicación menos conocida es la <strong>fitorremediación</strong>: tras los accidentes de Chernóbil y Fukushima se plantaron campos de girasoles porque esta planta absorbe eficientemente cesio-137 y estroncio-90 del suelo y del agua a través de sus raíces, concentrándolos en el tallo y las hojas, que luego pueden retirarse y tratarse como residuo radiactivo.</p>
+    <div class="media">
+      <div class="tt" data-id="7634590722439630102" data-user="saber..espoder" data-title="Radiactividad en la casa" data-tag="Vida cotidiana"></div>
+      <div class="tt" data-id="7608744987836026134" data-user="juancovlogs" data-title="Girasoles y descontaminación" data-tag="Fitorremediación"></div>
     </div>
   </div>
 </section>
 
+<!-- CASOS -->
 <section id="casos">
   <div class="wrap">
-    <h2 class="section-title">Casos y accidentes radiactivos</h2>
-    <p class="section-sub">Episodios que cambiaron la percepción pública y la regulación de la energía nuclear.</p>
+    <h2>Casos y accidentes radiactivos</h2>
+    <p class="lead">Episodios que cambiaron la percepción pública y la regulación de la energía nuclear.</p>
 
-    <div class="case">
-      <div class="place">Ucrania (URSS)<span class="yr">26 de abril de 1986</span></div>
-      <div>
-        <h3>Chernóbil</h3>
-        <p class="narrow">Una prueba de seguridad mal ejecutada en el reactor 4 de la central de Chernóbil provocó un aumento
-           incontrolado de potencia, dos explosiones y un incendio que liberó grandes cantidades de material radiactivo a 
-           la atmósfera durante días. Es, junto con Fukushima, uno de los dos accidentes clasificados en el nivel máximo (7)
-            de la Escala Internacional de Sucesos Nucleares.</p>
-        <div class="vid-refs">
-          <div class="video-grid">
-            <div class="video-card"><span class="tag">Chernóbil</span><h4>El accidente y sus consecuencias</h4>
-              <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@cronicasecretaoficial/video/7680539940794535200" data-video-id="7680539940794535200" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@cronicasecretaoficial/video/7680539940794535200">Ver en TikTok ↗</a></section></blockquote></div>
-        <div class="video-card yt"><span class="tag">YouTube · Chernóbil</span><h4>Chernóbil, 40 años después (France 24)</h4><div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/xMpcGPSznJs" title="Chernóbil, 40 años después (France 24)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="vlink" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=xMpcGPSznJs">Ver en YouTube ↗</a></div>
-          </div>
-        </div>
-      </div>
+    <div class="caso"><div class="when">Ucrania (URSS) · 26 de abril de 1986</div><h3>Chernóbil</h3><p>Una prueba de seguridad mal ejecutada en el reactor 4 de la central de Chernóbil provocó un aumento incontrolado de potencia, dos explosiones y un incendio que liberó grandes cantidades de material radiactivo a la atmósfera durante días. Es, junto con Fukushima, uno de los dos accidentes clasificados en el nivel máximo (7) de la Escala Internacional de Sucesos Nucleares.</p></div>
+    <div class="media">
+      <div class="tt" data-id="7680539940794535200" data-user="cronicasecretaoficial" data-title="El accidente y sus consecuencias" data-tag="Chernóbil"></div>
+      <div class="yt" data-id="xMpcGPSznJs" data-title="Chernóbil, 40 años después (France 24)" data-tag="YouTube · Chernóbil"></div>
     </div>
 
-    <div class="case">
-      <div class="place">Chernóbil, sarcófago<span class="yr">Descubierto en 1991</span></div>
-      <div>
-        <h3>El hongo radiotrófico del reactor</h3>
-        <p class="narrow">Dentro del sarcófago que cubre el reactor destruido se encontraron colonias de hongos
-           melanizados (como <em>Cladosporium sphaerospermum</em>) creciendo directamente sobre las paredes altamente
-            radiactivas. Investigaciones posteriores sugieren que la melanina de estos hongos puede captar energía 
-            de la radiación ionizante y convertirla en energía química, un proceso llamado radiosíntesis, análogo en
-             función a la fotosíntesis.</p>
-        <div class="vid-refs">
-          <div class="video-grid">
-            <div class="video-card"><span class="tag">Curiosidad científica</span><h4>El hongo negro de Chernóbil</h4>
-              <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@evolutis.sky/video/7673171114834660639" data-video-id="7673171114834660639" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@evolutis.sky/video/7673171114834660639">Ver en TikTok ↗</a></section></blockquote></div>
-          </div>
-        </div>
-      </div>
+    <div class="caso"><div class="when">Chernóbil, sarcófago · Descubierto en 1991</div><h3>El hongo radiotrófico del reactor</h3><p>Dentro del sarcófago que cubre el reactor destruido se encontraron colonias de hongos melanizados (como <em>Cladosporium sphaerospermum</em>) creciendo directamente sobre las paredes altamente radiactivas. Investigaciones posteriores sugieren que la melanina de estos hongos puede captar energía de la radiación ionizante y convertirla en energía química, un proceso llamado radiosíntesis, análogo en función a la fotosíntesis.</p></div>
+    <div class="media">
+      <div class="tt" data-id="7673171114834660639" data-user="evolutis.sky" data-title="El hongo negro de Chernóbil" data-tag="Curiosidad científica"></div>
     </div>
 
-    <div class="case">
-      <div class="place">Fukushima, Japón<span class="yr">11 de marzo de 2011</span></div>
-      <div>
-        <h3>Fukushima Daiichi</h3>
-        <p class="narrow">Un terremoto de magnitud 9,0 y el posterior tsunami inutilizaron los sistemas de refrigeración
-           de la central nuclear de Fukushima Daiichi, provocando la fusión parcial del núcleo en tres reactores y 
-           liberación de material radiactivo. Fue clasificado también en el nivel 7 de la escala INES, aunque con una 
-           liberación total menor que la de Chernóbil.</p>
-        <div class="vid-refs">
-          <div class="video-grid">
-            <div class="video-card"><span class="tag">Japón</span><h4>El accidente de Fukushima</h4>
-              <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@quienesbio/video/7680140392863386887" data-video-id="7680140392863386887" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@quienesbio/video/7680140392863386887">Ver en TikTok ↗</a></section></blockquote></div>
-        <div class="video-card yt"><span class="tag">YouTube · Japón</span><h4>Una década de la catástrofe de Fukushima</h4><div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/02e_PcmbI0U" title="Una década de la catástrofe de Fukushima" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="vlink" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=02e_PcmbI0U">Ver en YouTube ↗</a></div>
-          </div>
-        </div>
-      </div>
+    <div class="caso"><div class="when">Fukushima, Japón · 11 de marzo de 2011</div><h3>Fukushima Daiichi</h3><p>Un terremoto de magnitud 9,0 y el posterior tsunami inutilizaron los sistemas de refrigeración de la central nuclear de Fukushima Daiichi, provocando la fusión parcial del núcleo en tres reactores y liberación de material radiactivo. Fue clasificado también en el nivel 7 de la escala INES, aunque con una liberación total menor que la de Chernóbil.</p></div>
+    <div class="media">
+      <div class="tt" data-id="7680140392863386887" data-user="quienesbio" data-title="El accidente de Fukushima" data-tag="Japón"></div>
+      <div class="yt" data-id="02e_PcmbI0U" data-title="Una década de la catástrofe de Fukushima" data-tag="YouTube · Japón"></div>
     </div>
 
-    <div class="case">
-      <div class="place">Goiânia, Brasil<span class="yr">Septiembre de 1987</span></div>
-      <div>
-        <h3>El accidente de Goiânia</h3>
-        <p class="narrow">Chatarreros desmantelaron una cápsula de cesio-137 abandonada, proveniente de un equipo de
-           radioterapia en desuso, sin saber lo que era. El polvo brillante y azulado del cloruro de cesio se 
-           distribuyó entre varias familias, provocando una de las contaminaciones radiactivas más graves fuera 
-           de un contexto de reactor nuclear, con varias muertes y cientos de personas contaminadas.</p>
-        <div class="vid-refs">
-          <div class="video-grid">
-            <div class="video-card"><span class="tag">Brasil</span><h4>El accidente de Goiânia</h4>
-              <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@expedientezer0/video/7622836475477953809" data-video-id="7622836475477953809" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@expedientezer0/video/7622836475477953809">Ver en TikTok ↗</a></section></blockquote></div>
-        <div class="video-card yt"><span class="tag">YouTube · Brasil</span><h4>Accidente de Goiânia: la física del cesio-137 (portugués)</h4><div class="yt-frame"><iframe src="https://www.youtube-nocookie.com/embed/3hBFLWssP_0" title="Accidente de Goiânia: la física del cesio-137 (portugués)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><a class="vlink" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3hBFLWssP_0">Ver en YouTube ↗</a></div>
-          </div>
-        </div>
-      </div>
+    <div class="caso"><div class="when">Goiânia, Brasil · Septiembre de 1987</div><h3>El accidente de Goiânia</h3><p>Chatarreros desmantelaron una cápsula de cesio-137 abandonada, proveniente de un equipo de radioterapia en desuso, sin saber lo que era. El polvo brillante y azulado del cloruro de cesio se distribuyó entre varias familias, provocando una de las contaminaciones radiactivas más graves fuera de un contexto de reactor nuclear, con varias muertes y cientos de personas contaminadas.</p></div>
+    <div class="media">
+      <div class="tt" data-id="7622836475477953809" data-user="expedientezer0" data-title="El accidente de Goiânia" data-tag="Brasil"></div>
+      <div class="yt" data-id="3hBFLWssP_0" data-title="Accidente de Goiânia: la física del cesio-137 (portugués)" data-tag="YouTube · Brasil"></div>
     </div>
 
-    <div class="case">
-      <div class="place">Sierras de Córdoba, Argentina<span class="yr">Mina cerrada en 1989</span></div>
-      <div>
-        <h3>La mina de uranio de Los Gigantes</h3>
-        <p class="narrow">El yacimiento Schlagintweit, en la zona de Los Gigantes (Tanti, Córdoba), extrajo uranio 
-          entre 1982 y 1989. Al cerrarse quedaron a la intemperie millones de toneladas de colas de mineral y diques
-           con efluentes líquidos, dentro de la cuenca del río San Antonio, que alimenta el embalse San Roque, 
-           fuente de agua potable para gran parte de la ciudad de Córdoba. El caso sigue considerándose uno de 
-           los pasivos ambientales radiactivos más importantes del país.</p>
-        <div class="vid-refs">
-          <div class="video-grid">
-            <div class="video-card"><span class="tag">Córdoba</span><h4>Contaminación en un río de Córdoba</h4>
-              <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@econews.es/video/7311833053700050181" data-video-id="7311833053700050181" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@econews.es/video/7311833053700050181">Ver en TikTok ↗</a></section></blockquote></div>
-          </div>
-        </div>
-      </div>
+    <div class="caso"><div class="when">Sierras de Córdoba, Argentina · Mina cerrada en 1989</div><h3>La mina de uranio de Los Gigantes</h3><p>El yacimiento Schlagintweit, en la zona de Los Gigantes (Tanti, Córdoba), extrajo uranio entre 1982 y 1989. Al cerrarse quedaron a la intemperie millones de toneladas de colas de mineral y diques con efluentes líquidos, dentro de la cuenca del río San Antonio, que alimenta el embalse San Roque, fuente de agua potable para gran parte de la ciudad de Córdoba. El caso sigue considerándose uno de los pasivos ambientales radiactivos más importantes del país.</p></div>
+    <div class="media">
+      <div class="tt" data-id="7311833053700050181" data-user="econews.es" data-title="Contaminación en un río de Córdoba" data-tag="Córdoba"></div>
     </div>
 
-    <div class="case">
-      <div class="place">Hiroshima y Nagasaki, Japón<span class="yr">Agosto de 1945</span></div>
-      <div>
-        <h3>Radiación de una bomba nuclear</h3>
-        <p class="narrow">Además de la onda expansiva y el calor, una explosión nuclear libera un pulso intenso de
-           radiación gamma y neutrónica en el momento de la detonación, y posteriormente lluvia radiactiva
-            (<em>fallout</em>): partículas de productos de fisión que caen sobre el entorno y siguen emitiendo 
-            radiación durante años. Es la razón por la que los efectos sanitarios de un arma nuclear se extienden
-             mucho más allá del instante de la explosión.</p>
-        <div class="vid-refs">
-          <div class="video-grid">
-            <div class="video-card"><span class="tag">Armas nucleares</span><h4>Radiación de una bomba nuclear</h4>
-              <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@getrichnow99/video/7439175135623400746" data-video-id="7439175135623400746" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@getrichnow99/video/7439175135623400746">Ver en TikTok ↗</a></section></blockquote></div>
-          </div>
-        </div>
-      </div>
+    <div class="caso"><div class="when">Hiroshima y Nagasaki, Japón · Agosto de 1945</div><h3>Radiación de una bomba nuclear</h3><p>Además de la onda expansiva y el calor, una explosión nuclear libera un pulso intenso de radiación gamma y neutrónica en el momento de la detonación, y posteriormente lluvia radiactiva (<em>fallout</em>): partículas de productos de fisión que caen sobre el entorno y siguen emitiendo radiación durante años. Es la razón por la que los efectos sanitarios de un arma nuclear se extienden mucho más allá del instante de la explosión.</p></div>
+    <div class="media">
+      <div class="tt" data-id="7439175135623400746" data-user="getrichnow99" data-title="Radiación de una bomba nuclear" data-tag="Armas nucleares"></div>
     </div>
   </div>
 </section>
 
+<!-- FRONTERAS -->
 <section id="fronteras">
   <div class="wrap">
-    <h2 class="section-title">Fronteras actuales de la investigación</h2>
-    <p class="section-sub">La radiactividad sigue siendo un campo activo: esto es parte de lo que se está investigando
-       hoy.</p>
-
-    <ul class="frontier-list">
-      <li class="frontier">
-        <div class="fyear">Enero 2025<span class="badge">GSI / FAIR</span></div>
-        <div>
-          <h3>El litoral de la "isla de estabilidad"</h3>
-          <p class="narrow">Un equipo de GSI/FAIR, la Universidad de Maguncia y el Instituto Helmholtz de Maguncia 
-            midió el núcleo superpesado rutherfordio-252, el núcleo superpesado más efímero conocido hasta ahora, 
-            para delimitar con más precisión los bordes de la llamada "isla de estabilidad": una región teórica de
-             la tabla periódica donde ciertos elementos superpesados, gracias a configuraciones "mágicas" de protones 
-             y neutrones, podrían tener vidas medias mucho más largas que sus vecinos.</p>
-          <span class="src">Fuente: <a href="https://www.gsi.de/en/start/news/details/2025/01/15/rf-252" target="_blank" rel="noopener">GSI Helmholtzzentrum, 15/01/2025</a>
-          </span>
-        </div>
-      </li>
-      <li class="frontier">
-        <div class="fyear">2024–2025<span class="badge">Medicina nuclear</span></div>
-        <div>
-          <h3>Terapia alfa dirigida con actinio-225</h3>
-          <p class="narrow">La radiación alfa, tradicionalmente vista solo como riesgo, se está usando de forma creciente en oncología: el actinio-225 se une a moléculas que reconocen específicamente a las células tumorales y las destruye desde adentro, con menor daño al tejido sano que otras terapias. Su producción a escala industrial (por ejemplo, a partir de radio-226 en ciclotrones) es hoy uno de los cuellos de botella que distintos consorcios internacionales buscan resolver para escalar el tratamiento.</p>
-          <span class="src">Fuente: <a href="https://www.urotoday.com/conference-highlights/snmmi-2025/161444-snmmi-2025-how-about-actinium-225.html" target="_blank" rel="noopener">SNMMI Annual Meeting, 2025</a></span>
-        </div>
-      </li>
-      <li class="frontier">
-        <div class="fyear">En curso<span class="badge">Física de partículas</span></div>
-        <div>
-          <h3>La búsqueda del doble decaimiento beta sin neutrinos</h3>
-          <p class="narrow">Varios experimentos subterráneos en el mundo buscan una forma hipotética y extremadamente 
-            rara de decaimiento beta doble en la que no se emitirían neutrinos. Si se observara alguna vez, 
-            implicaría que el neutrino es su propia antipartícula (una "partícula de Majorana") y ayudaría a explicar
-             por qué el universo tiene mucha más materia que antimateria.</p>
-        </div>
-      </li>
+    <h2>Fronteras actuales de la investigación</h2>
+    <p class="lead">La radiactividad sigue siendo un campo activo: esto es parte de lo que se está investigando hoy.</p>
+    <ul class="frontier">
+      <li><div class="when">Enero 2025 · GSI / FAIR</div><h3>El litoral de la "isla de estabilidad"</h3><p>Un equipo de GSI/FAIR, la Universidad de Maguncia y el Instituto Helmholtz de Maguncia midió el núcleo superpesado rutherfordio-252, el núcleo superpesado más efímero conocido hasta ahora, para delimitar con más precisión los bordes de la llamada "isla de estabilidad": una región teórica de la tabla periódica donde ciertos elementos superpesados, gracias a configuraciones "mágicas" de protones y neutrones, podrían tener vidas medias mucho más largas que sus vecinos.</p><div class="src">Fuente: <a href="https://www.gsi.de/en/start/news/details/2025/01/15/rf-252">GSI Helmholtzzentrum, 15/01/2025</a></div></li>
+      <li><div class="when">2024–2025 · Medicina nuclear</div><h3>Terapia alfa dirigida con actinio-225</h3><p>La radiación alfa, tradicionalmente vista solo como riesgo, se está usando de forma creciente en oncología: el actinio-225 se une a moléculas que reconocen específicamente a las células tumorales y las destruye desde adentro, con menor daño al tejido sano que otras terapias. Su producción a escala industrial (por ejemplo, a partir de radio-226 en ciclotrones) es hoy uno de los cuellos de botella que distintos consorcios internacionales buscan resolver para escalar el tratamiento.</p><div class="src">Fuente: <a href="https://www.urotoday.com/conference-highlights/snmmi-2025/161444-snmmi-2025-how-about-actinium-225.html">SNMMI Annual Meeting, 2025</a></div></li>
+      <li><div class="when">En curso · Física de partículas</div><h3>La búsqueda del doble decaimiento beta sin neutrinos</h3><p>Varios experimentos subterráneos en el mundo buscan una forma hipotética y extremadamente rara de decaimiento beta doble en la que no se emitirían neutrinos. Si se observara alguna vez, implicaría que el neutrino es su propia antipartícula (una "partícula de Majorana") y ayudaría a explicar por qué el universo tiene mucha más materia que antimateria.</p></li>
     </ul>
   </div>
 </section>
 
+<!-- PHET -->
 <section id="phet">
   <div class="wrap">
-    <h2 class="section-title">Simulaciones de PhET Interactive Simulations</h2>
-    <p class="section-sub">PhET (Universidad de Colorado Boulder, fundado en 2002 por el premio Nobel Carl Wieman)
-       ofrece simulaciones gratuitas de física, química y matemática, muchas de ellas dedicadas específicamente a 
-       la radiactividad. Se pueden abrir directamente en el navegador, sin instalar nada.</p>
-
-    <div class="phet-embed-card">
-      <div class="phet-head">
-        <span>Desintegración alfa — simulación embebida</span>
-        <a href="https://phet.colorado.edu/es/simulations/alpha-decay" target="_blank" rel="noopener">Abrir en pantalla
-           completa ↗</a>
-      </div>
-      <iframe src="https://phet.colorado.edu/sims/html/alpha-decay/latest/alpha-decay_es.html" title="Simulación PhET:
-       Desintegración alfa" allow="fullscreen" allowfullscreen></iframe>
-      <p class="embed-note">Si la simulación no aparece (algunas vistas previas y editores bloquean contenido externo), usá «Abrir en pantalla completa».</p>
-    </div>
-
-    <div class="phet-grid">
-      <div class="phet-card">
-        <h4>Construye un núcleo</h4>
-        <p>Arma núcleos protón a protón y neutrón a neutrón, y comprobá cuáles son estables y cuáles decaen.</p>
-        <a class="open" href="https://phet.colorado.edu/es/simulations/build-a-nucleus" target="_blank" rel="noopener">Abrir simulación ↗</a>
-      </div>
-      <div class="phet-card">
-        <h4>Desintegración beta</h4>
-        <p>Observá cómo un neutrón se transforma en protón (o viceversa) emitiendo un electrón o un positrón.</p>
-        <a class="open" href="https://phet.colorado.edu/es/simulations/beta-decay" target="_blank" rel="noopener">Abrir simulación ↗</a>
-      </div>
-      <div class="phet-card">
-        <h4>Fisión nuclear</h4>
-        <p>Disparale un neutrón a un núcleo de uranio y mirá cómo se dispara una reacción en cadena.</p>
-        <a class="open" href="https://phet.colorado.edu/es/simulations/nuclear-fission" target="_blank" rel="noopener">Abrir simulación ↗</a>
-      </div>
-      <div class="phet-card">
-        <h4>Juego de datación radiactiva</h4>
-        <p>Aplicá el decaimiento de isótopos conocidos para estimar la edad de rocas y objetos antiguos.</p>
-        <a class="open" href="https://phet.colorado.edu/es/simulations/radioactive-dating-game" target="_blank" rel="noopener">Abrir simulación ↗</a>
-      </div>
+    <h2>Simulaciones de PhET Interactive Simulations</h2>
+    <p>PhET (Universidad de Colorado Boulder, fundado en 2002 por el premio Nobel Carl Wieman) ofrece simulaciones gratuitas de física, química y matemática, muchas de ellas dedicadas específicamente a la radiactividad. Se pueden abrir directamente en el navegador, sin instalar nada.</p>
+    <p><strong>Desintegración alfa</strong> — simulación embebida · <a href="https://phet.colorado.edu/es/simulations/alpha-decay" target="_blank" rel="noopener">Abrir en pantalla completa ↗</a></p>
+    <iframe class="phet" src="https://phet.colorado.edu/sims/html/alpha-decay/latest/alpha-decay_es.html" title="PhET: Desintegración alfa" allowfullscreen loading="lazy"></iframe>
+    <p class="alt">Si la simulación no aparece (algunas vistas previas y editores bloquean contenido externo), usá «Abrir en pantalla completa».</p>
+    <div class="grid">
+      <div class="card"><h4>Construye un núcleo</h4><p>Arma núcleos protón a protón y neutrón a neutrón, y comprobá cuáles son estables y cuáles decaen.</p><span class="tag"><a href="https://phet.colorado.edu/es/simulations/build-a-nucleus" target="_blank" rel="noopener">Abrir simulación ↗</a></span></div>
+      <div class="card"><h4>Desintegración beta</h4><p>Observá cómo un neutrón se transforma en protón (o viceversa) emitiendo un electrón o un positrón.</p><span class="tag"><a href="https://phet.colorado.edu/es/simulations/beta-decay" target="_blank" rel="noopener">Abrir simulación ↗</a></span></div>
+      <div class="card"><h4>Fisión nuclear</h4><p>Disparale un neutrón a un núcleo de uranio y mirá cómo se dispara una reacción en cadena.</p><span class="tag"><a href="https://phet.colorado.edu/es/simulations/nuclear-fission" target="_blank" rel="noopener">Abrir simulación ↗</a></span></div>
+      <div class="card"><h4>Juego de datación radiactiva</h4><p>Aplicá el decaimiento de isótopos conocidos para estimar la edad de rocas y objetos antiguos.</p><span class="tag"><a href="https://phet.colorado.edu/es/simulations/radioactive-dating-game" target="_blank" rel="noopener">Abrir simulación ↗</a></span></div>
     </div>
   </div>
 </section>
 
+<!-- SIMULADOR EXPONENCIAL -->
 <section id="simulador">
   <div class="wrap">
-    <h2 class="section-title">Simulador de decaimiento radiactivo</h2>
-    <p class="section-sub">Visualización interactiva (JavaScript) de la ley de decaimiento exponencial 
-      N(t) = N₀·e<sup>−λt</sup>.</p>
-
-    <div class="sim-box">
-      <div class="sim-controls">
-        <div class="sim-field">
-          <label for="halfLife">Período de semidesintegración (T½)</label>
-          <input type="range" id="halfLife" min="1" max="30" value="8" step="1">
-          <output id="halfLifeOut">8 años</output>
-        </div>
-        <div class="sim-field">
-          <label for="initialN">Cantidad inicial de núcleos (N₀)</label>
-          <input type="range" id="initialN" min="100" max="1000" value="1000" step="50">
-          <output id="initialNOut">1000</output>
-        </div>
+    <h2>Simulador de decaimiento radiactivo</h2>
+    <p class="lead">Visualización interactiva (JavaScript) de la ley de decaimiento exponencial N(t) = N₀·e<sup>−λt</sup>.</p>
+    <div class="widget">
+      <div class="controls">
+        <div><label for="th">Período de semidesintegración (T½): <span class="val" id="thv">8 años</span></label><input type="range" id="th" min="1" max="100" value="8"></div>
+        <div><label for="n0">Cantidad inicial de núcleos (N₀): <span class="val" id="n0v">1000</span></label><input type="range" id="n0" min="100" max="10000" step="100" value="1000"></div>
       </div>
-      <div class="sim-canvas-wrap">
-        <canvas id="decayChart"></canvas>
-      </div>
-      <div class="sim-readout">
-        <div><strong id="readoutLambda">—</strong>Constante de decaimiento λ (año⁻¹)</div>
-        <div><strong id="readoutRemaining">—</strong>Núcleos restantes tras 1 T½</div>
-        <div><strong id="readoutTime">—</strong>Tiempo para el 1% restante</div>
+      <canvas id="cDecay" role="img" aria-label="Curva de decaimiento exponencial"></canvas>
+      <div class="stats">
+        <div class="stat"><span>Constante de decaimiento λ (año⁻¹)</span><b id="sLam">—</b></div>
+        <div class="stat"><span>Núcleos restantes tras 1 T½</span><b id="sHalf">—</b></div>
+        <div class="stat"><span>Tiempo para el 1% restante</span><b id="sOne">—</b></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- GUÍA PRÁCTICA -->
+<section id="guia">
+  <div class="wrap">
+    <h2>Guía práctica: modelando el decaimiento con monedas <span class="pill">Nuevo</span></h2>
+    <p class="lead">El decaimiento de un núcleo es azaroso, pero el de una muestra grande sigue una curva exponencial. Una moneda (o un dado) permite verlo con las propias manos, sin material radiactivo.</p>
+
+    <h3 style="margin-top:28px">Video de referencia</h3>
+    <div class="media" style="grid-template-columns:minmax(0,760px)">
+      <figure>
+        <figcaption><b>Modelling Radioactive Decay with Coins – GCSE Physics</b>YouTube · Guía práctica</figcaption>
+        <div class="ratio" id="coinsVideo"></div>
+        <p class="alt"><a href="https://www.youtube.com/results?search_query=Modelling+Radioactive+Decay+with+coins+GCSE+Physics" target="_blank" rel="noopener">Ver en YouTube ↗</a></p>
+      </figure>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h4>Materiales</h4>
+        <ul class="plain">
+          <li>Al menos 100 monedas iguales (con 50 también funciona, pero la curva sale más irregular).</li>
+          <li>Un recipiente con tapa o una caja para agitarlas.</li>
+          <li>Una bandeja o mesa donde volcarlas.</li>
+          <li>Papel cuadriculado o una planilla de cálculo para la tabla y el gráfico.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Equivalencias del modelo</h4>
+        <ul class="plain">
+          <li><b>Moneda</b> = núcleo inestable.</li>
+          <li><b>Cara</b> = núcleo que decayó (se retira).</li>
+          <li><b>Cruz</b> = núcleo que sigue activo (se vuelve a lanzar).</li>
+          <li><b>Cada lanzamiento</b> = un intervalo de tiempo fijo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px">
+      <h4>Procedimiento</h4>
+      <ol class="steps">
+        <li><b>Contá las monedas</b> y anotá ese número como N₀ (lanzamiento 0).</li>
+        <li><b>Agitá y volcá</b> todas las monedas sobre la bandeja.</li>
+        <li><b>Retirá las que salieron cara</b>: representan núcleos decaídos.</li>
+        <li><b>Contá las que quedan</b> y registrá el número en la tabla junto al número de lanzamiento.</li>
+        <li><b>Repetí los pasos 2 a 4</b> con las monedas restantes hasta que queden dos o tres, o ninguna.</li>
+        <li><b>Graficá</b> monedas restantes (eje vertical) contra número de lanzamiento (eje horizontal) y trazá una curva suave.</li>
+        <li><b>Hallá el período de semidesintegración</b>: leé en la curva cuántos lanzamientos hicieron falta para llegar a N₀/2.</li>
+      </ol>
+    </div>
+
+    <h3 style="margin-top:36px">Simulador interactivo: lanzá las monedas en pantalla</h3>
+    <p>Repite el experimento con miles de «monedas» sin ensuciarse las manos. Probá primero con 20, después con 100 y con 1000: cuantos más núcleos, más se parece la serie de puntos a la curva teórica.</p>
+
+    <div class="widget">
+      <div class="controls">
+        <div><label for="cMode">Objeto que decae</label>
+          <select id="cMode">
+            <option value="0.5">Moneda (decae con cara, probabilidad 1/2)</option>
+            <option value="0.1666667">Dado (decae con el 6, probabilidad 1/6)</option>
+          </select></div>
+        <div><label for="cN0">Cantidad inicial (N₀)</label><input type="number" id="cN0" min="10" max="5000" value="100"></div>
+      </div>
+      <div class="btns">
+        <button id="cThrow">Lanzar</button>
+        <button id="cAuto" class="sec">Lanzar hasta el final</button>
+        <button id="cReset" class="sec">Reiniciar</button>
+        <label class="check" style="margin-left:auto"><input type="checkbox" id="cTheory" checked> Mostrar curva teórica</label>
+      </div>
+      <canvas id="cCoins" role="img" aria-label="Monedas restantes según el número de lanzamiento"></canvas>
+      <div class="legend"><span><i style="background:var(--cyan)"></i>Experimento (resultado de esta simulación)</span><span><i style="background:var(--amber)"></i>Curva teórica N₀·(1−p)<sup>n</sup></span></div>
+      <div class="stats">
+        <div class="stat"><span>Lanzamientos</span><b id="sThrows">0</b></div>
+        <div class="stat"><span>Núcleos activos</span><b id="sLeft">—</b></div>
+        <div class="stat"><span>T½ experimental (lanzamientos)</span><b class="a" id="sExp">—</b></div>
+        <div class="stat"><span>T½ teórico (lanzamientos)</span><b id="sTheo">—</b></div>
+      </div>
+      <div class="tablebox"><table><thead><tr><th>Lanzamiento</th><th>Decayeron</th><th>Quedan</th></tr></thead><tbody id="cRows"></tbody></table></div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h4>Para analizar</h4>
+        <ul class="plain">
+          <li>¿Se puede predecir cuál moneda saldrá cara en el próximo lanzamiento? ¿Y cuántas, aproximadamente?</li>
+          <li>Repetí el experimento: ¿la curva sale idéntica? ¿Qué parte se repite y qué parte cambia?</li>
+          <li>Con una moneda, ¿cuántos lanzamientos tarda en quedar la mitad? ¿Y la mitad de la mitad?</li>
+          <li>Con el dado, el T½ teórico es ln 2 / (−ln(5/6)) ≈ 3,8 lanzamientos. ¿Qué obtuviste vos?</li>
+          <li>¿Qué cambia en la curva si N₀ pasa de 20 a 1000?</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Qué muestra y qué no muestra el modelo</h4>
+        <ul class="plain">
+          <li><b>Sí:</b> el decaimiento es aleatorio por núcleo y exponencial en conjunto; el T½ es constante.</li>
+          <li><b>Sí:</b> las muestras chicas fluctúan mucho; las grandes siguen la ley con precisión.</li>
+          <li><b>No:</b> los intervalos de tiempo son discretos (lanzamientos), mientras que el tiempo real es continuo.</li>
+          <li><b>No:</b> la probabilidad de 1/2 por intervalo es mucho mayor que la de cualquier isótopo real; el T½ del uranio-238 es de unos 4.500 millones de años.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Relación con el simulador exponencial: la probabilidad de decaer en cada intervalo es p = 1 − e<sup>−λΔt</sup>. Con una moneda, p = 1/2 y entonces el intervalo de un lanzamiento equivale exactamente a un T½.</div>
+  </div>
+</section>
+
+<!-- CÓDIGO -->
 <section id="codigo">
   <div class="wrap">
-    <h2 class="section-title">Apéndice: script en Python</h2>
-    <p class="section-sub">Modelo equivalente al simulador anterior, para reproducir la simulación fuera del navegador
-       (por ejemplo, para los anexos de la tesis).</p>
-    <div class="code-block">
-<pre><span class="kw">import</span> numpy <span class="kw">as</span> np
-<span class="kw">import</span> matplotlib.pyplot <span class="kw">as</span> plt
+    <h2>Apéndice: scripts en Python</h2>
+    <p>Modelo equivalente al simulador exponencial, para reproducir la simulación fuera del navegador (por ejemplo, para los anexos de la tesis).</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
 
-<span class="com"># --- Modelo de decaimiento radiactivo ---
+# --- Modelo de decaimiento radiactivo ---
 # N(t) = N0 * exp(-lambda * t)
-# lambda = ln(2) / T_mitad</span>
+# lambda = ln(2) / T_mitad
 
-<span class="kw">def</span> <span class="fn">decaimiento</span>(N0, t_mitad, t_max, pasos=<span class="str">500</span>):
-    <span class="com"># N0: cantidad inicial de núcleos
+def decaimiento(N0, t_mitad, t_max, pasos=500):
+    # N0: cantidad inicial de núcleos
     # t_mitad: período de semidesintegración
-    # t_max: tiempo total a simular</span>
-    lam = np.log(<span class="str">2</span>) / t_mitad
-    t = np.linspace(<span class="str">0</span>, t_max, pasos)
+    # t_max: tiempo total a simular
+    lam = np.log(2) / t_mitad
+    t = np.linspace(0, t_max, pasos)
     N = N0 * np.exp(-lam * t)
-    <span class="kw">return</span> t, N, lam
+    return t, N, lam
 
-<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
-    N0 = <span class="str">1000</span>          <span class="com"># núcleos iniciales</span>
-    t_mitad = <span class="str">8</span>         <span class="com"># años (ej.: aproximado a fines didácticos)</span>
-    t_max = <span class="str">5</span> * t_mitad
+if __name__ == "__main__":
+    N0 = 1000          # núcleos iniciales
+    t_mitad = 8         # años (ej.: aproximado a fines didácticos)
+    t_max = 5 * t_mitad
 
     t, N, lam = decaimiento(N0, t_mitad, t_max)
 
-    <span class="fn">print</span>(<span class="str">f"Constante de decaimiento (lambda): {lam:.4f} 1/año"</span>)
-    <span class="fn">print</span>(<span class="str">f"Núcleos restantes tras un T1/2: {N0/2:.1f}"</span>)
+    print(f"Constante de decaimiento (lambda): {lam:.4f} 1/año")
+    print(f"Núcleos restantes tras un T1/2: {N0/2:.1f}")
 
-    plt.plot(t, N, color=<span class="str">"#4fd8ff"</span>)
-    plt.axhline(N0/<span class="str">2</span>, linestyle=<span class="str">"--"</span>, color=<span class="str">"#ffb000"</span>, label=<span class="str">"N0 / 2"</span>)
-    plt.xlabel(<span class="str">"Tiempo (años)"</span>)
-    plt.ylabel(<span class="str">"Núcleos activos N(t)"</span>)
-    plt.title(<span class="str">"Decaimiento radiactivo exponencial"</span>)
+    plt.plot(t, N, color="#4fd8ff")
+    plt.axhline(N0/2, linestyle="--", color="#ffb000", label="N0 / 2")
+    plt.xlabel("Tiempo (años)")
+    plt.ylabel("Núcleos activos N(t)")
+    plt.title("Decaimiento radiactivo exponencial")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(<span class="str">"decaimiento.png"</span>, dpi=<span class="str">150</span>)
-    plt.show()
-</pre>
-    </div>
-    <p class="narrow" style="margin-top:16px;">Este script produce la misma curva que el simulador interactivo de arriba y puede ejecutarse con <span style="font-family:var(--mono);color:var(--text)">python decaimiento.py</span>, requiriendo únicamente <span style="font-family:var(--mono);color:var(--text)">numpy</span> y <span style="font-family:var(--mono);color:var(--text)">matplotlib</span>.</p>
+    plt.savefig("decaimiento.png", dpi=150)
+    plt.show()</code></pre>
+    <p>Este script produce la misma curva que el simulador interactivo de arriba y puede ejecutarse con <code>python decaimiento.py</code>, requiriendo únicamente numpy y matplotlib.</p>
+
+    <h3 style="margin-top:36px">Modelo de monedas (guía práctica)</h3>
+    <p>Versión en Python del experimento con monedas, comparada con la curva teórica.</p>
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng()
+
+def lanzar_monedas(N0=100, p=0.5):
+    # p: probabilidad de que un núcleo decaiga en cada lanzamiento
+    restantes = [N0]
+    while restantes[-1] > 0:
+        decaen = rng.binomial(restantes[-1], p)
+        restantes.append(restantes[-1] - decaen)
+    return np.array(restantes)
+
+if __name__ == "__main__":
+    N0, p = 100, 0.5
+    N = lanzar_monedas(N0, p)
+    n = np.arange(len(N))
+
+    teorica = N0 * (1 - p) ** n
+    t_mitad_teorico = np.log(2) / -np.log(1 - p)
+    print(f"T1/2 teórico: {t_mitad_teorico:.2f} lanzamientos")
+
+    plt.plot(n, N, "o", color="#4fd8ff", label="Experimento")
+    plt.plot(n, teorica, "--", color="#ffb000", label="N0 (1-p)^n")
+    plt.xlabel("Lanzamiento")
+    plt.ylabel("Núcleos activos")
+    plt.title("Modelo de decaimiento con monedas")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig("monedas.png", dpi=150)
+    plt.show()</code></pre>
+    <p>Requiere numpy y matplotlib. Ejecutalo varias veces: la curva experimental cambia en cada corrida, la teórica no.</p>
   </div>
 </section>
 
-<section id="referencias" class="tight">
+<!-- REFERENCIAS -->
+<section id="referencias">
   <div class="wrap">
-    <h2 class="section-title">Referencias multimedia</h2>
-    <p class="section-sub">Todos los videos citados a lo largo de esta página, agrupados por tema.</p>
-    <ul class="refs-list">
-      <li>Introducción — <a href="https://vt.tiktok.com/ZSqbnCAhf/" target="_blank" rel="noopener">vt.tiktok.com/ZSqbnCAhf</a></li>
-      <li>Introducción — <a href="https://vt.tiktok.com/ZSqbWLcK5/" target="_blank" rel="noopener">vt.tiktok.com/ZSqbWLcK5</a></li>
-      <li>Girasoles — <a href="https://vt.tiktok.com/ZSqb7Lth4/" target="_blank" rel="noopener">vt.tiktok.com/ZSqb7Lth4</a></li>
-      <li>Rayos alfa, beta y gamma — <a href="https://vt.tiktok.com/ZSqb7574V/" target="_blank" rel="noopener">vt.tiktok.com/ZSqb7574V</a></li>
-      <li>Contaminación en un río de Córdoba — <a href="https://vt.tiktok.com/ZSqbvjARh/" target="_blank" rel="noopener">vt.tiktok.com/ZSqbvjARh</a></li>
-      <li>Hongo negro de Chernóbil — <a href="https://vt.tiktok.com/ZSqbvK8Dh/" target="_blank" rel="noopener">vt.tiktok.com/ZSqbvK8Dh</a></li>
-      <li>Fukushima, Japón — <a href="https://vt.tiktok.com/ZSqbcy3DT/" target="_blank" rel="noopener">vt.tiktok.com/ZSqbcy3DT</a></li>
-      <li>Marie Curie — <a href="https://vt.tiktok.com/ZSqbcrQSa/" target="_blank" rel="noopener">vt.tiktok.com/ZSqbcrQSa</a></li>
-      <li>Radiactividad en la casa — <a href="https://vt.tiktok.com/ZSqbcqMMk/" target="_blank" rel="noopener">vt.tiktok.com/ZSqbcqMMk</a></li>
-      <li>Goiânia, Brasil — <a href="https://vt.tiktok.com/ZSqb36yxS/" target="_blank" rel="noopener">vt.tiktok.com/ZSqb36yxS</a></li>
-      <li>Descubrimiento de la radiactividad — <a href="https://vt.tiktok.com/ZSqb3ngwY/" target="_blank" rel="noopener">vt.tiktok.com/ZSqb3ngwY</a></li>
-      <li>Radiación de una bomba nuclear — <a href="https://vt.tiktok.com/ZSqb3tp5g/" target="_blank" rel="noopener">vt.tiktok.com/ZSqb3tp5g</a></li>
-      <li>Chernóbil — <a href="https://vt.tiktok.com/ZSqb3Tput/" target="_blank" rel="noopener">vt.tiktok.com/ZSqb3Tput</a></li>
-      <li>YouTube — Radiactividad natural: panorama — <a href="https://www.youtube.com/watch?v=ZDn19e7DjbA" target="_blank" rel="noopener">youtube.com/watch?v=ZDn19e7DjbA</a></li>
-      <li>YouTube — Historia de la radiactividad y Marie Curie — <a href="https://www.youtube.com/watch?v=lmpGypBfYx8" target="_blank" rel="noopener">youtube.com/watch?v=lmpGypBfYx8</a></li>
-      <li>YouTube — Tipos de radiaciones: alfa, beta y gamma — <a href="https://www.youtube.com/watch?v=FP7eACHVoDA" target="_blank" rel="noopener">youtube.com/watch?v=FP7eACHVoDA</a></li>
-      <li>YouTube — Chernóbil, 40 años después (France 24) — <a href="https://www.youtube.com/watch?v=xMpcGPSznJs" target="_blank" rel="noopener">youtube.com/watch?v=xMpcGPSznJs</a></li>
-      <li>YouTube — Una década de la catástrofe de Fukushima — <a href="https://www.youtube.com/watch?v=02e_PcmbI0U" target="_blank" rel="noopener">youtube.com/watch?v=02e_PcmbI0U</a></li>
-      <li>YouTube — Accidente de Goiânia: la física del cesio-137 (portugués) — <a href="https://www.youtube.com/watch?v=3hBFLWssP_0" target="_blank" rel="noopener">youtube.com/watch?v=3hBFLWssP_0</a></li>
+    <h2>Referencias multimedia</h2>
+    <p class="lead">Todos los videos citados a lo largo de esta página, agrupados por tema.</p>
+    <ul class="refs">
+      <li>Introducción — <a href="https://vt.tiktok.com/ZSqbnCAhf/">vt.tiktok.com/ZSqbnCAhf</a></li>
+      <li>Introducción — <a href="https://vt.tiktok.com/ZSqbWLcK5/">vt.tiktok.com/ZSqbWLcK5</a></li>
+      <li>Girasoles — <a href="https://vt.tiktok.com/ZSqb7Lth4/">vt.tiktok.com/ZSqb7Lth4</a></li>
+      <li>Rayos alfa, beta y gamma — <a href="https://vt.tiktok.com/ZSqb7574V/">vt.tiktok.com/ZSqb7574V</a></li>
+      <li>Contaminación en un río de Córdoba — <a href="https://vt.tiktok.com/ZSqbvjARh/">vt.tiktok.com/ZSqbvjARh</a></li>
+      <li>Hongo negro de Chernóbil — <a href="https://vt.tiktok.com/ZSqbvK8Dh/">vt.tiktok.com/ZSqbvK8Dh</a></li>
+      <li>Fukushima, Japón — <a href="https://vt.tiktok.com/ZSqbcy3DT/">vt.tiktok.com/ZSqbcy3DT</a></li>
+      <li>Marie Curie — <a href="https://vt.tiktok.com/ZSqbcrQSa/">vt.tiktok.com/ZSqbcrQSa</a></li>
+      <li>Radiactividad en la casa — <a href="https://vt.tiktok.com/ZSqbcqMMk/">vt.tiktok.com/ZSqbcqMMk</a></li>
+      <li>Goiânia, Brasil — <a href="https://vt.tiktok.com/ZSqb36yxS/">vt.tiktok.com/ZSqb36yxS</a></li>
+      <li>Descubrimiento de la radiactividad — <a href="https://vt.tiktok.com/ZSqb3ngwY/">vt.tiktok.com/ZSqb3ngwY</a></li>
+      <li>Radiación de una bomba nuclear — <a href="https://vt.tiktok.com/ZSqb3tp5g/">vt.tiktok.com/ZSqb3tp5g</a></li>
+      <li>Chernóbil — <a href="https://vt.tiktok.com/ZSqb3Tput/">vt.tiktok.com/ZSqb3Tput</a></li>
+      <li>YouTube — Radiactividad natural: panorama — <a href="https://www.youtube.com/watch?v=ZDn19e7DjbA">youtube.com/watch?v=ZDn19e7DjbA</a></li>
+      <li>YouTube — Historia de la radiactividad y Marie Curie — <a href="https://www.youtube.com/watch?v=lmpGypBfYx8">youtube.com/watch?v=lmpGypBfYx8</a></li>
+      <li>YouTube — Tipos de radiaciones: alfa, beta y gamma — <a href="https://www.youtube.com/watch?v=FP7eACHVoDA">youtube.com/watch?v=FP7eACHVoDA</a></li>
+      <li>YouTube — Chernóbil, 40 años después (France 24) — <a href="https://www.youtube.com/watch?v=xMpcGPSznJs">youtube.com/watch?v=xMpcGPSznJs</a></li>
+      <li>YouTube — Una década de la catástrofe de Fukushima — <a href="https://www.youtube.com/watch?v=02e_PcmbI0U">youtube.com/watch?v=02e_PcmbI0U</a></li>
+      <li>YouTube — Accidente de Goiânia: la física del cesio-137 (portugués) — <a href="https://www.youtube.com/watch?v=3hBFLWssP_0">youtube.com/watch?v=3hBFLWssP_0</a></li>
+      <li>YouTube — Modelling Radioactive Decay with Coins – GCSE Physics (guía práctica) — <a href="https://www.youtube.com/results?search_query=Modelling+Radioactive+Decay+with+coins+GCSE+Physics">buscar en YouTube</a></li>
+      <li>Material de apoyo (guía práctica) — <a href="https://www.howtosmile.org/node/3410">Exploratorium: Radioactive-Decay Model</a></li>
+      <li>Material de apoyo (guía práctica) — <a href="https://www.savemyexams.com/gcse/physics/wjec/18/revision-notes/2-forces-space-and-radioactivity/2-8-half-life/modelling-radioactive-decay">Save My Exams: Modelling Radioactive Decay</a></li>
     </ul>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
-      <div><strong>Abel Díaz</strong> — Tesis de física contemporánea</div>
-      <div>Asesor: <strong>Dr. Errico</strong></div>
-      <div>Tema: Radiactividad</div>
-    </div>
+    <p><strong>Abel Díaz</strong> — Tesis de física contemporánea</p>
+    <p>Asesor: <strong>Dr. Errico</strong><br>Tema: Radiactividad</p>
   </div>
 </footer>
 
-<script async src="https://www.tiktok.com/embed.js"></script>
 <script>
+/* ===== Configuración: video de la guía práctica ===== */
+// Pegá acá el ID del video de YouTube "Modelling Radioactive Decay with coins - GCSE Physics".
+// Ejemplo: si la URL es https://www.youtube.com/watch?v=AbC123xyz09 el ID es "AbC123xyz09".
+var COINS_VIDEO_ID = "";
+
+/* ===== Medios: YouTube y TikTok ===== */
 (function(){
-  // ---------- Hero canvas: partículas de decaimiento (Cherenkov-like) ----------
-  var canvas = document.getElementById('heroCanvas');
-  var ctx = canvas.getContext('2d');
-  var particles = [];
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  document.querySelectorAll('.yt').forEach(function(n){
+    var id=n.dataset.id, f=el('figure');
+    f.appendChild(el('figcaption',null,'<b>'+n.dataset.title+'</b>'+n.dataset.tag));
+    var r=el('div','ratio');
+    r.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'" title="'+n.dataset.title+'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    f.appendChild(r);
+    f.appendChild(el('p','alt','<a href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener">Ver en YouTube ↗</a>'));
+    n.replaceWith(f);
+  });
+  var hasTT=false;
+  document.querySelectorAll('.tt').forEach(function(n){
+    hasTT=true;
+    var url='https://www.tiktok.com/@'+n.dataset.user+'/video/'+n.dataset.id, f=el('figure');
+    f.appendChild(el('figcaption',null,'<b>'+n.dataset.title+'</b>'+n.dataset.tag));
+    f.appendChild(el('div',null,'<blockquote class="tiktok-embed" cite="'+url+'" data-video-id="'+n.dataset.id+'" style="max-width:605px;min-width:300px;"><section><a target="_blank" rel="noopener" href="'+url+'">Ver en TikTok ↗</a></section></blockquote>'));
+    n.replaceWith(f);
+  });
+  if(hasTT){ var s=document.createElement('script'); s.async=true; s.src='https://www.tiktok.com/embed.js'; document.body.appendChild(s); }
 
-  function resize(){
-    var hero = canvas.parentElement;
-    canvas.width = hero.clientWidth * devicePixelRatio;
-    canvas.height = hero.clientHeight * devicePixelRatio;
+  var box=document.getElementById('coinsVideo');
+  if(COINS_VIDEO_ID){
+    box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+COINS_VIDEO_ID+'" title="Modelling Radioactive Decay with Coins – GCSE Physics" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+  } else {
+    box.innerHTML='<div class="placeholder"><strong>Modelling Radioactive Decay with Coins – GCSE Physics</strong><span>Abrí el video en YouTube. Para verlo embebido acá, pegá su ID en la variable COINS_VIDEO_ID al final de esta página.</span><a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Modelling+Radioactive+Decay+with+coins+GCSE+Physics">Buscar el video ↗</a></div>';
   }
-  window.addEventListener('resize', resize);
-  resize();
+})();
 
-  function spawnDecay(){
-    var w = canvas.width, h = canvas.height;
-    var cx = Math.random()*w, cy = Math.random()*h;
-    var count = 2 + Math.floor(Math.random()*3);
-    for(var i=0;i<count;i++){
-      var angle = Math.random()*Math.PI*2;
-      particles.push({
-        x:cx, y:cy,
-        vx:Math.cos(angle)*(0.6+Math.random()*1.6)*devicePixelRatio,
-        vy:Math.sin(angle)*(0.6+Math.random()*1.6)*devicePixelRatio,
-        life:1,
-        color: ['79,216,255','185,140,255','255,107,87'][Math.floor(Math.random()*3)]
-      });
+/* ===== Utilidades de gráfico ===== */
+function css(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function prep(c){
+  var r=c.getBoundingClientRect(), d=window.devicePixelRatio||1;
+  c.width=Math.round(r.width*d); c.height=Math.round(r.height*d);
+  var g=c.getContext('2d'); g.setTransform(d,0,0,d,0,0);
+  return {g:g,w:r.width,h:r.height};
+}
+function niceStep(max,n){
+  var raw=max/n, mag=Math.pow(10,Math.floor(Math.log10(raw))), f=raw/mag;
+  return (f<=1?1:f<=2?2:f<=5?5:10)*mag;
+}
+function drawChart(c,o){
+  var p=prep(c), g=p.g, W=p.w, H=p.h, L=54, R=14, T=14, B=40;
+  var pw=W-L-R, ph=H-T-B;
+  var sx=function(x){return L+x/o.xmax*pw;}, sy=function(y){return T+ph-y/o.ymax*ph;};
+  g.clearRect(0,0,W,H);
+  g.font='12px '+getComputedStyle(document.body).fontFamily;
+  g.fillStyle=css('--muted'); g.strokeStyle=css('--line'); g.lineWidth=1;
+  var ys=niceStep(o.ymax,5), xs=niceStep(o.xmax,6), v;
+  g.textAlign='right'; g.textBaseline='middle';
+  for(v=0;v<=o.ymax+1e-9;v+=ys){ g.beginPath(); g.moveTo(L,sy(v)); g.lineTo(W-R,sy(v)); g.stroke(); g.fillText(Math.round(v*100)/100,L-8,sy(v)); }
+  g.textAlign='center'; g.textBaseline='top';
+  for(v=0;v<=o.xmax+1e-9;v+=xs){ g.fillText(Math.round(v*100)/100,sx(v),T+ph+8); }
+  g.fillText(o.xlabel,L+pw/2,H-16);
+  g.save(); g.translate(14,T+ph/2); g.rotate(-Math.PI/2); g.textBaseline='middle'; g.fillText(o.ylabel,0,0); g.restore();
+  g.strokeStyle=css('--muted'); g.beginPath(); g.moveTo(L,T); g.lineTo(L,T+ph); g.lineTo(W-R,T+ph); g.stroke();
+  if(o.hline!=null){ g.save(); g.setLineDash([6,5]); g.strokeStyle=css('--amber'); g.beginPath(); g.moveTo(L,sy(o.hline)); g.lineTo(W-R,sy(o.hline)); g.stroke(); g.restore(); }
+  (o.curves||[]).forEach(function(cv){
+    g.save(); g.strokeStyle=cv.color; g.lineWidth=2; if(cv.dash) g.setLineDash(cv.dash);
+    g.beginPath();
+    for(var i=0;i<=240;i++){ var x=o.xmax*i/240, y=cv.fn(x); if(i===0) g.moveTo(sx(x),sy(y)); else g.lineTo(sx(x),sy(y)); }
+    g.stroke(); g.restore();
+  });
+  (o.points||[]).forEach(function(pt){
+    g.fillStyle=pt.color;
+    pt.data.forEach(function(d){ g.beginPath(); g.arc(sx(d[0]),sy(d[1]),pt.r||3.5,0,Math.PI*2); g.fill(); });
+  });
+}
+
+/* ===== Simulador exponencial ===== */
+(function(){
+  var th=document.getElementById('th'), n0=document.getElementById('n0'), cv=document.getElementById('cDecay');
+  function fmt(x){ return x.toLocaleString('es-AR',{maximumFractionDigits:2}); }
+  function update(){
+    var T=+th.value, N0=+n0.value, lam=Math.LN2/T;
+    document.getElementById('thv').textContent=T+(T===1?' año':' años');
+    document.getElementById('n0v').textContent=N0.toLocaleString('es-AR');
+    document.getElementById('sLam').textContent=lam.toFixed(4);
+    document.getElementById('sHalf').textContent=fmt(N0/2);
+    document.getElementById('sOne').textContent=fmt(Math.log(100)/lam)+' años';
+    var pts=[]; for(var k=0;k<=5;k++) pts.push([k*T,N0*Math.pow(.5,k)]);
+    drawChart(cv,{xmax:5*T,ymax:N0,xlabel:'Tiempo (años)',ylabel:'Núcleos activos N(t)',hline:N0/2,
+      curves:[{fn:function(t){return N0*Math.exp(-lam*t);},color:css('--cyan')}],
+      points:[{data:pts,color:css('--cyan'),r:4}]});
+  }
+  th.addEventListener('input',update); n0.addEventListener('input',update);
+  window.addEventListener('resize',update); update();
+})();
+
+/* ===== Simulador de monedas ===== */
+(function(){
+  var mode=document.getElementById('cMode'), nIn=document.getElementById('cN0'), cv=document.getElementById('cCoins');
+  var bThrow=document.getElementById('cThrow'), bAuto=document.getElementById('cAuto'), bReset=document.getElementById('cReset');
+  var chk=document.getElementById('cTheory'), rows=document.getElementById('cRows');
+  var hist=[], N0=100, p=.5, timer=null;
+
+  function readN(){ var v=parseInt(nIn.value,10); if(!(v>=10)) v=10; if(v>5000) v=5000; nIn.value=v; return v; }
+  function binom(n,q){ var k=0; for(var i=0;i<n;i++) if(Math.random()<q) k++; return k; }
+  function expHalf(){
+    var h=N0/2;
+    for(var k=1;k<hist.length;k++){
+      if(hist[k]<=h){ return (k-1)+(hist[k-1]-h)/(hist[k-1]-hist[k]); }
     }
+    return null;
   }
-
-  function tick(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    if(!reduceMotion && Math.random() < 0.04) spawnDecay();
-    for(var i=particles.length-1;i>=0;i--){
-      var p = particles[i];
-      p.x += p.vx; p.y += p.vy; p.life -= 0.012;
-      if(p.life<=0){ particles.splice(i,1); continue; }
-      ctx.beginPath();
-      ctx.arc(p.x,p.y, 2.4*devicePixelRatio, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba('+p.color+','+p.life+')';
-      ctx.fill();
-    }
-    requestAnimationFrame(tick);
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } bAuto.textContent='Lanzar hasta el final'; }
+  function draw(){
+    var last=hist[hist.length-1], n=hist.length-1;
+    var xmax=Math.max(6,Math.ceil(Math.max(n,Math.log(N0)/-Math.log(1-p))*1.1));
+    var pts=hist.map(function(v,i){return [i,v];});
+    drawChart(cv,{xmax:xmax,ymax:N0,xlabel:'Número de lanzamiento',ylabel:'Núcleos activos',hline:N0/2,
+      curves:chk.checked?[{fn:function(x){return N0*Math.pow(1-p,x);},color:css('--amber'),dash:[7,5]}]:[],
+      points:[{data:pts,color:css('--cyan'),r:n>40?2.5:3.5}]});
+    document.getElementById('sThrows').textContent=n;
+    document.getElementById('sLeft').textContent=last;
+    var e=expHalf(); document.getElementById('sExp').textContent=e==null?'—':e.toFixed(2);
+    document.getElementById('sTheo').textContent=(Math.LN2/-Math.log(1-p)).toFixed(2);
+    bThrow.disabled=last===0; bAuto.disabled=last===0&&!timer;
   }
-  if(!reduceMotion) tick();
-
-  // ---------- Simulador de decaimiento ----------
-  var halfLifeInput = document.getElementById('halfLife');
-  var initialNInput = document.getElementById('initialN');
-  var halfLifeOut = document.getElementById('halfLifeOut');
-  var initialNOut = document.getElementById('initialNOut');
-  var chart = document.getElementById('decayChart');
-  var cctx = chart.getContext('2d');
-
-  var readoutLambda = document.getElementById('readoutLambda');
-  var readoutRemaining = document.getElementById('readoutRemaining');
-  var readoutTime = document.getElementById('readoutTime');
-
-  function fitChart(){
-    var rect = chart.parentElement.getBoundingClientRect();
-    chart.width = rect.width * devicePixelRatio;
-    chart.height = 280 * devicePixelRatio;
-    chart.style.width = rect.width+'px';
-    chart.style.height = '280px';
+  function reset(){
+    stop(); N0=readN(); p=parseFloat(mode.value); hist=[N0]; rows.innerHTML='';
+    var tr=document.createElement('tr'); tr.innerHTML='<td>0</td><td>—</td><td>'+N0+'</td>'; rows.appendChild(tr);
+    draw();
   }
-  window.addEventListener('resize', fitChart);
-
-  function drawChart(){
-    var T = parseFloat(halfLifeInput.value);
-    var N0 = parseFloat(initialNInput.value);
-    var lambda = Math.log(2)/T;
-    var tMax = T*5;
-
-    halfLifeOut.textContent = T + ' años';
-    initialNOut.textContent = N0;
-    readoutLambda.textContent = lambda.toFixed(4);
-    readoutRemaining.textContent = Math.round(N0/2);
-    readoutTime.textContent = (Math.log(100)/lambda).toFixed(1) + ' años';
-
-    var w = chart.width, h = chart.height;
-    var padL = 46*devicePixelRatio, padB = 30*devicePixelRatio, padT = 14*devicePixelRatio, padR = 14*devicePixelRatio;
-    cctx.clearRect(0,0,w,h);
-
-    // ejes
-    cctx.strokeStyle = '#1e2f36';
-    cctx.lineWidth = 1*devicePixelRatio;
-    cctx.beginPath();
-    cctx.moveTo(padL, padT); cctx.lineTo(padL, h-padB); cctx.lineTo(w-padR, h-padB);
-    cctx.stroke();
-
-    // curva N(t)
-    cctx.beginPath();
-    var steps = 200;
-    for(var i=0;i<=steps;i++){
-      var t = (tMax/steps)*i;
-      var N = N0*Math.exp(-lambda*t);
-      var x = padL + (w-padL-padR)*(t/tMax);
-      var y = (h-padB) - (h-padB-padT)*(N/N0);
-      if(i===0) cctx.moveTo(x,y); else cctx.lineTo(x,y);
-    }
-    cctx.strokeStyle = '#4fd8ff';
-    cctx.lineWidth = 2.4*devicePixelRatio;
-    cctx.shadowColor = 'rgba(79,216,255,.6)';
-    cctx.shadowBlur = 8*devicePixelRatio;
-    cctx.stroke();
-    cctx.shadowBlur = 0;
-
-    // línea N0/2
-    var yHalf = (h-padB) - (h-padB-padT)*0.5;
-    cctx.beginPath();
-    cctx.setLineDash([4*devicePixelRatio,4*devicePixelRatio]);
-    cctx.moveTo(padL,yHalf); cctx.lineTo(w-padR,yHalf);
-    cctx.strokeStyle = '#ffb000';
-    cctx.lineWidth = 1*devicePixelRatio;
-    cctx.stroke();
-    cctx.setLineDash([]);
-
-    // etiquetas
-    cctx.fillStyle = '#8fa6ac';
-    cctx.font = (11*devicePixelRatio)+'px IBM Plex Mono';
-    cctx.fillText('N₀', padL - 30*devicePixelRatio, padT + 10*devicePixelRatio);
-    cctx.fillText('0', padL - 8*devicePixelRatio, h-padB + 16*devicePixelRatio);
-    cctx.fillText(tMax.toFixed(0)+' años', w-padR-50*devicePixelRatio, h-padB + 16*devicePixelRatio);
+  function step(){
+    var cur=hist[hist.length-1]; if(cur===0){ stop(); draw(); return; }
+    var d=binom(cur,p); hist.push(cur-d);
+    var tr=document.createElement('tr'); tr.innerHTML='<td>'+(hist.length-1)+'</td><td>'+d+'</td><td>'+(cur-d)+'</td>';
+    rows.appendChild(tr); rows.parentElement.parentElement.scrollTop=1e6;
+    if(cur-d===0) stop();
+    draw();
   }
-
-  halfLifeInput.addEventListener('input', drawChart);
-  initialNInput.addEventListener('input', drawChart);
-  fitChart();
-  drawChart();
+  bThrow.addEventListener('click',function(){ stop(); step(); });
+  bAuto.addEventListener('click',function(){
+    if(timer){ stop(); draw(); return; }
+    bAuto.textContent='Pausar'; timer=setInterval(step,350);
+  });
+  bReset.addEventListener('click',reset);
+  mode.addEventListener('change',reset);
+  nIn.addEventListener('change',reset);
+  chk.addEventListener('change',draw);
+  window.addEventListener('resize',draw);
+  reset();
 })();
 </script>
-
 </body>
 </html>
