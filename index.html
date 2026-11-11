@@ -74,16 +74,39 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 .quiz-opt.incorrect{background:#ff4d4d20;border-color:#ff4d4d;color:var(--tx)}
 .quiz-feedback{margin-top:10px;font-size:.9rem;display:none}
 .quiz-feedback.show{display:block}
+/* ===== BIBLIOTECA (nuevo) ===== */
+.bib-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:26px 0}
+.bib-card h3{font-size:1.3rem;margin:.3em 0}
+.bib-meta{color:var(--mu);font-size:.88rem;margin:0 0 12px}
+.bib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.bib-k{background:#0a1019;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.bib-k b{display:block;font-size:1.6rem;color:var(--g);line-height:1.2}
+.bib-k span{color:var(--mu);font-size:.85rem}
+.bib-row{display:grid;grid-template-columns:minmax(120px,240px) 1fr 74px;gap:8px;align-items:center;padding:3px 0;font-size:.85rem;color:var(--mu)}
+.bib-row .t{height:16px;background:var(--line);border-radius:8px;overflow:hidden}
+.bib-row .t i{display:block;height:100%;background:var(--b);border-radius:8px;width:0;transition:width .9s}
+.bib-row.hot .t i{background:#ffb000}.bib-row.bg .t i{background:var(--g)}
+.bib-row em{font-style:normal;text-align:right}
+.bib-note{border-left:3px solid #ffb000;padding:8px 14px;margin:14px 0;color:var(--mu);font-size:.9rem;background:#ffb00010;border-radius:0 8px 8px 0}
+.bib-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.bib-chip{font:inherit;color:var(--tx);background:#0a1019;border:1px solid var(--line);border-radius:10px;padding:7px 12px;cursor:pointer;text-align:left}
+.bib-chip.on{border-color:var(--b);color:var(--b)}.bib-chip small{display:block;color:var(--mu)}
+#bib-detalle{border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-height:90px;background:#0a1019}
+#bib-detalle p{margin:.3em 0}
+.bib-pdf{padding:0!important}.bib-pdf object{display:block;width:100%;height:600px}
+.bib-foot{color:var(--mu);font-size:.82rem;margin-top:30px}
+@media(max-width:560px){.bib-row{grid-template-columns:1fr 64px}.bib-row .t{grid-column:1/3;order:3}}
 </style>
 </head>
 <body>
 
 <nav>
-<a href="#hero">Inicio</a><a href="#historia">Pioneros</a><a href="#teoria">Teoría</a>
+<a href="#hero">Inicio</a><a href="#plan">Plan de tesis</a><a href="#historia">Pioneros</a><a href="#teoria">Teoría</a>
 <a href="#lab">Laboratorio</a><a href="#exp">Experimentos</a><a href='#sim'>Simulador</a>
 <a href='#monedas'>Monedas</a><a href='#casos'>Casos</a><a href='#front'>Investigación</a>
 <a href="#cts">Debate CTS</a><a href="#media">Multimedia</a>
 <a href='#material'>Clases UNLP</a>
+<a href='#biblioteca'>Biblioteca</a>
 <a href='#refs'>Referencias</a>
 </nav>
 
@@ -93,11 +116,40 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <div class="tag">⚛ Tesis de Maestría · UNLP · 2026</div>
 <h1 class="hero-t">La radioactividad en el aula de nivel secundario: diseño teórico-experimental de estrategias didácticas</h1>
 <div class="meta"><span>Autor: <b>Abel Enrique Diaz Carranza</b></span><span>Asesor: <b>Dr. Leonardo Errico</b></span><span><b>UNLP</b> · Maestría en Física Contemporánea</span></div>
-<div class="btns"><a class="btn p" href="#historia">▶ Iniciar Recorrido Didáctico</a><a class="btn" href="#" id="pdf">⬇ Descargar Plan de Tesis (PDF)</a></div>
+<div class="btns"><a class="btn p" href="#historia">▶ Iniciar Recorrido Didáctico</a><a class="btn" href="Plan_de_Tesis.pdf" download id="pdf">⬇ Descargar Plan de Tesis (PDF)</a></div>
 <div class="prob"><b>El problema</b><p style="margin:.4em 0;color:var(--mu)">Entre el conocimiento que producen los científicos y el que llega a las aulas de La Matanza hay una distancia enorme. Esta tesis propone puentes didácticos, experimentales y tecnológicos para cerrarla.</p>
 <div class="gap"><span>Saber sabio</span><i></i><span>Saber enseñado</span></div>
 <button class="chip" id="tr" style="margin-top:12px">¿Cómo se transforma el saber? →</button><p id="trt" style="display:none;color:var(--tx);margin:10px 0 0;font-size:.92rem">Transposición didáctica: el saber se selecciona, simplifica y recontextualiza. Si se hace sin experimentación ni contexto, la radioactividad queda reducida a miedo o a una fórmula. Aquí se propone lo contrario: observar, medir y debatir.</p></div>
 </div>
+</section>
+
+<section id="plan" class="rv">
+<div class="tag">📄 Plan de tesis</div>
+<h2>El plan de tesis completo</h2>
+<p class="sub">Maestría en Física Contemporánea · UNLP · Línea de investigación: Enseñanza de la Física Contemporánea. Investigación mixta (cualitativa y cuantitativa) sobre cómo enseñar radioactividad en la escuela secundaria de La Matanza con experimentos de baja escala, simulaciones y debate de cuestiones socio-científicas.</p>
+<div class="bib-grid">
+<div class="bib-k"><b>120</b><span>estudiantes de escuelas medias y técnicas del Ciclo Superior</span></div>
+<div class="bib-k"><b>4</b><span>escuelas públicas: EEST N° 10 y N° 11, EES N° 164 y N° 2</span></div>
+<div class="bib-k"><b>12</b><span>meses de cronograma, con 4 fases de trabajo</span></div>
+</div>
+<details open><summary>Objetivo general y objetivos específicos</summary><div>
+<p><b style="color:var(--g)">General:</b> implementar y evaluar una estrategia didáctica teórico-experimental para enseñar radioactividad en el nivel secundario, con enfoque histórico-epistemológico y tratamiento de Cuestiones Socio Científicas (CSC), para promover la alfabetización científica y el pensamiento crítico.</p>
+<ol><li>Diagnosticar concepciones alternativas y obstáculos epistemológicos de los estudiantes.</li><li>Analizar críticamente cómo tratan la radioactividad los manuales escolares vigentes.</li><li>Diseñar una secuencia teórico-experimental que integre modelización, reconstrucción histórica y debate de CSC.</li><li>Implementarla en las escuelas, con los docentes titulares y los avales institucionales, y evaluar su impacto (pre-test/post-test y modelo de Toulmin).</li><li>Elaborar directrices didácticas para la enseñanza de la Física Contemporánea en la escuela media y técnica.</li></ol></div></details>
+<details><summary>Las cuatro fases de la investigación</summary><div><ol>
+<li><b>Diagnóstico y análisis documental:</b> cuestionario de concepciones previas y análisis de manuales escolares.</li>
+<li><b>Diseño teórico-experimental:</b> problematización con CSC, reconstrucción histórica, actividad experimental o modelización computacional (cámara de niebla, PhET) y debate estructurado.</li>
+<li><b>Implementación y recolección de datos:</b> aplicación en aula en pareja pedagógica con los docentes titulares; encuestas digitales, ensayos argumentativos, observaciones y post-test.</li>
+<li><b>Análisis de datos:</b> argumentación con el modelo de Toulmin, comparación pre-test/post-test y triangulación.</li></ol></div></details>
+<details><summary>Cronograma de 12 meses</summary><div><ul>
+<li><b>Meses 1-2:</b> revisión bibliográfica, validación de instrumentos y trámites iniciales de autorización.</li>
+<li><b>Mes 3:</b> diagnósticos en las escuelas, análisis de manuales, avales y consentimientos informados.</li>
+<li><b>Meses 4-5:</b> diseño de la secuencia, construcción de dispositivos y talleres con docentes titulares.</li>
+<li><b>Meses 6-8:</b> implementación en aula con los 120 estudiantes y recolección de datos.</li>
+<li><b>Meses 9-10:</b> procesamiento y análisis cualitativo y cuantitativo.</li>
+<li><b>Mes 11:</b> redacción de los capítulos y de las directrices didácticas.</li>
+<li><b>Mes 12:</b> revisión final con el director, presentación y defensa.</li></ul></div></details>
+<details id="plan-d"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><object data-src="Plan_de_Tesis.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
+<div class="btns" style="margin:16px 0 0"><a class="btn p" href="Plan_de_Tesis.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="btn" href="Plan_de_Tesis.pdf" download>⬇ Descargar</a></div>
 </section>
 
 <section id="historia" class="rv">
@@ -265,6 +317,46 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 </div>
 </section>
 
+<!-- ===== NUEVA SECCIÓN: BIBLIOTECA (dos PDFs) ===== -->
+<section id="biblioteca" class="rv">
+<div class="tag">📚 Biblioteca</div>
+<h2>Dos lecturas para llevar al aula</h2>
+<p class="sub">Un trabajo de campo con mediciones reales en un instituto de física y una guía para docentes con secuencias didácticas. El primero aporta datos propios para el debate; la segunda, el marco y los recursos para dictar las clases.</p>
+
+<article class="bib-card">
+<div class="tag">Trabajo de campo · Toxicología · UNLP 2025</div>
+<h3>¿Los que trabajan con material radiactivo reciben más dosis que el resto?</h3>
+<p class="bib-meta">Acosta, Domina, Matteo y Szayner Allevato · con el apoyo del Dr. Leonardo Errico (IFLP)</p>
+<p style="color:var(--mu)">Hipótesis: quienes trabajan en laboratorios con material radiactivo <b style="color:var(--tx)">no reciben dosis significativamente mayores</b> que la población general. Los autores la contrastaron con dos encuestas y mediciones con un contador Geiger en el Instituto de Física de La Plata.</p>
+<div class="bib-grid">
+<div class="bib-k"><b>65,3 %</b><span>de la población general (n = 75) cree estar expuesta a radioactividad a diario; en el IFLP (n = 13), el 100 %</span></div>
+<div class="bib-k"><b>92,3 %</b><span>de los trabajadores del IFLP puntuó con 5 (máximo) que los beneficios médicos superan los riesgos</span></div>
+<div class="bib-k"><b>2,37×</b><span>el fondo: único punto significativamente mayor, junto al equipo Mössbauer (0,33 µSv/h)</span></div>
+</div>
+<h3 style="font-size:1.05rem;color:var(--b)">Dosis medidas por lugar (media, µSv/h)</h3>
+<div id="bib-chart" aria-label="Gráfico de barras de la media de radiación por lugar"></div>
+<p class="bib-meta">ANOVA: F = 70,52, p &lt; 0,0001. Letras de Tukey (α = 0,05): los lugares que comparten letra no difieren significativamente. Verde = fondo fuera del IFLP; ámbar = único grupo distinto (E).</p>
+<div class="bib-note"><b>Para dimensionar (cálculo ilustrativo, no figura en el trabajo):</b> 0,33 µSv/h durante 2000 h al año son unos 0,66 mSv, frente a los 50 mSv anuales que no deben superarse para trabajadores expuestos y a los ~2,4 mSv/año del fondo natural promedio que cita el propio trabajo.</div>
+<div class="bib-note">Detalle a corregir si lo citás: en la sección de radiación terrestre aparece “Ra-222”; el radionucleido del radón es el <b>Rn-222</b>.</div>
+<details id="bib-d1"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><object data-src="Trabajo_de_Campo__Radiactividad.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
+<div class="btns" style="margin:16px 0 0"><a class="btn p" href="Trabajo_de_Campo__Radiactividad.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="btn" href="Trabajo_de_Campo__Radiactividad.pdf" download>⬇ Descargar</a></div>
+</article>
+
+<article class="bib-card">
+<div class="tag">Guía para docentes · CNEA · Instituto Balseiro · 2019</div>
+<h3>Las radiaciones en la vida cotidiana</h3>
+<p class="bib-meta">Dra. Ing. Lourdes Torres (coautora: Dra. Astrid Bengtsson) · 246 páginas · licencia CC BY-NC-SA 4.0</p>
+<p style="color:var(--mu)">Cuaderno con enfoque pedagógico, siete capítulos de contenido con fichas de actividades, recursos para el aula y secuencias didácticas escritas por docentes de distintas provincias, algunas para ferias de ciencias. Tocá un capítulo:</p>
+<div class="bib-chips" id="bib-chips"></div>
+<div id="bib-detalle"><p>Elegí un capítulo para ver de qué trata y en qué página empieza.</p></div>
+<div class="bib-note">Sugerencia de uso con tus sesiones: el Cap. 3 sirve de apoyo para la Sesión 1; el Cap. 6 (detectores) para la cámara de niebla y el Geiger de las Sesiones 3-4; el Cap. 5 (protección radiológica) para el debate de las Sesiones 5-6.</div>
+<details id="bib-d2"><summary>Ver el PDF integrado (pesa unos 10 MB)</summary><div class="bib-pdf"><object data-src="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
+<div class="btns" style="margin:16px 0 0"><a class="btn p" href="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" target="_blank" rel="noopener">Abrir PDF (10 MB)</a><a class="btn" href="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" download>⬇ Descargar</a></div>
+</article>
+
+<p class="bib-foot">La guía de L. Torres se reproduce bajo licencia CC BY-NC-SA 4.0 (reconocimiento, no comercial, compartir igual). El trabajo de campo pertenece a sus autores.</p>
+</section>
+
 <section id='refs' class='rv'><div class='tag'>📚 Referencias</div><h2>Referencias multimedia y apéndice</h2><p class='sub'>Videos y materiales de apoyo citados en la tesis.</p><div class='tk' id='yt'></div>
 <details style='margin-top:24px'><summary>Apéndice: script Python del decaimiento exponencial</summary><div><pre><code>import numpy as np
 import matplotlib.pyplot as plt
@@ -283,8 +375,6 @@ if __name__ == '__main__':
     plt.axhline(N0 / 2, linestyle='--', color='#ffb000', label='N0 / 2')
     plt.xlabel('Tiempo (años)'); plt.ylabel('Núcleos activos N(t)')
     plt.legend(); plt.tight_layout(); plt.savefig('decaimiento.png', dpi=150)</code></pre>Requiere numpy y matplotlib.</div></details>
-<details><summary>
-
 
 <details><summary>Apéndice: modelo de monedas en Python</summary><div><pre><code>import numpy as np
 import matplotlib.pyplot as plt
@@ -321,7 +411,6 @@ x.shadowBlur=0;for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){const 
 requestAnimationFrame(t)})()})();
 
 $('#tr').onclick=()=>{const e=$('#trt');e.style.display=e.style.display=='block'?'none':'block'};
-$('#pdf').onclick=e=>{e.preventDefault();alert('Aquí se enlaza el PDF del Plan de Tesis. Reemplazá el href de este botón por la URL de tu archivo.')};
 
 // --- PIONEROS (Con María Goeppert-Mayer) ---
 const P=[
@@ -356,8 +445,8 @@ $$('#labs button').forEach(b=>b.onclick=()=>{const i=b.dataset.i;$('#fr'+i).inne
 const E=[{t:'Cámara de niebla casera tipo Wilson (1911)',m:'<b>Materiales:</b> recipiente transparente con tapa, alcohol isopropílico, hielo seco, esponja o fieltro, linterna potente, plato oscuro, guantes.',s:[['Preparar el recipiente','Pegá el fieltro en el interior de la tapa y empapalo con alcohol isopropílico.'],['Enfriar la base','Poné el plato oscuro sobre hielo seco (con guantes, nunca con las manos) y apoyá encima el recipiente invertido con la tapa abajo.'],['Esperar la sobresaturación','En 5–10 minutos, cerca del plato se forma una capa de vapor sobresaturado.'],['Iluminar de costado','Apagá las luces y enfocá la linterna lateralmente sobre esa capa.'],['Observar lo invisible','Aparecen trazas finas y breves: partículas ionizantes (rayos cósmicos, radiación ambiental) que condensan el vapor a su paso.']]},
 {t:'Sensores Arduino y contadores Geiger virtuales',m:'<b>Materiales:</b> placa Arduino, computadora, cable USB, simulador o contador virtual (por ejemplo, los recursos de GigaPhysics), planilla de cálculo.',s:[['Conectar y configurar','Conectá la placa, abrí el IDE de Arduino y cargá el código que cuenta pulsos por intervalo.'],['Registrar datos','Guardá los conteos por segundo durante varios minutos (con fuente virtual o fondo natural).'],['Procesar los datos','Exportá a la planilla y calculá el promedio y la dispersión. Notá que los conteos fluctúan: es un proceso aleatorio.'],['Graficar el decaimiento','Graficá el conteo en función del tiempo y ajustá una curva exponencial N₀·e^(−λt).'],['Concluir','Estimá λ y T₁/₂ y relacioná el resultado con la teoría y con las TIC.']]}];
 let ei=0,si=0;
-function re(){const e=E[ei],s=e.s[si];$('#et').textContent=e.t;$('#em').innerHTML=e.m;$('#sb').innerHTML=e.s.map((_,i)=>`<i class="${i<=si?'on':''}"></i>`).join('');$('#sh').textContent=`Paso ${si+1}: ${s[0]}`;$('#sp').textContent=s[1];$('#pv').style.visibility=si?'visible':'hidden';$('#nx').style.visibility=si<e.s.length-1?'visible':'hidden';$$('.tab').forEach((t,i)=>t.classList.toggle('on',i==ei))}
-$$('.tab').forEach(t=>t.onclick=()=>{ei=+t.dataset.e;si=0;re()});$('#pv').onclick=()=>{si--;re()};$('#nx').onclick=()=>{si++;re()};re();
+function re(){const e=E[ei],s=e.s[si];$('#et').textContent=e.t;$('#em').innerHTML=e.m;$('#sb').innerHTML=e.s.map((_,i)=>`<i class="${i<=si?'on':''}"></i>`).join('');$('#sh').textContent=`Paso ${si+1}: ${s[0]}`;$('#sp').textContent=s[1];$('#pv').style.visibility=si?'visible':'hidden';$('#nx').style.visibility=si<e.s.length-1?'visible':'hidden';$$('.tab[data-e]').forEach((t,i)=>t.classList.toggle('on',i==ei))}
+$$('.tab[data-e]').forEach(t=>t.onclick=()=>{ei=+t.dataset.e;si=0;re()});$('#pv').onclick=()=>{si--;re()};$('#nx').onclick=()=>{si++;re()};re();
 
 // --- CTS ---
 const T=[{n:'INVAP y exportación de reactores',d:'La empresa rionegrina INVAP diseña y exporta reactores de investigación (Australia, Egipto, Holanda, Perú, Argelia).',
@@ -421,7 +510,7 @@ addd('La radiactividad en la vida cotidiana',['Radiactividad en la casa','Giraso
 // --- REVEAL ---
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.08});$$('.rv').forEach(e=>io.observe(e));
 
-// --- NUEVO: LÓGICA DE PESTAÑAS DE CLASES UNLP ---
+// --- LÓGICA DE PESTAÑAS DE CLASES UNLP ---
 const clases = {
     '1': { pdf: 'Clase 1 el nucleo repaso historico.pdf', nombre: 'Clase 1' },
     '2': { pdf: 'Clase 2 el nucleo propiedades nucleares.pdf', nombre: 'Clase 2' }
@@ -430,17 +519,16 @@ $$('.tab[data-clase]').forEach(tab => {
     tab.onclick = () => {
         $$('.tab[data-clase]').forEach(t => t.classList.remove('on'));
         tab.classList.add('on');
-        const numClase = tab.dataset.clase;
-        const data = clases[numClase];
+        const data = clases[tab.dataset.clase];
         $('#pdf-viewer').data = data.pdf;
-        $('#pdf-link').href = data.pdf;
+        const pl = $('#pdf-link'); if (pl) pl.href = data.pdf;
         $('#download-link').href = data.pdf;
         $('#download-link').download = data.pdf;
         $('#download-link').innerHTML = `⬇ Descargar ${data.nombre} (PDF)`;
     };
 });
 
-// --- NUEVO: CUESTIONARIO INTERACTIVO ---
+// --- CUESTIONARIO INTERACTIVO ---
 const preguntas = [
     {
         q: "1. ¿Qué son los isótopos?",
@@ -508,22 +596,17 @@ function renderQuiz() {
             ${p.opciones.map((op, j) => `
                 <label class="quiz-opt" data-opt="${j}">
                     <input type="radio" name="q${i}" value="${j}">
-
                    ${op}
                 </label>
             `).join('')}
             <div class="quiz-feedback" id="fb-${i}"></div>
         </div>
     `).join('');
-    
-    // Lógica de selección
     $$('.quiz-opt').forEach(opt => {
         opt.onclick = () => {
             const q = opt.closest('.quiz-q');
-            // Quitar selección previa del mismo grupo
             q.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
             opt.classList.add('selected');
-            // Marcar el radio button
             opt.querySelector('input').checked = true;
         };
     });
@@ -535,24 +618,17 @@ function corregirQuiz() {
         const q = $(`.quiz-q[data-q="${i}"]`);
         const seleccionada = q.querySelector('input:checked');
         const feedback = $(`#fb-${i}`);
-        
-        // Limpiar clases previas
-        q.querySelectorAll('.quiz-opt').forEach(o => {
-            o.classList.remove('correct', 'incorrect');
-        });
+        q.querySelectorAll('.quiz-opt').forEach(o => { o.classList.remove('correct', 'incorrect'); });
         feedback.classList.remove('show');
-        
         if (!seleccionada) {
             feedback.textContent = "⚠️ No seleccionaste una opción.";
             feedback.style.color = "#ffb000";
             feedback.classList.add('show');
             return;
         }
-        
         const val = parseInt(seleccionada.value);
         const optSeleccionada = q.querySelector(`.quiz-opt[data-opt="${val}"]`);
         const optCorrecta = q.querySelector(`.quiz-opt[data-opt="${p.correcta}"]`);
-        
         if (val === p.correcta) {
             optSeleccionada.classList.add('correct');
             feedback.innerHTML = `✅ <b>¡Correcto!</b> ${p.feedback}`;
@@ -566,8 +642,6 @@ function corregirQuiz() {
         }
         feedback.classList.add('show');
     });
-    
-    // Mostrar puntaje total
     const cont = $('#quiz-container');
     let resumen = $('#quiz-resumen');
     if (!resumen) {
@@ -586,16 +660,63 @@ function resetQuiz() {
     if (resumen) resumen.remove();
 }
 
-// Inicializar el cuestionario
 if ($('#quiz-container')) {
     renderQuiz();
     $('#quiz-check').onclick = corregirQuiz;
     $('#quiz-reset').onclick = resetQuiz;
 }
 
-// --- LÓGICA DE PESTAÑAS DE CLASES UNLP (ya incluida arriba, pero se asegura la ejecución) ---
-// (La lógica ya está en el bloque anterior, pero se deja aquí por si acaso)
+// --- BIBLIOTECA (nuevo) ---
+(function(){
+const datos=[
+["Química Activa (puerta cerrada)",0.0890,"A"],
+["Aniquilación de Positrones (puerta cerrada)",0.1099,"AB"],
+["Mössbauer · mesada de trabajo",0.1126,"ABC"],
+["Sala comedor",0.1131,"ABC"],
+["Mössbauer · puerta cerrada",0.1142,"ABC"],
+["Fondo (fuera del IFLP)",0.1391,"BCD","bg"],
+["Mössbauer · a 1 m de la computadora",0.1400,"BCD"],
+["Espectroscopía UV-Vis (primer piso)",0.1447,"CD"],
+["Mössbauer · puerta abierta",0.1448,"CD"],
+["Magnetismo · mesada de trabajo",0.1694,"D"],
+["Mössbauer · junto al equipo",0.3300,"E","hot"]];
+const c=$('#bib-chart'),max=0.35;
+datos.forEach(d=>{
+ const r=document.createElement('div');r.className='bib-row '+(d[3]||'');
+ r.innerHTML=`<span>${d[0]}</span><div class="t"><i data-w="${d[1]/max*100}"></i></div><em>${d[1].toFixed(3).replace('.',',')} · ${d[2]}</em>`;
+ c.appendChild(r);
+});
+const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){c.querySelectorAll('i').forEach(i=>i.style.width=i.dataset.w+'%');ob.disconnect()}}),{threshold:.2});ob.observe(c);
+
+const caps=[
+["1","El átomo",18,"Modelos atómicos, características del átomo, introducción a la física de partículas y el núcleo."],
+["2","Tabla periódica y tabla de nucleídos",41,"Historia y estructura de la tabla periódica, capa electrónica y la carta de nucleídos."],
+["3","Radiaciones y radiactividad",52,"Definiciones, tipos de radiación y radiactividad."],
+["4","Interacción con la materia",62,"Partículas cargadas, radiación electromagnética y neutrones; materiales usados como blindaje."],
+["5","Protección radiológica",69,"Instituciones reguladoras, principios, dosis, radiación ambiental, efectos biológicos y límites en Argentina."],
+["6","Detectores de radiación",77,"Detector Geiger-Müller, detector de INa(Tl) y otros."],
+["7","Aplicaciones en la vida cotidiana",81,"Instituciones nucleares argentinas, aplicaciones de las radiaciones ionizantes y usos médicos."],
+["+","Recursos y secuencias didácticas",98,"Actividades para el aula, recursos pedagógicos y 17 secuencias desarrolladas por docentes (desde la p. 110), incluidos proyectos de feria de ciencias."]];
+const ch=$('#bib-chips'),dt=$('#bib-detalle');
+caps.forEach(k=>{
+ const b=document.createElement('button');b.className='bib-chip';b.type='button';
+ b.innerHTML=(k[0]==='+'?'':'Cap. '+k[0]+' · ')+k[1]+'<small>p. '+k[2]+'</small>';
+ b.onclick=()=>{
+  ch.querySelectorAll('.bib-chip').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  dt.innerHTML=`<p><b>${k[1]}</b></p><p style="color:var(--mu)">${k[3]}</p><p class="bib-meta">Empieza en la página ${k[2]} del PDF (numeración impresa).</p>`;
+ };
+ ch.appendChild(b);
+});
+// El PDF integrado se carga recién cuando se abre el desplegable (ahorra datos)
+['#plan-d','#bib-d1','#bib-d2'].forEach(id=>{
+ const d=$(id);
+ d.addEventListener('toggle',()=>{
+  const o=d.querySelector('object');
+  if(d.open&&!o.data){o.data=o.dataset.src}
+ });
+});
+})();
 </script>
 </body>
 </html>
-
