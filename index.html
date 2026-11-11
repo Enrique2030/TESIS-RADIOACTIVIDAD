@@ -13,8 +13,17 @@ h1,h2,h3{line-height:1.2;margin:0 0 .5em}h2{font-size:clamp(1.6rem,4vw,2.3rem)}
 a{color:var(--b)}section{padding:72px 20px;max-width:1100px;margin:auto}
 .tag{color:var(--g);font:600 .8rem/1 ui-monospace,monospace;letter-spacing:.15em;text-transform:uppercase}
 .sub{color:var(--mu);max-width:720px}
-nav{position:sticky;top:0;z-index:5;background:#070b12cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;padding:12px 16px;white-space:nowrap}
+nav{position:sticky;top:0;z-index:5;background:#070b12cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px}
 nav a{color:var(--mu);text-decoration:none;font-size:.85rem;padding:6px 12px;border-radius:99px}nav a:hover{color:var(--g);background:#39ff8815}
+/* menú desplegable */
+.dd{position:relative}
+.dd>button{font:inherit;font-size:.85rem;color:var(--mu);background:transparent;border:0;padding:6px 12px;border-radius:99px;cursor:pointer}
+.dd>button::after{content:" ▾";font-size:.7rem}
+.dd>button:hover,.dd.open>button{color:var(--g);background:#39ff8815}
+.dd-m{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 12px 30px #0009}
+.dd.open .dd-m{display:block}
+.dd-m a{display:block;border-radius:8px;padding:9px 12px;font-size:.88rem}
+.dd:nth-last-child(-n+2) .dd-m{left:auto;right:0}
 .btn{display:inline-block;border:1px solid var(--g);color:var(--g);background:transparent;padding:12px 22px;border-radius:10px;font:600 1rem inherit;cursor:pointer;text-decoration:none;transition:.25s}
 .btn.p{background:var(--g);color:#04120a}.btn:hover{box-shadow:0 0 24px #39ff8855;transform:translateY(-2px)}
 #hero{position:relative;max-width:none;min-height:88vh;display:flex;align-items:center;overflow:hidden}
@@ -101,13 +110,12 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <body>
 
 <nav>
-<a href="#hero">Inicio</a><a href="#plan">Plan de tesis</a><a href="#historia">Pioneros</a><a href="#teoria">Teoría</a>
-<a href="#lab">Laboratorio</a><a href="#exp">Experimentos</a><a href='#sim'>Simulador</a>
-<a href='#monedas'>Monedas</a><a href='#casos'>Casos</a><a href='#front'>Investigación</a>
-<a href="#cts">Debate CTS</a><a href="#media">Multimedia</a>
-<a href='#material'>Clases UNLP</a>
-<a href='#biblioteca'>Biblioteca</a>
-<a href='#refs'>Referencias</a>
+<a href="#hero">Inicio</a>
+<a href="#plan">Plan de tesis</a>
+<div class="dd"><button type="button" aria-expanded="false">Teoría</button><div class="dd-m"><a href="#historia">Pioneros</a><a href="#teoria">Física del núcleo</a><a href="#casos">Casos y accidentes</a><a href="#front">Investigación actual</a></div></div>
+<div class="dd"><button type="button" aria-expanded="false">Práctica</button><div class="dd-m"><a href="#lab">Simuladores PhET</a><a href="#exp">Experimentos</a><a href="#sim">Decaimiento exponencial</a><a href="#monedas">Modelo de monedas</a></div></div>
+<div class="dd"><button type="button" aria-expanded="false">Aula</button><div class="dd-m"><a href="#cts">Debate CTS</a><a href="#media">Videos</a><a href="#material">Clases UNLP</a></div></div>
+<div class="dd"><button type="button" aria-expanded="false">Biblioteca</button><div class="dd-m"><a href="#biblioteca">Lecturas en PDF</a><a href="#refs">Referencias y apéndice</a></div></div>
 </nav>
 
 <section id="hero">
@@ -717,6 +725,15 @@ caps.forEach(k=>{
  });
 });
 })();
+
+// --- MENÚ DESPLEGABLE ---
+(()=>{const dds=$$('nav .dd');
+const close=()=>dds.forEach(d=>{d.classList.remove('open');d.firstElementChild.setAttribute('aria-expanded','false')});
+dds.forEach(d=>{const b=d.firstElementChild;b.onclick=e=>{e.stopPropagation();const o=d.classList.contains('open');close();if(!o){d.classList.add('open');b.setAttribute('aria-expanded','true')}}});
+document.addEventListener('click',close);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
 </script>
+</body>
+</html>
 </body>
 </html>
