@@ -105,6 +105,15 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 .bib-pdf{padding:0!important}.bib-pdf object{display:block;width:100%;height:600px}
 .bib-foot{color:var(--mu);font-size:.82rem;margin-top:30px}
 @media(max-width:560px){.bib-row{grid-template-columns:1fr 64px}.bib-row .t{grid-column:1/3;order:3}}
+/* visor de PDF (PDF.js) */
+.pv{min-height:120px;background:#0a1019;padding:0}
+.pv-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}
+.pv-bar button,.pv-bar a{font:inherit;font-size:.85rem;color:var(--g);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;text-decoration:none}
+.pv-bar a{margin-left:auto}
+.pv-n{color:var(--mu);font-size:.85rem;min-width:64px;text-align:center}
+.pv-wrap{overflow:auto;max-height:75vh;text-align:center;background:#1b2230;padding:0}
+.pv-wrap canvas{display:block;margin:0 auto;background:#fff}
+.pv-msg{padding:30px;text-align:center;color:var(--mu);margin:0}
 </style>
 </head>
 <body>
@@ -156,7 +165,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <li><b>Meses 9-10:</b> procesamiento y análisis cualitativo y cuantitativo.</li>
 <li><b>Mes 11:</b> redacción de los capítulos y de las directrices didácticas.</li>
 <li><b>Mes 12:</b> revisión final con el director, presentación y defensa.</li></ul></div></details>
-<details id="plan-d"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><object data-src="Plan_de_Tesis.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
+<details id="plan-d"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><div class="pv" data-pdf="Plan_de_Tesis.pdf"></div></div></details>
 <div class="btns" style="margin:16px 0 0"><a class="btn p" href="Plan_de_Tesis.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="btn" href="Plan_de_Tesis.pdf" download>⬇ Descargar</a></div>
 </section>
 
@@ -266,12 +275,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 
 <!-- Visor de PDF -->
 <div class="panel" style="padding: 0; overflow: hidden; background: #0a1019; border: 1px solid var(--line);">
-    <object id="pdf-viewer" data="Clase 1 el nucleo repaso historico.pdf" type="application/pdf" width="100%" height="600px" style="display: block;">
-        <div style="padding: 40px; text-align: center;">
-            <p style="color: var(--mu);">Tu navegador no puede mostrar el PDF integrado.</p>
-            <a id="pdf-link" href="Clase 1 el nucleo repaso historico.pdf" target="_blank" class="btn p">Abrir PDF en una pestaña nueva</a>
-        </div>
-    </object>
+    <div id="pdf-viewer" class="pv" data-pdf="Clase 1 el nucleo repaso historico.pdf"></div>
 </div>
 
 <!-- Botón de descarga dinámico -->
@@ -346,7 +350,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <p class="bib-meta">ANOVA: F = 70,52, p &lt; 0,0001. Letras de Tukey (α = 0,05): los lugares que comparten letra no difieren significativamente. Verde = fondo fuera del IFLP; ámbar = único grupo distinto (E).</p>
 <div class="bib-note"><b>Para dimensionar (cálculo ilustrativo, no figura en el trabajo):</b> 0,33 µSv/h durante 2000 h al año son unos 0,66 mSv, frente a los 50 mSv anuales que no deben superarse para trabajadores expuestos y a los ~2,4 mSv/año del fondo natural promedio que cita el propio trabajo.</div>
 <div class="bib-note">Detalle a corregir si lo citás: en la sección de radiación terrestre aparece “Ra-222”; el radionucleido del radón es el <b>Rn-222</b>.</div>
-<details id="bib-d1"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><object data-src="Trabajo_de_Campo__Radiactividad.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
+<details id="bib-d1"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><div class="pv" data-pdf="Trabajo_de_Campo__Radiactividad.pdf"></div></div></details>
 <div class="btns" style="margin:16px 0 0"><a class="btn p" href="Trabajo_de_Campo__Radiactividad.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="btn" href="Trabajo_de_Campo__Radiactividad.pdf" download>⬇ Descargar</a></div>
 </article>
 
@@ -358,7 +362,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <div class="bib-chips" id="bib-chips"></div>
 <div id="bib-detalle"><p>Elegí un capítulo para ver de qué trata y en qué página empieza.</p></div>
 <div class="bib-note">Sugerencia de uso con tus sesiones: el Cap. 3 sirve de apoyo para la Sesión 1; el Cap. 6 (detectores) para la cámara de niebla y el Geiger de las Sesiones 3-4; el Cap. 5 (protección radiológica) para el debate de las Sesiones 5-6.</div>
-<details id="bib-d2"><summary>Ver el PDF integrado (pesa unos 10 MB)</summary><div class="bib-pdf"><object data-src="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
+<details id="bib-d2"><summary>Ver el PDF integrado (pesa unos 10 MB)</summary><div class="bib-pdf"><div class="pv" data-pdf="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf"></div></div></details>
 <div class="btns" style="margin:16px 0 0"><a class="btn p" href="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" target="_blank" rel="noopener">Abrir PDF (10 MB)</a><a class="btn" href="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" download>⬇ Descargar</a></div>
 </article>
 
@@ -528,7 +532,7 @@ $$('.tab[data-clase]').forEach(tab => {
         $$('.tab[data-clase]').forEach(t => t.classList.remove('on'));
         tab.classList.add('on');
         const data = clases[tab.dataset.clase];
-        $('#pdf-viewer').data = data.pdf;
+        pdfLoad($('#pdf-viewer'), data.pdf);
         const pl = $('#pdf-link'); if (pl) pl.href = data.pdf;
         $('#download-link').href = data.pdf;
         $('#download-link').download = data.pdf;
@@ -720,20 +724,62 @@ caps.forEach(k=>{
 ['#plan-d','#bib-d1','#bib-d2'].forEach(id=>{
  const d=$(id);
  d.addEventListener('toggle',()=>{
-  const o=d.querySelector('object');
-  if(d.open&&!o.data){o.data=o.dataset.src}
+  const b=d.querySelector('.pv');
+  if(d.open&&!b.dataset.loaded)pdfLoad(b,b.dataset.pdf);
  });
 });
 })();
 
-// --- MENÚ DESPLEGABLE ---
-(()=>{const dds=$$('nav .dd');
-const close=()=>dds.forEach(d=>{d.classList.remove('open');d.firstElementChild.setAttribute('aria-expanded','false')});
-dds.forEach(d=>{const b=d.firstElementChild;b.onclick=e=>{e.stopPropagation();const o=d.classList.contains('open');close();if(!o){d.classList.add('open');b.setAttribute('aria-expanded','true')}}});
-document.addEventListener('click',close);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
+// --- VISOR DE PDF (PDF.js): se ve igual en computadora y en celular ---
+let pdfjsP=null;
+function pdfjs(){
+ if(pdfjsP)return pdfjsP;
+ pdfjsP=new Promise((ok,no)=>{
+  const s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+  s.onload=()=>{pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';ok(pdfjsLib)};
+  s.onerror=()=>no(new Error('pdfjs'));
+  document.head.appendChild(s);
+ });
+ return pdfjsP;
+}
+function pdfLoad(box,path){
+ const url=new URL(encodeURI(path),location.href).href;
+ box.dataset.loaded=path;
+ box.innerHTML='<p class="pv-msg">Cargando PDF…</p>';
+ pdfjs().then(lib=>lib.getDocument({url}).promise).then(doc=>{
+  if(box.dataset.loaded!==path)return;
+  let n=1,zoom=1,busy=false,pend=false;
+  box.innerHTML='<div class="pv-bar"><button type="button" data-a="prev">◀</button><span class="pv-n"></span><button type="button" data-a="next">▶</button><button type="button" data-a="out">−</button><button type="button" data-a="in">＋</button><a href="'+url+'" target="_blank" rel="noopener">Abrir ↗</a></div><div class="pv-wrap"><canvas></canvas></div>';
+  const cv=box.querySelector('canvas'),wrap=box.querySelector('.pv-wrap'),lab=box.querySelector('.pv-n');
+  const draw=()=>{
+   if(busy){pend=true;return}
+   busy=true;
+   doc.getPage(n).then(pg=>{
+    const w0=pg.getViewport({scale:1}).width;
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    const vp=pg.getViewport({scale:(wrap.clientWidth/w0)*zoom*dpr});
+    cv.width=vp.width;cv.height=vp.height;
+    cv.style.width=(vp.width/dpr)+'px';cv.style.height=(vp.height/dpr)+'px';
+    lab.textContent=n+' / '+doc.numPages;
+    return pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+   }).then(()=>{busy=false;if(pend){pend=false;draw()}}).catch(()=>{busy=false});
+  };
+  box.querySelector('.pv-bar').onclick=e=>{
+   const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
+   if(a==='prev'&&n>1)n--;
+   if(a==='next'&&n<doc.numPages)n++;
+   if(a==='in')zoom=Math.min(zoom+.25,3);
+   if(a==='out')zoom=Math.max(zoom-.25,.5);
+   wrap.scrollTop=0;draw();
+  };
+  draw();
+ }).catch(()=>{
+  box.innerHTML='<p class="pv-msg">No se pudo cargar el PDF. <a href="'+url+'" target="_blank" rel="noopener" style="color:var(--g)">Abrilo en una pestaña nueva ↗</a></p>';
+ });
+}
+(()=>{const pe=$('#pdf-viewer');
+ new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){pdfLoad(pe,pe.dataset.pdf);o.disconnect()}},{rootMargin:'300px'}).observe(pe);})();
 </script>
-</body>
-</html>
 </body>
 </html>
