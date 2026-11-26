@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>La radioactividad en el aula secundaria — Tesis UNLP 2026</title>
 <style>
-:root{--bg:#070b12;--card:#0f1623;--line:#1e2a3d;--tx:#e6edf6;--mu:#8fa0b8;--g:#39ff88;--b:#4db8ff;color-scheme:dark;box-sizing:border-box;}
+:root{--bg:#070b12;--card:#0f1623;--line:#1e2a3d;--tx:#e6edf6;--mu:#8fa0b8;--g:#39ff88;--b:#4db8ff;--edge:#33507a;color-scheme:dark;box-sizing:border-box;}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -13,19 +13,30 @@ h1,h2,h3{line-height:1.2;margin:0 0 .5em}h2{font-size:clamp(1.6rem,4vw,2.3rem)}
 a{color:var(--b)}section{padding:72px 20px;max-width:1100px;margin:auto}
 .tag{color:var(--g);font:600 .8rem/1 ui-monospace,monospace;letter-spacing:.15em;text-transform:uppercase}
 .sub{color:var(--mu);max-width:720px}
-nav{position:sticky;top:0;z-index:5;background:#070b12cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px}
-nav a{color:var(--mu);text-decoration:none;font-size:.85rem;padding:6px 12px;border-radius:99px}nav a:hover{color:var(--g);background:#39ff8815}
+
+/* ---------- NAVEGACIÓN ---------- */
+nav{position:sticky;top:0;z-index:5;background:#070b12cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;padding:10px 16px}
+nav a{color:#c5d2e4;text-decoration:none;font-size:.88rem;padding:7px 14px;border:1px solid var(--edge);border-radius:99px;transition:.2s}
+nav a:hover{color:var(--g);border-color:var(--g);background:#39ff8815}
 /* menú desplegable */
 .dd{position:relative}
-.dd>button{font:inherit;font-size:.85rem;color:var(--mu);background:transparent;border:0;padding:6px 12px;border-radius:99px;cursor:pointer}
+.dd>button{font-family:inherit;font-size:.88rem;font-weight:500;color:#c5d2e4;background:transparent;border:1px solid var(--edge);padding:7px 14px;border-radius:99px;cursor:pointer;transition:.2s}
 .dd>button::after{content:" ▾";font-size:.7rem}
-.dd>button:hover,.dd.open>button{color:var(--g);background:#39ff8815}
-.dd-m{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 12px 30px #0009}
+.dd>button:hover,.dd.open>button{color:var(--g);border-color:var(--g);background:#39ff8815}
+.dd-m{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:210px;background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:6px;box-shadow:0 12px 30px #0009}
 .dd.open .dd-m{display:block}
-.dd-m a{display:block;border-radius:8px;padding:9px 12px;font-size:.88rem}
+.dd-m a{display:block;border:0;border-radius:8px;padding:10px 12px;font-size:.9rem}
 .dd:nth-last-child(-n+2) .dd-m{left:auto;right:0}
-.btn{display:inline-block;border:1px solid var(--g);color:var(--g);background:transparent;padding:12px 22px;border-radius:10px;font:600 1rem inherit;cursor:pointer;text-decoration:none;transition:.25s}
-.btn.p{background:var(--g);color:#04120a}.btn:hover{box-shadow:0 0 24px #39ff8855;transform:translateY(-2px)}
+
+/* ---------- BOTONES (mejorados: siempre visibles) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:46px;border:2px solid var(--g);color:var(--g);background:#39ff8814;padding:10px 22px;border-radius:10px;font-family:inherit;font-size:1rem;font-weight:700;line-height:1.2;cursor:pointer;text-decoration:none;transition:.25s}
+.btn.p{background:var(--g);color:#04120a}
+.btn:hover{background:#39ff8833;box-shadow:0 0 24px #39ff8855;transform:translateY(-2px)}
+.btn.p:hover{background:#7affb0;color:#04120a}
+.btn:active{transform:none;box-shadow:none}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn:focus-visible,.tab:focus-visible,.chip:focus-visible,.bib-chip:focus-visible,.dd>button:focus-visible,nav a:focus-visible,.dd-m a:focus-visible,summary:focus-visible,.quiz-opt:focus-within,.card:focus-visible,.vid:focus-visible{outline:3px solid #ffb000;outline-offset:3px}
+
 #hero{position:relative;max-width:none;min-height:88vh;display:flex;align-items:center;overflow:hidden}
 #cv{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
 .hi{position:relative;max-width:1100px;margin:auto;width:100%}
@@ -50,40 +61,50 @@ details div{padding:0 18px 18px;color:var(--mu)}code,.f{font-family:ui-monospace
 .frame{background:var(--card);border:1px solid var(--line);border-radius:14px;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;text-align:center}
 .frame iframe{width:100%;height:420px;border:0;border-radius:10px}
 .side{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}.side h3{font-size:1rem;color:var(--b)}.side li{margin-bottom:8px;color:var(--mu);font-size:.92rem}
-.tabs{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}.tab{background:var(--card);border:1px solid var(--line);color:var(--mu);padding:10px 16px;border-radius:10px;cursor:pointer;font:inherit}
-.tab.on{border-color:var(--g);color:var(--g)}
+
+/* pestañas */
+.tabs{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}
+.tab{background:#13203a;border:2px solid var(--edge);color:var(--tx);padding:10px 18px;min-height:44px;border-radius:10px;cursor:pointer;font:inherit;font-weight:600;transition:.2s}
+.tab:hover{border-color:var(--b);color:var(--b)}
+.tab.on{border-color:var(--g);background:#39ff8822;color:var(--g)}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:12px}
 .steps{display:flex;gap:6px;margin:14px 0}.steps i{flex:1;height:5px;border-radius:9px;background:var(--line)}.steps i.on{background:var(--g)}
 .nav2{display:flex;justify-content:space-between;margin-top:16px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{border:1px solid var(--line);background:#0a1019;color:var(--tx);padding:8px 14px;border-radius:99px;cursor:pointer;font:inherit;font-size:.9rem}
-.chip.on{border-color:var(--b);color:var(--b)}
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{border:2px solid var(--edge);background:#13203a;color:var(--tx);padding:9px 16px;min-height:42px;border-radius:99px;cursor:pointer;font:inherit;font-size:.92rem;transition:.2s}
+.chip:hover{border-color:var(--b);color:var(--b)}
+.chip.on{border-color:var(--b);background:#4db8ff22;color:var(--b);font-weight:600}
 .toul{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
 .toul>div{background:#0a1019;border:1px solid var(--line);border-radius:12px;padding:14px}.toul h4{margin:0 0 6px;color:var(--g);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em}
-.toul select{width:100%;background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;font-size:.88rem}
+.toul select{width:100%;background:var(--card);color:var(--tx);border:1px solid var(--edge);border-radius:8px;padding:8px;font:inherit;font-size:.88rem}
 #out{margin-top:14px;padding:16px;border-left:3px solid var(--g);background:#39ff8810;border-radius:0 10px 10px 0;min-height:56px;color:var(--mu)}
 .vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px}
-.vid{aspect-ratio:16/9;border-radius:14px;border:1px dashed var(--line);background:radial-gradient(circle at 50% 40%,#4db8ff18,transparent 70%),var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--mu);font-size:.85rem;text-align:center;padding:10px}
+.vid{aspect-ratio:16/9;border-radius:14px;border:1px dashed var(--edge);background:radial-gradient(circle at 50% 40%,#4db8ff18,transparent 70%),var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--mu);font-size:.85rem;text-align:center;padding:10px}
 .vid b{width:56px;height:56px;border-radius:50%;border:2px solid var(--g);color:var(--g);display:grid;place-items:center;font-size:1.3rem;margin-bottom:8px}
-.tkh{margin:40px 0 4px}.tk{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:16px}.tk a{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--tx);text-decoration:none;font-size:.92rem;transition:.25s}.tk a:hover{border-color:var(--g);box-shadow:0 0 20px #39ff8822;transform:translateY(-3px)}.tk b{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--g);color:var(--g);display:grid;place-items:center;font-size:.9rem}.tk small{color:var(--mu);display:block}
+.tkh{margin:40px 0 4px}.tk{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:16px}.tk a{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:14px;color:var(--tx);text-decoration:none;font-size:.92rem;transition:.25s}.tk a:hover{border-color:var(--g);box-shadow:0 0 20px #39ff8822;transform:translateY(-3px)}.tk b{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--g);color:var(--g);display:grid;place-items:center;font-size:.9rem}.tk small{color:var(--mu);display:block}
 pre{background:#0a1019;border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto;font-size:.8rem;color:var(--tx)}.card .tag{margin-bottom:4px}.card .more a{color:var(--g)}
-.card .vx{display:none}.card.open .vx{display:block}.vl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.vl a{border:1px solid var(--line);background:#0a1019;color:var(--g);padding:6px 12px;border-radius:99px;font-size:.82rem;text-decoration:none;transition:.25s}.vl a:hover{border-color:var(--g);box-shadow:0 0 14px #39ff8833}
+.card .vx{display:none}.card.open .vx{display:block}.vl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.vl a{border:1px solid var(--edge);background:#0a1019;color:var(--g);padding:7px 13px;border-radius:99px;font-size:.84rem;text-decoration:none;transition:.25s}.vl a:hover{border-color:var(--g);box-shadow:0 0 14px #39ff8833}
 .vid[data-yt]{cursor:pointer}a.vid{text-decoration:none;color:var(--mu)}.vid a{color:var(--g)}.vid iframe{width:100%;height:100%;border:0;border-radius:14px}
 footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;border-top:1px solid var(--line)}
 .rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.in{opacity:1;transform:none}
 @media(max-width:760px){.lab{grid-template-columns:1fr}section{padding:56px 16px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}.rv{opacity:1;transform:none}}
+
 /* Estilos del Cuestionario */
 .quiz-q{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
 .quiz-q:last-child{border-bottom:none}
 .quiz-q p{font-weight:600;margin-bottom:12px;color:var(--tx)}
-.quiz-opt{display:block;background:#0a1019;border:1px solid var(--line);padding:12px 16px;border-radius:10px;margin-bottom:8px;cursor:pointer;transition:.2s;color:var(--mu)}
+.quiz-opt{display:block;background:#0a1019;border:2px solid var(--edge);padding:12px 16px;border-radius:10px;margin-bottom:8px;cursor:pointer;transition:.2s;color:#c5d2e4}
 .quiz-opt:hover{border-color:var(--b);color:var(--tx)}
-.quiz-opt input{display:none}
+.quiz-opt input{position:absolute;opacity:0;pointer-events:none}
+.quiz-opt.selected{border-color:var(--b);background:#4db8ff1f;color:var(--tx)}
 .quiz-opt.correct{background:#39ff8820;border-color:var(--g);color:var(--tx)}
 .quiz-opt.incorrect{background:#ff4d4d20;border-color:#ff4d4d;color:var(--tx)}
 .quiz-feedback{margin-top:10px;font-size:.9rem;display:none}
 .quiz-feedback.show{display:block}
-/* ===== BIBLIOTECA (nuevo) ===== */
+
+/* ===== BIBLIOTECA ===== */
 .bib-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:26px 0}
 .bib-card h3{font-size:1.3rem;margin:.3em 0}
 .bib-meta{color:var(--mu);font-size:.88rem;margin:0 0 12px}
@@ -98,22 +119,19 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 .bib-row em{font-style:normal;text-align:right}
 .bib-note{border-left:3px solid #ffb000;padding:8px 14px;margin:14px 0;color:var(--mu);font-size:.9rem;background:#ffb00010;border-radius:0 8px 8px 0}
 .bib-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-.bib-chip{font:inherit;color:var(--tx);background:#0a1019;border:1px solid var(--line);border-radius:10px;padding:7px 12px;cursor:pointer;text-align:left}
-.bib-chip.on{border-color:var(--b);color:var(--b)}.bib-chip small{display:block;color:var(--mu)}
+.bib-chip{font:inherit;color:var(--tx);background:#13203a;border:2px solid var(--edge);border-radius:10px;padding:8px 13px;min-height:44px;cursor:pointer;text-align:left;transition:.2s}
+.bib-chip:hover{border-color:var(--b)}
+.bib-chip.on{border-color:var(--b);background:#4db8ff22;color:var(--b)}.bib-chip small{display:block;color:var(--mu)}
 #bib-detalle{border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-height:90px;background:#0a1019}
 #bib-detalle p{margin:.3em 0}
 .bib-pdf{padding:0!important}.bib-pdf object{display:block;width:100%;height:600px}
+.bib-pdf iframe{display:block;width:100%;height:600px;border:0;background:#fff}
 .bib-foot{color:var(--mu);font-size:.82rem;margin-top:30px}
 @media(max-width:560px){.bib-row{grid-template-columns:1fr 64px}.bib-row .t{grid-column:1/3;order:3}}
-/* visor de PDF (PDF.js) */
-.pv{min-height:120px;background:#0a1019;padding:0}
-.pv-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}
-.pv-bar button,.pv-bar a{font:inherit;font-size:.85rem;color:var(--g);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;text-decoration:none}
-.pv-bar a{margin-left:auto}
-.pv-n{color:var(--mu);font-size:.85rem;min-width:64px;text-align:center}
-.pv-wrap{overflow:auto;max-height:75vh;text-align:center;background:#1b2230;padding:0}
-.pv-wrap canvas{display:block;margin:0 auto;background:#fff}
-.pv-msg{padding:30px;text-align:center;color:var(--mu);margin:0}
+
+/* ===== EVOLUCIÓN DEL ÁTOMO (nuevo) ===== */
+.at-video{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;margin:14px 0 4px}
+.at-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
@@ -121,7 +139,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <nav>
 <a href="#hero">Inicio</a>
 <a href="#plan">Plan de tesis</a>
-<div class="dd"><button type="button" aria-expanded="false">Teoría</button><div class="dd-m"><a href="#historia">Pioneros</a><a href="#teoria">Física del núcleo</a><a href="#casos">Casos y accidentes</a><a href="#front">Investigación actual</a></div></div>
+<div class="dd"><button type="button" aria-expanded="false">Teoría</button><div class="dd-m"><a href="#historia">Pioneros</a><a href="#atomo">Evolución del átomo</a><a href="#teoria">Física del núcleo</a><a href="#casos">Casos y accidentes</a><a href="#front">Investigación actual</a></div></div>
 <div class="dd"><button type="button" aria-expanded="false">Práctica</button><div class="dd-m"><a href="#lab">Simuladores PhET</a><a href="#exp">Experimentos</a><a href="#sim">Decaimiento exponencial</a><a href="#monedas">Modelo de monedas</a></div></div>
 <div class="dd"><button type="button" aria-expanded="false">Aula</button><div class="dd-m"><a href="#cts">Debate CTS</a><a href="#media">Videos</a><a href="#material">Clases UNLP</a></div></div>
 <div class="dd"><button type="button" aria-expanded="false">Biblioteca</button><div class="dd-m"><a href="#biblioteca">Lecturas en PDF</a><a href="#refs">Referencias y apéndice</a></div></div>
@@ -139,6 +157,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <button class="chip" id="tr" style="margin-top:12px">¿Cómo se transforma el saber? →</button><p id="trt" style="display:none;color:var(--tx);margin:10px 0 0;font-size:.92rem">Transposición didáctica: el saber se selecciona, simplifica y recontextualiza. Si se hace sin experimentación ni contexto, la radioactividad queda reducida a miedo o a una fórmula. Aquí se propone lo contrario: observar, medir y debatir.</p></div>
 </div>
 </section>
+
 
 <section id="plan" class="rv">
 <div class="tag">📄 Plan de tesis</div>
@@ -165,15 +184,40 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <li><b>Meses 9-10:</b> procesamiento y análisis cualitativo y cuantitativo.</li>
 <li><b>Mes 11:</b> redacción de los capítulos y de las directrices didácticas.</li>
 <li><b>Mes 12:</b> revisión final con el director, presentación y defensa.</li></ul></div></details>
-<details id="plan-d"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><div class="pv" data-pdf="Plan_de_Tesis.pdf"></div></div></details>
+<details id="plan-d"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><object data-src="Plan_de_Tesis.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
 <div class="btns" style="margin:16px 0 0"><a class="btn p" href="Plan_de_Tesis.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="btn" href="Plan_de_Tesis.pdf" download>⬇ Descargar</a></div>
 </section>
+
 
 <section id="historia" class="rv">
 <div class="tag">🕰 Línea de tiempo</div><h2>Galería de pioneros</h2>
 <p class="sub">Tocá cada tarjeta para ampliar el aporte de cada científico.</p>
 <div class="grid" id="pion"></div>
 </section>
+
+<!-- ===== NUEVA SECCIÓN: EVOLUCIÓN DEL CONOCIMIENTO DEL ÁTOMO (PDF + video) ===== -->
+<section id="atomo" class="rv">
+<div class="tag">⚛ Del átomo de Demócrito al bosón de Higgs</div>
+<h2>La evolución del conocimiento del átomo</h2>
+<p class="sub">Una línea de tiempo de 74 diapositivas, desde la idea de Demócrito en el 430 a. C. hasta la partícula de Higgs en 2013. Recorre los modelos de Dalton, Thomson, Rutherford, Bohr y Schrödinger y los descubrimientos que los fueron reemplazando: rayos catódicos, electrón, radiactividad, núcleo, neutrón y fisión. Sirve de apoyo para la reconstrucción histórica de la Sesión 2.</p>
+
+<article class="bib-card">
+<div class="tag">Presentación · Sergio Menargues Irles · 2013</div>
+<h3>Una historia visual del átomo</h3>
+<p class="bib-meta">PDF de 81 páginas · 12 MB · cada diapositiva trae el año, el científico, su aporte y una imagen del experimento o del modelo</p>
+<details id="at-d"><summary>Ver el PDF integrado (pesa unos 12 MB)</summary><div class="bib-pdf"><iframe data-src="Historia_visual_del_atomo.pdf" title="Una historia visual del átomo (PDF)" loading="lazy"></iframe></div></details>
+<div class="btns" style="margin:16px 0 0"><a class="btn p" href="Historia_visual_del_atomo.pdf" target="_blank" rel="noopener">Abrir PDF (12 MB)</a><a class="btn" href="Historia_visual_del_atomo.pdf" download>⬇ Descargar</a></div>
+<p class="bib-foot" style="margin-top:16px">Autoría de Sergio Menargues Irles (2013). Se incluye con fines educativos y con reconocimiento de su autor.</p>
+</article>
+
+<article class="bib-card">
+<div class="tag">Video complementario</div>
+<h3>La historia del átomo en video</h3>
+<div class="at-video"><iframe src="https://www.youtube-nocookie.com/embed/fA-EdGn8SZI?rel=0" title="Video de YouTube sobre la historia del átomo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+<div class="btns" style="margin:16px 0 0"><a class="btn" href="https://youtu.be/fA-EdGn8SZI" target="_blank" rel="noopener">Ver en YouTube ↗</a></div>
+</article>
+</section>
+
 
 <section id="teoria" class="rv">
 <div class="tag">📖 Marco teórico</div><h2>Física del núcleo</h2>
@@ -187,12 +231,14 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <details><summary>La radiactividad en la vida cotidiana</summary><div>No toda la radiación es artificial ni peligrosa. El <b>radón</b>, gas que se filtra desde el subsuelo a viviendas mal ventiladas, es la principal fuente natural de radiación. Los detectores de humo iónicos contienen americio-241, los plátanos potasio-40 y los vuelos en avión aumentan levemente la exposición a rayos cósmicos.<p>La <b>fitorremediación</b> usa girasoles, que absorben cesio-137 y estroncio-90 del suelo y del agua; tras Chernóbil y Fukushima se plantaron campos de girasoles para retirar esos contaminantes.</p></div></details>
 </section>
 
+
 <section id="lab" class="rv">
 <div class="tag">🧪 Laboratorio virtual</div><h2>Simuladores PhET</h2>
 <p class="sub">Simulaciones abiertas de la Universidad de Colorado. Si tu red bloquea la carga integrada, usá el enlace para abrirla en otra pestaña.</p>
 <div id="labs"></div>
 <h3 style='margin-top:32px'>Más simulaciones PhET</h3><div class='tk' id='px'></div>
 </section>
+
 
 <section id="exp" class="rv">
 <div class="tag">🔬 Ciencia de baja escala</div><h2>Experimentos paso a paso</h2>
@@ -248,6 +294,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <div id="out">Tu argumento aparecerá acá.</div>
 </section>
 
+
 <section id="media" class="rv">
 <div class="tag">🎬 Multimedia</div><h2>Videos educativos</h2>
 <p class="sub">Documental «Uranio» en tres capítulos. Tocá ▶ para reproducir en la página o usá el enlace para abrirlo en una pestaña nueva.</p>
@@ -269,63 +316,68 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 
 <!-- Pestañas para alternar entre Clase 1 y Clase 2 -->
 <div class="tabs" style="margin-bottom: 16px;">
-    <button class="tab on" data-clase="1">Clase 1 · Repaso Histórico</button>
-    <button class="tab" data-clase="2">Clase 2 · Propiedades Nucleares</button>
+   <button class="tab on" data-clase="1">Clase 1 · Repaso Histórico</button>
+   <button class="tab" data-clase="2">Clase 2 · Propiedades Nucleares</button>
 </div>
 
 <!-- Visor de PDF -->
 <div class="panel" style="padding: 0; overflow: hidden; background: #0a1019; border: 1px solid var(--line);">
-    <div id="pdf-viewer" class="pv" data-pdf="Clase 1 el nucleo repaso historico.pdf"></div>
+   <object id="pdf-viewer" data="Clase 1 el nucleo repaso historico.pdf" type="application/pdf" width="100%" height="600px" style="display: block;">
+      <div style="padding: 40px; text-align: center;">
+         <p style="color: var(--mu);">Tu navegador no puede mostrar el PDF integrado.</p>
+         <a id="pdf-link" href="Clase 1 el nucleo repaso historico.pdf" target="_blank" class="btn p">Abrir PDF en una pestaña nueva</a>
+      </div>
+   </object>
 </div>
 
 <!-- Botón de descarga dinámico -->
 <div class="btns" style="margin-top: 16px; justify-content: center;">
-    <a id="download-link" href="Clase 1 el nucleo repaso historico.pdf" download class="btn p">⬇ Descargar Clase 1 (PDF)</a>
+   <a id="download-link" href="Clase 1 el nucleo repaso historico.pdf" download class="btn p">⬇ Descargar Clase 1 (PDF)</a>
 </div>
 
 <!-- Resumen de conceptos clave de la Clase 2 -->
 <h3 style="margin-top: 40px; color: var(--g);">🔑 Conceptos clave de la Clase 2</h3>
 <details style="margin-top: 12px;">
-    <summary>Isótopos, Isóbaros e Isótonos</summary>
-    <div>
-        <ul>
-            <li><b>Isótopos:</b> Mismo número atómico (Z), diferente número másico (A) y de neutrones (N). Ej: ¹³¹I y ¹³²I.</li>
-            <li><b>Isóbaros:</b> Mismo número másico (A), diferente Z. Ej: ²⁰⁴Hg y ²⁰⁴Pb.</li>
-            <li><b>Isótonos:</b> Mismo número de neutrones (N), diferente A y Z. Ej: ³⁰Si (N=16) y ³¹P (N=16).</li>
-            <li><b>Isómeros:</b> Mismos Z y A, pero diferente estado energético (ej: ¹³⁷ᵐBa y ¹³⁷Ba).</li>
-        </ul>
-    </div>
+   <summary>Isótopos, Isóbaros e Isótonos</summary>
+   <div>
+      <ul>
+        <li><b>Isótopos:</b> Mismo número atómico (Z), diferente número másico (A) y de neutrones (N). Ej: ¹³¹I y ¹³²I.</li>
+        <li><b>Isóbaros:</b> Mismo número másico (A), diferente Z. Ej: ²⁰⁴Hg y ²⁰⁴Pb.</li>
+        <li><b>Isótonos:</b> Mismo número de neutrones (N), diferente A y Z. Ej: ³⁰Si (N=16) y ³¹P (N=16).</li>
+        <li><b>Isómeros:</b> Mismos Z y A, pero diferente estado energético (ej: ¹³⁷ᵐBa y ¹³⁷Ba).</li>
+      </ul>
+   </div>
 </details>
 <details>
-    <summary>Tamaño y Densidad Nuclear</summary>
-    <div>
-        <p>El radio nuclear se estima con la fórmula: <b>R = r₀ · A¹/³</b>, donde r₀ ≈ 1.2 fm (1 fm = 10⁻¹⁵ m).</p>
-        <p>La densidad nuclear es prácticamente constante para todos los núcleos: <b>ρ ≈ 2 × 10¹⁷ kg/m³</b>. Esto es 10¹² veces más denso que la materia macroscópica. El núcleo NO es perfectamente esférico, sino un elipsoide de revolución (Q > 0 prolado, Q < 0 oblado).</p>
-    </div>
+   <summary>Tamaño y Densidad Nuclear</summary>
+   <div>
+     <p>El radio nuclear se estima con la fórmula: <b>R = r₀ · A¹/³</b>, donde r₀ ≈ 1.2 fm (1 fm = 10⁻¹⁵ m).</p>
+     <p>La densidad nuclear es prácticamente constante para todos los núcleos: <b>ρ ≈ 2 × 10¹⁷ kg/m³</b>. Esto es 10¹² veces más denso que la materia macroscópica. El núcleo NO es perfectamente esférico, sino un elipsoide de revolución (Q &gt; 0 prolado, Q &lt; 0 oblado).</p>
+   </div>
 </details>
 <details>
-    <summary>Espín y Resonancia Magnética Nuclear (RMN)</summary>
-    <div>
-        <p>Protones y neutrones tienen espín 1/2. El momento magnético del protón es ≈ 2.79 μₙ (magnetón nuclear).</p>
-        <p>En un campo magnético B, los espines se alinean paralela o antiparalelamente. La diferencia de energía es ΔE = 2|μz|B. Para B = 2.30 T, la frecuencia de resonancia es ≈ 97.9 MHz (ondas de radio). Esta es la base física de la <b>Resonancia Magnética Nuclear (RMN)</b> y las imágenes médicas por resonancia magnética.</p>
-    </div>
+   <summary>Espín y Resonancia Magnética Nuclear (RMN)</summary>
+   <div>
+     <p>Protones y neutrones tienen espín 1/2. El momento magnético del protón es ≈ 2.79 μₙ (magnetón nuclear).</p>
+     <p>En un campo magnético B, los espines se alinean paralela o antiparalelamente. La diferencia de energía es ΔE = 2|μz|B. Para B = 2.30 T, la frecuencia de resonancia es ≈ 97.9 MHz (ondas de radio). Esta es la base física de la <b>Resonancia Magnética Nuclear (RMN)</b> y las imágenes médicas por resonancia magnética.</p>
+   </div>
 </details>
 <details>
-    <summary>Modelos Nucleares: Gota Líquida vs. Capas</summary>
-    <div>
-        <p><b>Modelo de Gota Líquida (Gamow, Bohr):</b> Los nucleones se comportan como moléculas en una gota. Explica la energía de enlace mediante la fórmula semiempírica: <code>E_B = C₁A - C₂A²/³ - C₃Z(Z-1)/A¹/³ - C₄(A-2Z)²/A ± C₅A⁻⁴/³</code>.</p>
-        <p><b>Modelo de Capas (Goeppert-Mayer, Jensen - Nobel 1963):</b> Los nucleones ocupan niveles de energía cuantizados (capas), análogos a los electrones atómicos. Explica los "números mágicos" (2, 8, 20, 28, 50, 82, 126) y por qué ciertos núcleos son especialmente estables.</p>
-    </div>
+   <summary>Modelos Nucleares: Gota Líquida vs. Capas</summary>
+   <div>
+     <p><b>Modelo de Gota Líquida (Gamow, Bohr):</b> Los nucleones se comportan como moléculas en una gota. Explica la energía de enlace mediante la fórmula semiempírica: <code>E_B = C₁A - C₂A²/³ - C₃Z(Z-1)/A¹/³ - C₄(A-2Z)²/A ± C₅A⁻⁴/³</code>.</p>
+     <p><b>Modelo de Capas (Goeppert-Mayer, Jensen - Nobel 1963):</b> Los nucleones ocupan niveles de energía cuantizados (capas), análogos a los electrones atómicos. Explica los "números mágicos" (2, 8, 20, 28, 50, 82, 126) y por qué ciertos núcleos son especialmente estables.</p>
+   </div>
 </details>
 
 <!-- CUESTIONARIO INTERACTIVO -->
 <h3 style="margin-top: 40px; color: var(--b);">📝 Autoevaluación: Clase 2</h3>
 <div class="panel" id="quiz-container">
-    <!-- Las preguntas se inyectan vía JS -->
+   <!-- Las preguntas se inyectan vía JS -->
 </div>
 <div class="btns" style="margin-top: 16px;">
-    <button class="btn p" id="quiz-check">Corregir respuestas</button>
-    <button class="btn" id="quiz-reset">Reiniciar</button>
+   <button class="btn p" id="quiz-check">Corregir respuestas</button>
+   <button class="btn" id="quiz-reset">Reiniciar</button>
 </div>
 </section>
 
@@ -350,8 +402,8 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <p class="bib-meta">ANOVA: F = 70,52, p &lt; 0,0001. Letras de Tukey (α = 0,05): los lugares que comparten letra no difieren significativamente. Verde = fondo fuera del IFLP; ámbar = único grupo distinto (E).</p>
 <div class="bib-note"><b>Para dimensionar (cálculo ilustrativo, no figura en el trabajo):</b> 0,33 µSv/h durante 2000 h al año son unos 0,66 mSv, frente a los 50 mSv anuales que no deben superarse para trabajadores expuestos y a los ~2,4 mSv/año del fondo natural promedio que cita el propio trabajo.</div>
 <div class="bib-note">Detalle a corregir si lo citás: en la sección de radiación terrestre aparece “Ra-222”; el radionucleido del radón es el <b>Rn-222</b>.</div>
-<details id="bib-d1"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><div class="pv" data-pdf="Trabajo de Campo_ Radiactividad.pdf"></div></div></details>
-<div class="btns" style="margin:16px 0 0"><a class="btn p" href="Trabajo de Campo_ Radiactividad.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="btn" href="Trabajo de Campo_ Radiactividad.pdf" download>⬇ Descargar</a></div>
+<details id="bib-d1"><summary>Ver el PDF integrado</summary><div class="bib-pdf"><object data-src="Trabajo_de_Campo__Radiactividad.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
+<div class="btns" style="margin:16px 0 0"><a class="btn p" href="Trabajo_de_Campo__Radiactividad.pdf" target="_blank" rel="noopener">Abrir PDF</a><a class="btn" href="Trabajo_de_Campo__Radiactividad.pdf" download>⬇ Descargar</a></div>
 </article>
 
 <article class="bib-card">
@@ -362,7 +414,7 @@ footer{text-align:center;color:var(--mu);font-size:.85rem;padding:40px 20px;bord
 <div class="bib-chips" id="bib-chips"></div>
 <div id="bib-detalle"><p>Elegí un capítulo para ver de qué trata y en qué página empieza.</p></div>
 <div class="bib-note">Sugerencia de uso con tus sesiones: el Cap. 3 sirve de apoyo para la Sesión 1; el Cap. 6 (detectores) para la cámara de niebla y el Geiger de las Sesiones 3-4; el Cap. 5 (protección radiológica) para el debate de las Sesiones 5-6.</div>
-<details id="bib-d2"><summary>Ver el PDF integrado (pesa unos 10 MB)</summary><div class="bib-pdf"><div class="pv" data-pdf="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf"></div></div></details>
+<details id="bib-d2"><summary>Ver el PDF integrado (pesa unos 10 MB)</summary><div class="bib-pdf"><object data-src="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" type="application/pdf"><p style="padding:30px;text-align:center">Tu navegador no puede mostrar el PDF integrado.</p></object></div></details>
 <div class="btns" style="margin:16px 0 0"><a class="btn p" href="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" target="_blank" rel="noopener">Abrir PDF (10 MB)</a><a class="btn" href="1Las_radiaciones_en_la_vida_cotidiana_2019.pdf" download>⬇ Descargar</a></div>
 </article>
 
@@ -375,9 +427,9 @@ import matplotlib.pyplot as plt
 
 # N(t) = N0 * exp(-lambda * t),  lambda = ln(2) / T_mitad
 def decaimiento(N0, t_mitad, t_max, pasos=500):
-    lam = np.log(2) / t_mitad
-    t = np.linspace(0, t_max, pasos)
-    return t, N0 * np.exp(-lam * t), lam
+  lam = np.log(2) / t_mitad
+  t = np.linspace(0, t_max, pasos)
+  return t, N0 * np.exp(-lam * t), lam
 
 if __name__ == '__main__':
     N0, t_mitad = 1000, 8
@@ -394,11 +446,11 @@ import matplotlib.pyplot as plt
 rng = np.random.default_rng()
 
 def lanzar_monedas(N0=100, p=0.5):
-    restantes = [N0]
-    while restantes[-1] > 0:
-        decaen = rng.binomial(restantes[-1], p)
-        restantes.append(restantes[-1] - decaen)
-    return np.array(restantes)
+  restantes = [N0]
+  while restantes[-1] > 0:
+      decaen = rng.binomial(restantes[-1], p)
+      restantes.append(restantes[-1] - decaen)
+  return np.array(restantes)
 
 if __name__ == '__main__':
     N0, p = 100, 0.5
@@ -444,21 +496,26 @@ $$('.card').forEach(c=>{c.onclick=()=>c.classList.toggle('open');c.onkeydown=e=>
 
 // --- DECAY BARS ---
 const bars=$('#bars');
-function dec(){const n=+$('#hl').value,f=Math.pow(.5,n);$('#nv').textContent=n;$('#fr').textContent=(f*100).toFixed(1)+'%';bars.innerHTML=Array.from({length:9},(_,i)=>`<i style="flex:1;height:${Math.pow(.5,i)*100}%;background:${i<=n?'#39ff88':'#1e2a3d'};border-radius:4px 4px 0 0"></i>`).join('')}
+function dec(){const n=+$('#hl').value,f=Math.pow(.5,n);$('#nv').textContent=n;
+$('#fr').textContent=(f*100).toFixed(1)+'%';bars.innerHTML=Array.from({length:9},(_,i)=>`<i style="flex:1;height:${Math.pow(.5,i)*100}%;background:${i<=n?'#39ff88':'#1e2a3d'};border-radius:4px 4px 0 0"></i>`).join('')}
 $('#hl').oninput=dec;dec();
 
 // --- PHET ---
 const L=[['Decaimiento alfa','https://phet.colorado.edu/sims/html/alpha-decay/latest/alpha-decay_all.html',['¿Qué le sucede al número de protones y neutrones tras un decaimiento alfa?','Medí el tiempo de vida media de distintos nucleidos. ¿Cuál es más estable?','¿Por qué no podés predecir cuándo decaerá un núcleo individual?','¿Cómo cambia el gráfico con muchos núcleos frente a uno solo?']],
 ['Decaimiento beta','https://phet.colorado.edu/sims/html/beta-decay/latest/beta-decay_all.html',['¿Qué partículas se emiten y cuál se transforma en cuál?','¿Cómo cambia el elemento (Z) luego del decaimiento?','Comparalo con el alfa: ¿qué se conserva y qué cambia?','¿Qué papel juega la fuerza débil en lo que observás?']],['Moneda cuántica: la aleatoriedad','https://phet.colorado.edu/sims/html/quantum-coin-toss/latest/quantum-coin-toss_all.html?locale=es',['¿En qué se diferencia una moneda clásica de una cuántica antes de medirla?','¿Podés predecir el resultado de una sola medición? ¿Y el de muchas repeticiones?','¿Cómo se parece esto a no poder predecir cuándo decaerá un núcleo concreto?','¿Qué ocurre con la proporción de resultados al aumentar las repeticiones?']]];
-$('#labs').innerHTML=L.map((l,i)=>`<h3 style="margin-top:32px">Simulador ${i+1}: ${l[0]}</h3><div class="lab"><div class="frame" id="fr${i}"><div style="font-size:2.4rem">⚛</div><button class="btn p" data-i="${i}">Abrir simulador interactivo</button><a href="${l[1]}" target="_blank" rel="noopener">Abrir en una pestaña nueva ↗</a></div><aside class="side"><h3>Preguntas guía de indagación</h3><ol style="padding-left:18px;margin:0">${l[2].map(q=>`<li>${q}</li>`).join('')}</ol></aside></div>`).join('');
+$('#labs').innerHTML=L.map((l,i)=>`<h3 style="margin-top:32px">Simulador ${i+1}: ${l[0]}</h3><div class="lab"><div class="frame" id="fr${i}"><div style="font-size:2.4rem">⚛</div><button class="btn p" data-i="${i}">Abrir simulador interactivo</button><a class="btn" href="${l[1]}" target="_blank" rel="noopener">Abrir en una pestaña nueva ↗</a></div><aside class="side"><h3>Preguntas guía de indagación</h3><ol style="padding-left:18px;margin:0">${l[2].map(q=>`<li>${q}</li>`).join('')}</ol></aside></div>`).join('');
 $$('#labs button').forEach(b=>b.onclick=()=>{const i=b.dataset.i;$('#fr'+i).innerHTML=`<iframe src="${L[i][1]}" title="${L[i][0]}" allowfullscreen loading="lazy"></iframe>`});
 
 // --- EXPERIMENTOS ---
 const E=[{t:'Cámara de niebla casera tipo Wilson (1911)',m:'<b>Materiales:</b> recipiente transparente con tapa, alcohol isopropílico, hielo seco, esponja o fieltro, linterna potente, plato oscuro, guantes.',s:[['Preparar el recipiente','Pegá el fieltro en el interior de la tapa y empapalo con alcohol isopropílico.'],['Enfriar la base','Poné el plato oscuro sobre hielo seco (con guantes, nunca con las manos) y apoyá encima el recipiente invertido con la tapa abajo.'],['Esperar la sobresaturación','En 5–10 minutos, cerca del plato se forma una capa de vapor sobresaturado.'],['Iluminar de costado','Apagá las luces y enfocá la linterna lateralmente sobre esa capa.'],['Observar lo invisible','Aparecen trazas finas y breves: partículas ionizantes (rayos cósmicos, radiación ambiental) que condensan el vapor a su paso.']]},
 {t:'Sensores Arduino y contadores Geiger virtuales',m:'<b>Materiales:</b> placa Arduino, computadora, cable USB, simulador o contador virtual (por ejemplo, los recursos de GigaPhysics), planilla de cálculo.',s:[['Conectar y configurar','Conectá la placa, abrí el IDE de Arduino y cargá el código que cuenta pulsos por intervalo.'],['Registrar datos','Guardá los conteos por segundo durante varios minutos (con fuente virtual o fondo natural).'],['Procesar los datos','Exportá a la planilla y calculá el promedio y la dispersión. Notá que los conteos fluctúan: es un proceso aleatorio.'],['Graficar el decaimiento','Graficá el conteo en función del tiempo y ajustá una curva exponencial N₀·e^(−λt).'],['Concluir','Estimá λ y T₁/₂ y relacioná el resultado con la teoría y con las TIC.']]}];
 let ei=0,si=0;
-function re(){const e=E[ei],s=e.s[si];$('#et').textContent=e.t;$('#em').innerHTML=e.m;$('#sb').innerHTML=e.s.map((_,i)=>`<i class="${i<=si?'on':''}"></i>`).join('');$('#sh').textContent=`Paso ${si+1}: ${s[0]}`;$('#sp').textContent=s[1];$('#pv').style.visibility=si?'visible':'hidden';$('#nx').style.visibility=si<e.s.length-1?'visible':'hidden';$$('.tab[data-e]').forEach((t,i)=>t.classList.toggle('on',i==ei))}
-$$('.tab[data-e]').forEach(t=>t.onclick=()=>{ei=+t.dataset.e;si=0;re()});$('#pv').onclick=()=>{si--;re()};$('#nx').onclick=()=>{si++;re()};re();
+function re(){const e=E[ei],s=e.s[si];$('#et').textContent=e.t;$('#em').innerHTML=e.m;
+$('#sb').innerHTML=e.s.map((_,i)=>`<i class="${i<=si?'on':''}"></i>`).join('');$('#sh').textContent=`Paso ${si+1}: ${s[0]}`;$('#sp').textContent=s[1];
+$('#pv').style.visibility=si?'visible':'hidden';
+$('#nx').style.visibility=si<e.s.length-1?'visible':'hidden';$$('.tab[data-e]').forEach((t,i)=>t.classList.toggle('on',i==ei))}
+$$('.tab[data-e]').forEach(t=>t.onclick=()=>{ei=+t.dataset.e;si=0;re()});
+$('#pv').onclick=()=>{si--;re()};$('#nx').onclick=()=>{si++;re()};re();
 
 // --- CTS ---
 const T=[{n:'INVAP y exportación de reactores',d:'La empresa rionegrina INVAP diseña y exporta reactores de investigación (Australia, Egipto, Holanda, Perú, Argelia).',
@@ -474,11 +531,18 @@ let ti=0;
 function rt(){$('#tema').innerHTML=T.map((t,i)=>`<button class="chip ${i==ti?'on':''}" data-i="${i}">${t.n}</button>`).join('');$('#tdesc').textContent=T[ti].d;sel();$$('#tema .chip').forEach(b=>b.onclick=()=>{ti=+b.dataset.i;rt()})}
 function sel(){const s=+$('#s0').value,x=(s?T[ti].c:T[ti].p)[0];[1,2,3,4].forEach(k=>{$('#s'+k).innerHTML=`<option>${x[k-1].replace(/^./,m=>m.toUpperCase())}</option>`})}
 $('#s0').onchange=sel;
-$('#arm').onclick=()=>{const s=+$('#s0').value,x=(s?T[ti].c:T[ti].p)[0];$('#out').innerHTML=`<b>${s?'En contra':'A favor'}:</b> Sostengo esta postura porque ${x[0]}. Esto importa porque ${x[1]}. Lo respalda que ${x[2]}. Sin embargo, reconozco que ${x[3]}.<br><small>(Datos → Garantía → Respaldo → Refutación, según Toulmin.)</small>`};
+$('#arm').onclick=()=>{const s=+$('#s0').value,x=(s?T[ti].c:T[ti].p)[0];
+$('#out').innerHTML=`<b>${s?'En contra':'A favor'}:</b> Sostengo esta postura porque ${x[0]}. Esto importa porque ${x[1]}. Lo respalda que ${x[2]}. Sin embargo, reconozco que ${x[3]}.<br><small>(Datos → Garantía → Respaldo → Refutación, según Toulmin.)</small>`};
 rt();
 
 // --- TIKTOK ---
-const K=[['Introducción 1','ZSqbnCAhf'],['Introducción 2','ZSqbWLcK5'],['Girasol','ZSqb7Lth4'],['Rayos alfa, beta y gamma','ZSqb7574V'],['Contaminación en un río de Córdoba','ZSqbvjARh'],['Hongo negro','ZSqbvK8Dh'],['En Japón','ZSqbcy3DT'],['Marie Curie','ZSqbcrQSa'],['Radiactividad en la casa','ZSqbcqMMk'],['Brasil','ZSqb36yxS'],['Descubrimiento de la radiactividad','ZSqb3ngwY'],['Radiación de una bomba nuclear','ZSqb3tp5g'],['Chernóbil','ZSqb3Tput'],['','ZSqvXbNAm'],['','ZSqvX4yGX'],['','ZSqvXGjLK'],['','ZSqvVTRhg'],['','ZSqvVttuD'],['','ZSqvV74WA'],['','ZSqKrXdsP'],['','ZSqKAdKt8'],['','ZSqKAXGHt'],['','ZSqKAmQHW'],['','ZSqKACUPd']];
+const K=[['Introducción 1','ZSqbnCAhf'],['Introducción 2','ZSqbWLcK5'],['Girasol','ZSqb7Lth4'],
+['Rayos alfa, beta y gamma','ZSqb7574V'],['Contaminación en un río de Córdoba','ZSqbvjARh'],
+['Hongo negro','ZSqbvK8Dh'],['En Japón','ZSqbcy3DT'],['Marie Curie','ZSqbcrQSa'],
+['Radiactividad en la casa','ZSqbcqMMk'],['Brasil','ZSqb36yxS'],['Descubrimiento de la radiactividad','ZSqb3ngwY'],['Radiación de una bomba nuclear','ZSqb3tp5g'],
+['Chernóbil','ZSqb3Tput'],['','ZSqvXbNAm'],['','ZSqvX4yGX'],['','ZSqvXGjLK'],['','ZSqvVTRhg'],
+['','ZSqvVttuD'],['','ZSqvV74WA'],['','ZSqKrXdsP'],['','ZSqKAdKt8'],['','ZSqKAXGHt'],
+['','ZSqKAmQHW'],['','ZSqKACUPd']];
 let nn=0;$('#tk').innerHTML=K.map(k=>{nn++;return `<a href="https://vt.tiktok.com/${k[1]}/" target="_blank" rel="noopener"><b>▶</b><span>${k[0]||'Video '+nn}<small>TikTok ↗</small></span></a>`}).join('');
 
 // --- VIDEOS EXTRA ---
@@ -491,11 +555,13 @@ addc('Marie y Pierre Curie',['Marie Curie']);
 addc('Ernest Rutherford',['Rayos alfa, beta y gamma']);
 addd('Mecanismos de decaimiento',['Rayos alfa, beta y gamma']);
 addd('Seguridad radiológica',['Radiactividad en la casa','Contaminación en un río de Córdoba']);
-$('.toul').insertAdjacentHTML('beforebegin','<h3 style="font-size:1rem;margin-top:22px">📺 Casos para pensar</h3>'+vl(['Chernóbil','Girasol','Hongo negro','En Japón','Brasil','Radiación de una bomba nuclear']));
+$('#cts .toul').insertAdjacentHTML('beforebegin','<h3 style="font-size:1rem;margin-top:22px">📺 Casos para pensar</h3>'+vl(['Chernóbil','Girasol','Hongo negro','En Japón','Brasil','Radiación de una bomba nuclear']));
 $$('.vid[data-yt]').forEach(v=>v.onclick=()=>{v.style.padding='0';v.style.border='0';v.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1" title="Uranio" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`});
 
 // --- SIMULADOR EXPONENCIAL ---
-function dsim(){const T=+$('#th').value,N=+$('#n0').value,l=Math.LN2/T;$('#tv').textContent=T;$('#nv0').textContent=N;$('#o1').textContent=l.toFixed(4);$('#o2').textContent=N/2;$('#o3').textContent=(T*Math.log2(100)).toFixed(1)+' años';
+function dsim(){const T=+$('#th').value,N=+$('#n0').value,l=Math.LN2/T;
+$('#tv').textContent=T;$('#nv0').textContent=N;$('#o1').textContent=l.toFixed(4);
+$('#o2').textContent=N/2;$('#o3').textContent=(T*Math.log2(100)).toFixed(1)+' años';
 const c=$('#dc'),x=c.getContext('2d'),W=c.width,H=c.height,tm=5*T;x.clearRect(0,0,W,H);x.lineWidth=1;x.strokeStyle='#1e2a3d';for(let i=0;i<=5;i++){x.beginPath();x.moveTo(40,20+i*44);x.lineTo(W-10,20+i*44);x.stroke()}
 x.fillStyle='#8fa0b8';x.font='12px sans-serif';x.fillText('N₀',8,26);
 for(let k=1;k<=5;k++){const px=40+(W-50)*k/5,py=20+220*(1-Math.pow(.5,k));x.strokeStyle='#4db8ff55';x.setLineDash([4,4]);x.beginPath();x.moveTo(px,py);x.lineTo(px,240);x.stroke();x.setLineDash([]);x.fillStyle='#4db8ff';x.beginPath();x.arc(px,py,4,0,7);x.fill();x.fillStyle='#8fa0b8';x.fillText(k+'T½',px-12,H-6)}
@@ -507,7 +573,8 @@ let mS=[100];const mp=()=>+$('#mo').value;
 function mdraw(){const c=$('#mc'),x=c.getContext('2d'),W=c.width,H=c.height,N0=mS[0],n=Math.max(mS.length-1,10),p=mp();x.clearRect(0,0,W,H);const X=i=>40+(W-50)*i/n,Y=v=>H-20-(H-40)*v/N0;
 x.beginPath();x.strokeStyle='#ffb000';x.setLineDash([6,4]);x.lineWidth=2;for(let i=0;i<=n;i++){const y=Y(N0*Math.pow(1-p,i));i?x.lineTo(X(i),y):x.moveTo(X(i),y)}x.stroke();x.setLineDash([]);
 x.fillStyle='#39ff88';mS.forEach((v,i)=>{x.beginPath();x.arc(X(i),Y(v),4,0,7);x.fill()});x.fillStyle='#8fa0b8';x.font='12px sans-serif';x.fillText(N0,6,24);x.fillText('lanzamientos →',W-110,H-4);
-$('#p1').textContent=mS.length-1;$('#p2').textContent=mS[mS.length-1];$('#p3').textContent=(Math.LN2/-Math.log(1-p)).toFixed(2);$('#mn').textContent=N0}
+$('#p1').textContent=mS.length-1;$('#p2').textContent=mS[mS.length-1];
+$('#p3').textContent=(Math.LN2/-Math.log(1-p)).toFixed(2);$('#mn').textContent=N0}
 function mreset(){mS=[+$('#mr').value];mdraw()}
 function mstep(){const r=mS[mS.length-1];if(!r)return;let d=0;for(let i=0;i<r;i++)if(Math.random()<mp())d++;mS.push(r-d);mdraw()}
 $('#m1').onclick=mstep;$('#m2').onclick=()=>{let g=0;while(mS[mS.length-1]&&g++<200)mstep()};$('#m3').onclick=mreset;$('#mo').onchange=mreset;$('#mr').oninput=mreset;mreset();
@@ -532,7 +599,7 @@ $$('.tab[data-clase]').forEach(tab => {
         $$('.tab[data-clase]').forEach(t => t.classList.remove('on'));
         tab.classList.add('on');
         const data = clases[tab.dataset.clase];
-        pdfLoad($('#pdf-viewer'), data.pdf);
+        $('#pdf-viewer').data = data.pdf;
         const pl = $('#pdf-link'); if (pl) pl.href = data.pdf;
         $('#download-link').href = data.pdf;
         $('#download-link').download = data.pdf;
@@ -543,142 +610,142 @@ $$('.tab[data-clase]').forEach(tab => {
 // --- CUESTIONARIO INTERACTIVO ---
 const preguntas = [
     {
-        q: "1. ¿Qué son los isótopos?",
-        opciones: [
-            "Átomos con igual número de neutrones pero diferente número atómico.",
-            "Átomos con igual número atómico (Z) pero diferente número másico (A).",
-            "Átomos con igual número másico (A) pero diferente número atómico (Z).",
-            "Átomos con diferente estado energético pero igual Z y A."
-        ],
-        correcta: 1,
-        feedback: "Los isótopos tienen el mismo Z (mismo elemento) pero diferente A (distinto número de neutrones). Ejemplo: ¹³¹I y ¹³²I."
-    },
-    {
-        q: "2. La fórmula empírica del radio nuclear es R = r₀ · A^(1/3). ¿Qué nos indica esto?",
-        opciones: [
-            "Que el volumen nuclear es proporcional al número de nucleones (A).",
-            "Que la densidad nuclear aumenta con el tamaño del núcleo.",
-            "Que el radio nuclear es independiente del número de masa.",
-            "Que los núcleos son perfectamente esféricos."
-        ],
-        correcta: 0,
-        feedback: "Como R ∝ A^(1/3), el volumen V ∝ R³ ∝ A. Esto implica que la densidad nuclear es aproximadamente constante para todos los núcleos (ρ ≈ 2×10¹⁷ kg/m³)."
-    },
-    {
-        q: "3. ¿Cuál es la base física de la Resonancia Magnética Nuclear (RMN)?",
-        opciones: [
-            "La emisión de radiación gamma por núcleos excitados.",
-            "La diferencia de energía entre espines nucleares alineados y anti-alineados en un campo magnético.",
-            "La fisión del uranio-235 inducida por neutrones.",
-            "El decaimiento beta de isótopos inestables."
-        ],
-        correcta: 1,
-        feedback: "En un campo magnético B, los espines se alinean paralela o antiparalelamente. La diferencia de energía ΔE = 2|μz|B corresponde a frecuencias de radio (~97.9 MHz para B=2.30 T), base de la RMN."
-    },
-    {
-        q: "4. El modelo de capas (Goeppert-Mayer y Jensen) explica la estabilidad especial de ciertos núcleos. ¿Cómo se llaman esos números de protones o neutrones?",
-        opciones: [
-            "Números cuánticos.",
-            "Números másicos.",
-            "Números mágicos.",
-            "Números de Avogadro."
-        ],
-        correcta: 2,
-        feedback: "Los 'números mágicos' son 2, 8, 20, 28, 50, 82 y 126. Los núcleos con estos números de protones o neutrones son especialmente estables, análogo a los gases nobles en química."
-    },
-    {
-        q: "5. ¿Qué modelo nuclear describe a los nucleones como moléculas en una gota de líquido y permite formular la fórmula semiempírica de masas?",
-        opciones: [
-            "Modelo de capas.",
-            "Modelo de gota líquida.",
-            "Modelo de Thomson.",
-            "Modelo de Bohr."
-        ],
-        correcta: 1,
-        feedback: "El modelo de gota líquida (Gamow, Bohr) trata a los nucleones como moléculas de un líquido. De él surge la fórmula semiempírica de masas, que explica la energía de enlace considerando efectos de volumen, superficie, repulsión coulombiana, simetría y apareamiento."
-    }
+       q: "1. ¿Qué son los isótopos?",
+       opciones: [
+          "Átomos con igual número de neutrones pero diferente número atómico.",
+          "Átomos con igual número atómico (Z) pero diferente número másico (A).",
+          "Átomos con igual número másico (A) pero diferente número atómico (Z).",
+          "Átomos con diferente estado energético pero igual Z y A."
+       ],
+       correcta: 1,
+       feedback: "Los isótopos tienen el mismo Z (mismo elemento) pero diferente A (distinto número de neutrones). Ejemplo: ¹³¹I y ¹³²I."
+  },
+  {
+      q: "2. La fórmula empírica del radio nuclear es R = r₀ · A^(1/3). ¿Qué nos indica esto?",
+      opciones: [
+         "Que el volumen nuclear es proporcional al número de nucleones (A).",
+         "Que la densidad nuclear aumenta con el tamaño del núcleo.",
+         "Que el radio nuclear es independiente del número de masa.",
+         "Que los núcleos son perfectamente esféricos."
+      ],
+      correcta: 0,
+      feedback: "Como R ∝ A^(1/3), el volumen V ∝ R³ ∝ A. Esto implica que la densidad nuclear es aproximadamente constante para todos los núcleos (ρ ≈ 2×10¹⁷ kg/m³)."
+   },
+   {
+      q: "3. ¿Cuál es la base física de la Resonancia Magnética Nuclear (RMN)?",
+      opciones: [
+         "La emisión de radiación gamma por núcleos excitados.",
+         "La diferencia de energía entre espines nucleares alineados y anti-alineados en un campo magnético.",
+         "La fisión del uranio-235 inducida por neutrones.",
+         "El decaimiento beta de isótopos inestables."
+      ],
+      correcta: 1,
+      feedback: "En un campo magnético B, los espines se alinean paralela o antiparalelamente. La diferencia de energía ΔE = 2|μz|B corresponde a frecuencias de radio (~97.9 MHz para B=2.30 T), base de la RMN."
+   },
+   {
+      q: "4. El modelo de capas (Goeppert-Mayer y Jensen) explica la estabilidad especial de ciertos núcleos. ¿Cómo se llaman esos números de protones o neutrones?",
+      opciones: [
+         "Números cuánticos.",
+         "Números másicos.",
+         "Números mágicos.",
+         "Números de Avogadro."
+      ],
+      correcta: 2,
+      feedback: "Los 'números mágicos' son 2, 8, 20, 28, 50, 82 y 126. Los núcleos con estos números de protones o neutrones son especialmente estables, análogo a los gases nobles en química."
+   },
+   {
+      q: "5. ¿Qué modelo nuclear describe a los nucleones como moléculas en una gota de líquido y permite formular la fórmula semiempírica de masas?",
+     opciones: [
+        "Modelo de capas.",
+        "Modelo de gota líquida.",
+        "Modelo de Thomson.",
+        "Modelo de Bohr."
+     ],
+     correcta: 1,
+     feedback: "El modelo de gota líquida (Gamow, Bohr) trata a los nucleones como moléculas de un líquido. De él surge la fórmula semiempírica de masas, que explica la energía de enlace considerando efectos de volumen, superficie, repulsión coulombiana, simetría y apareamiento."
+   }
 ];
 
 function renderQuiz() {
-    const cont = $('#quiz-container');
-    if (!cont) return;
-    cont.innerHTML = preguntas.map((p, i) => `
-        <div class="quiz-q" data-q="${i}">
-            <p>${p.q}</p>
-            ${p.opciones.map((op, j) => `
-                <label class="quiz-opt" data-opt="${j}">
-                    <input type="radio" name="q${i}" value="${j}">
-                   ${op}
-                </label>
-            `).join('')}
-            <div class="quiz-feedback" id="fb-${i}"></div>
-        </div>
-    `).join('');
-    $$('.quiz-opt').forEach(opt => {
-        opt.onclick = () => {
-            const q = opt.closest('.quiz-q');
-            q.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
-            opt.classList.add('selected');
-            opt.querySelector('input').checked = true;
-        };
-    });
+  const cont = $('#quiz-container');
+  if (!cont) return;
+  cont.innerHTML = preguntas.map((p, i) => `
+      <div class="quiz-q" data-q="${i}">
+         <p>${p.q}</p>
+         ${p.opciones.map((op, j) => `
+             <label class="quiz-opt" data-opt="${j}">
+                <input type="radio" name="q${i}" value="${j}">
+               ${op}
+             </label>
+         `).join('')}
+         <div class="quiz-feedback" id="fb-${i}"></div>
+      </div>
+  `).join('');
+  $$('.quiz-opt').forEach(opt => {
+      opt.onclick = () => {
+         const q = opt.closest('.quiz-q');
+         q.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+         opt.classList.add('selected');
+         opt.querySelector('input').checked = true;
+      };
+  });
 }
 
 function corregirQuiz() {
-    let puntaje = 0;
-    preguntas.forEach((p, i) => {
-        const q = $(`.quiz-q[data-q="${i}"]`);
-        const seleccionada = q.querySelector('input:checked');
-        const feedback = $(`#fb-${i}`);
-        q.querySelectorAll('.quiz-opt').forEach(o => { o.classList.remove('correct', 'incorrect'); });
-        feedback.classList.remove('show');
-        if (!seleccionada) {
-            feedback.textContent = "⚠️ No seleccionaste una opción.";
-            feedback.style.color = "#ffb000";
-            feedback.classList.add('show');
-            return;
-        }
-        const val = parseInt(seleccionada.value);
-        const optSeleccionada = q.querySelector(`.quiz-opt[data-opt="${val}"]`);
-        const optCorrecta = q.querySelector(`.quiz-opt[data-opt="${p.correcta}"]`);
-        if (val === p.correcta) {
-            optSeleccionada.classList.add('correct');
-            feedback.innerHTML = `✅ <b>¡Correcto!</b> ${p.feedback}`;
-            feedback.style.color = "var(--g)";
-            puntaje++;
-        } else {
-            optSeleccionada.classList.add('incorrect');
-            optCorrecta.classList.add('correct');
-            feedback.innerHTML = `❌ <b>Incorrecto.</b> La respuesta correcta es: <i>${p.opciones[p.correcta]}</i><br><br>${p.feedback}`;
-            feedback.style.color = "#ff4d4d";
-        }
-        feedback.classList.add('show');
-    });
-    const cont = $('#quiz-container');
-    let resumen = $('#quiz-resumen');
-    if (!resumen) {
-        resumen = document.createElement('div');
-        resumen.id = 'quiz-resumen';
-        resumen.style.cssText = 'margin-top:20px;padding:16px;border-radius:10px;background:#0a1019;border:1px solid var(--line);text-align:center;font-weight:600;';
-        cont.appendChild(resumen);
-    }
-    resumen.innerHTML = `📊 Puntaje: <span style="color:var(--g);font-size:1.2rem;">${puntaje} / ${preguntas.length}</span>`;
-    resumen.style.color = puntaje === preguntas.length ? "var(--g)" : "var(--tx)";
+  let puntaje = 0;
+  preguntas.forEach((p, i) => {
+     const q = $(`.quiz-q[data-q="${i}"]`);
+     const seleccionada = q.querySelector('input:checked');
+     const feedback = $(`#fb-${i}`);
+     q.querySelectorAll('.quiz-opt').forEach(o => { o.classList.remove('correct', 'incorrect'); });
+     feedback.classList.remove('show');
+
+     if (!seleccionada) {
+         feedback.textContent = "⚠️ No seleccionaste una opción.";
+         feedback.style.color = "#ffb000";
+         feedback.classList.add('show');
+         return;
+     }
+     const val = parseInt(seleccionada.value);
+     const optSeleccionada = q.querySelector(`.quiz-opt[data-opt="${val}"]`);
+     const optCorrecta = q.querySelector(`.quiz-opt[data-opt="${p.correcta}"]`);
+     if (val === p.correcta) {
+         optSeleccionada.classList.add('correct');
+         feedback.innerHTML = `✅ <b>¡Correcto!</b> ${p.feedback}`;
+         feedback.style.color = "var(--g)";
+         puntaje++;
+     } else {
+         optSeleccionada.classList.add('incorrect');
+         optCorrecta.classList.add('correct');
+         feedback.innerHTML = `❌ <b>Incorrecto.</b> La respuesta correcta es: <i>${p.opciones[p.correcta]}</i><br><br>${p.feedback}`;
+         feedback.style.color = "#ff4d4d";
+     }
+     feedback.classList.add('show');
+  });
+  const cont = $('#quiz-container');
+  let resumen = $('#quiz-resumen');
+  if (!resumen) {
+      resumen = document.createElement('div');
+      resumen.id = 'quiz-resumen';
+      resumen.style.cssText = 'margin-top:20px;padding:16px;border-radius:10px;background:#0a1019;border:1px solid var(--line);text-align:center;font-weight:600;';
+      cont.appendChild(resumen);
+  }
+  resumen.innerHTML = `📊 Puntaje: <span style="color:var(--g);font-size:1.2rem;">${puntaje} / ${preguntas.length}</span>`;
+  resumen.style.color = puntaje === preguntas.length ? "var(--g)" : "var(--tx)";
 }
 
 function resetQuiz() {
-    renderQuiz();
-    const resumen = $('#quiz-resumen');
-    if (resumen) resumen.remove();
+  renderQuiz();
+  const resumen = $('#quiz-resumen');
+  if (resumen) resumen.remove();
 }
-
 if ($('#quiz-container')) {
     renderQuiz();
     $('#quiz-check').onclick = corregirQuiz;
     $('#quiz-reset').onclick = resetQuiz;
 }
 
-// --- BIBLIOTECA (nuevo) ---
+// --- BIBLIOTECA ---
 (function(){
 const datos=[
 ["Química Activa (puerta cerrada)",0.0890,"A"],
@@ -724,62 +791,26 @@ caps.forEach(k=>{
 ['#plan-d','#bib-d1','#bib-d2'].forEach(id=>{
  const d=$(id);
  d.addEventListener('toggle',()=>{
-  const b=d.querySelector('.pv');
-  if(d.open&&!b.dataset.loaded)pdfLoad(b,b.dataset.pdf);
+  const o=d.querySelector('object');
+  if(d.open&&!o.data){o.data=o.dataset.src}
  });
 });
+// Nuevo: PDF "Historia visual del átomo" (iframe, carga al abrir)
+(function(){
+ const d=$('#at-d');if(!d)return;
+ d.addEventListener('toggle',()=>{
+  const f=d.querySelector('iframe');
+  if(d.open&&!f.getAttribute('src')){f.src=f.dataset.src+'#view=FitH'}
+ });
+})();
 })();
 
-// --- VISOR DE PDF (PDF.js): se ve igual en computadora y en celular ---
-let pdfjsP=null;
-function pdfjs(){
- if(pdfjsP)return pdfjsP;
- pdfjsP=new Promise((ok,no)=>{
-  const s=document.createElement('script');
-  s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-  s.onload=()=>{pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';ok(pdfjsLib)};
-  s.onerror=()=>no(new Error('pdfjs'));
-  document.head.appendChild(s);
- });
- return pdfjsP;
-}
-function pdfLoad(box,path){
- const url=new URL(encodeURI(path),location.href).href;
- box.dataset.loaded=path;
- box.innerHTML='<p class="pv-msg">Cargando PDF…</p>';
- pdfjs().then(lib=>lib.getDocument({url}).promise).then(doc=>{
-  if(box.dataset.loaded!==path)return;
-  let n=1,zoom=1,busy=false,pend=false;
-  box.innerHTML='<div class="pv-bar"><button type="button" data-a="prev">◀</button><span class="pv-n"></span><button type="button" data-a="next">▶</button><button type="button" data-a="out">−</button><button type="button" data-a="in">＋</button><a href="'+url+'" target="_blank" rel="noopener">Abrir ↗</a></div><div class="pv-wrap"><canvas></canvas></div>';
-  const cv=box.querySelector('canvas'),wrap=box.querySelector('.pv-wrap'),lab=box.querySelector('.pv-n');
-  const draw=()=>{
-   if(busy){pend=true;return}
-   busy=true;
-   doc.getPage(n).then(pg=>{
-    const w0=pg.getViewport({scale:1}).width;
-    const dpr=Math.min(window.devicePixelRatio||1,2);
-    const vp=pg.getViewport({scale:(wrap.clientWidth/w0)*zoom*dpr});
-    cv.width=vp.width;cv.height=vp.height;
-    cv.style.width=(vp.width/dpr)+'px';cv.style.height=(vp.height/dpr)+'px';
-    lab.textContent=n+' / '+doc.numPages;
-    return pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
-   }).then(()=>{busy=false;if(pend){pend=false;draw()}}).catch(()=>{busy=false});
-  };
-  box.querySelector('.pv-bar').onclick=e=>{
-   const a=e.target.dataset&&e.target.dataset.a;if(!a)return;
-   if(a==='prev'&&n>1)n--;
-   if(a==='next'&&n<doc.numPages)n++;
-   if(a==='in')zoom=Math.min(zoom+.25,3);
-   if(a==='out')zoom=Math.max(zoom-.25,.5);
-   wrap.scrollTop=0;draw();
-  };
-  draw();
- }).catch(()=>{
-  box.innerHTML='<p class="pv-msg">No se pudo cargar el PDF. <a href="'+url+'" target="_blank" rel="noopener" style="color:var(--g)">Abrilo en una pestaña nueva ↗</a></p>';
- });
-}
-(()=>{const pe=$('#pdf-viewer');
- new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){pdfLoad(pe,pe.dataset.pdf);o.disconnect()}},{rootMargin:'300px'}).observe(pe);})();
+// --- MENÚ DESPLEGABLE ---
+(()=>{const dds=$$('nav .dd');
+const close=()=>dds.forEach(d=>{d.classList.remove('open');d.firstElementChild.setAttribute('aria-expanded','false')});
+dds.forEach(d=>{const b=d.firstElementChild;b.onclick=e=>{e.stopPropagation();const o=d.classList.contains('open');close();if(!o){d.classList.add('open');b.setAttribute('aria-expanded','true')}}});
+document.addEventListener('click',close);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});})();
 </script>
 </body>
 </html>
